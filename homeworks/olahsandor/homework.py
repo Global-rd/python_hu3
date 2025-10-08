@@ -1,0 +1,22 @@
+# MULTI LINE COMMENT
+"""
+This is 
+my first 
+python program
+"""
+
+#PRIMITÍV ADATTÍPUSOK
+# STRING TIP    - SZÖVEG TÍPUS
+print("Hello World")
+
+# INTEGER TIP - EGÉSZ TÍPUS
+print(1977)
+
+# FLOAT TIP     - FLOATING POINT NUMBER / LEBEGŐPONTOS / NEM EGYENLŐ A TÖRTEKKEL
+print(3.111111)
+
+# BOOLEAN TIP   - LOGIKAI TIPUS
+PRINT(True) 
+
+# NONE TIP  - INFORMÁCIÓ HIÁNYA
+print(None)

@@ -9,5 +9,3 @@ print(3.14) # Float
 print('Szép munka!') # String
 
 print (True) # Boolean
-
-

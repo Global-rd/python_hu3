@@ -4,16 +4,16 @@ first
 Python program
 """
 
-string tipus
-print ("apple")
+# string tipus
+print("apple")
 
-vinteger tipus
-print (5)
+# integer tipus
+print(5)
 
-float
-print (1,27)
+# float
+print(1.27)
 
-booleam
-print (True)
+# boolean
+print(True)
 
 

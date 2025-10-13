@@ -9,7 +9,7 @@ print("Hello word!")  # str
 print(8)  # int
 
 # Lebegőpontos szám (float)
-print(1.1)  # float
+print(1.12)  # float
 
 # Logikai érték (boolean)
 print(True)  # bool

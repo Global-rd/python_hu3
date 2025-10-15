@@ -13,7 +13,7 @@ user_info = {
 }
 
 # Task 2/1
-# I ask 4 programming language as string separeted with commas
+# I ask 4 programming language as string separated with commas
 user_skills = input("Please add 4 programming languages, separated by commas: ")
 
 # With str.split() I get back a list data type from string

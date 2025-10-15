@@ -103,6 +103,6 @@ user_info["phone_contacts"].update({"Tim": removed_value})
 print(user_info)
 
 """
-More compact sollution but less readability
+More compact solution but less readability
 user_info['phone_contacts']['Tim'] = user_info['phone_contacts'].pop('Tim2')
 """

@@ -91,9 +91,7 @@ pprint(user_info)
 # Print skills list last three element in reverse order
 print("------------------")
 pprint(user_info["skills"])
-skills_reversed = user_info["skills"][-3:]
-skills_reversed.reverse()
-print(skills_reversed)
+print(user_info["skills"][-3:][::-1])
 
 # Task 2 / Extra2
 # Rename Tim2 to Tim while keep phone number

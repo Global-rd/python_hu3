@@ -15,8 +15,7 @@ user_info = {
 }
 #kerd be a 4 programozasi nyelvet es tarold el listaban
 prog_lang = input("Please give 4 program languages: (e.g.: Python, Java, VB, C)").strip()
-prog_lang_list = prog_lang.split(",")
-user_info["skills"] = prog_lang_list
+user_info["skills"] = prog_lang.split(",")
 #print("1:")
 #print(user_info)
 
@@ -78,6 +77,5 @@ user_info["phone_contacts"]["Bela"] = ["+36202221212", "+36302950202"]
 # skills utolso 3 eleme,ellentétes sorrendben, majd Tim2-Tim-re
 print(user_info["skills"][-1:-4:-1])
 
-user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"]["Tim2"]
-del user_info["phone_contacts"]["Tim2"]
+user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"].pop("Tim2")
 #print(user_info)

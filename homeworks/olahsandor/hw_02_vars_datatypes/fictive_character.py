@@ -13,7 +13,7 @@ py_exp_in_year = int(input("How many years of Python experience do you have?"))
 want_to_be_exp = input("Do you want to be a Python expert? (yes/no)").lower().strip()
 
 # a mai ora utan a ternary operator
-result="He/she wants to be a Python developer!" if want_to_be_exp=="yes" else "He/she doesn't want to be a Python developer!"
+dev_intention="wants" if want_to_be_exp=="yes" else "does not want"
 
 #eredmye kiiratasa
-print(f"My character is {age_in_days} days old. His/her name is {name} and he/she has {py_exp_in_year} years experience. {result}")
+print(f"My character is {age_in_days} days old. His/her name is {name} and he/she has {py_exp_in_year} years experience. He/she {dev_intention} to be a Python developer!")

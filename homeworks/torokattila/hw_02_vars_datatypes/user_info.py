@@ -57,9 +57,10 @@ print(user_info["favourite_meals"])
 print ("----------")
 print(list(set(user_info["favourite_meals"])))
 
+'''
 # 7. elemek felcserélése
 # --------------
-print ("----------")
+print ("7/1----------")
 first = user_info["favourite_meals"][0]
 last = user_info["favourite_meals"][-1]
 
@@ -67,7 +68,14 @@ user_info["favourite_meals"][0] = last
 user_info["favourite_meals"][-1] = first
 
 print(user_info["favourite_meals"])
+'''
+# 7./2 elemek felcserélése
+# --------------
+print ("7/2----------")
 
+user_info["favourite_meals"][0],user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0]
+
+print(user_info["favourite_meals"])
 
 # 8. Új elem hozzáadása
 # --------------

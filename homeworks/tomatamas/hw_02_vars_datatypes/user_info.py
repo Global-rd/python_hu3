@@ -16,8 +16,7 @@ user_info = {
 
 # programmozási nyelvek bekérése
 prog_languages = input("Name four programming languages separated with comma: ").split(",")
-for i in range(len(prog_languages)):
-    prog_languages[i] = prog_languages[i].strip()
+prog_languages = [lang.strip() for lang in prog_languages]
 user_info["skills"] = prog_languages
 
 # favorite meals rendezése

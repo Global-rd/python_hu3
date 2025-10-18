@@ -42,7 +42,7 @@ user_info["phone_contacts"]["Koni"] = ["+3680555555", "+3620777555"]        # Ko
 
 print(sorted(user_info["skills"][-3:], reverse=True))                       # A skills lista utolsó három elemét fordítva kiírja. ( ezt már nyomozni kellett...)
 
-user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"]["Tim2"]
-del user_info["phone_contacts"]["Tim2"]
+user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"]["Tim2"]    # Lemásolom Tim2-őt Tim-néven.
+del user_info["phone_contacts"]["Tim2"]                                     #Törlöm Tim2-őt. ( csórókám :) )
 
 pprint(user_info)

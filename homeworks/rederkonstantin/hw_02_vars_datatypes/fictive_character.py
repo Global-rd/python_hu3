@@ -3,8 +3,6 @@ Ask and store basic information about user's character.
 
 """
 
-
-
 name_of_character = input("Add meg a karaktered nevét: ")\
     .lstrip()\
     .rstrip()\

@@ -1,7 +1,11 @@
-name = input("Whats is your name?")
-age = input("How old are you?")
+name = input("Whats is your name?").upper().strip()
+age = int(input("How old are you?"))
+age_in_days = int(age * 365)
 experince = input("How many years do you have in python?")
-print(f"My character is " + age + (" years old.His/her name is " + name + " and he/she has " + experince + " years experince."))
-results = int(age)
-results = int(experince)
-print(type(results))
+print(f"My character is {age_in_days} days old.His/her name is {name} and he/she has {experince} years experince.")
+
+expert = input("Are you an expert in python? (yes/no)")
+if expert == "yes"
+    pass
+else:
+    print("Please answer with yes or no")    

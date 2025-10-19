@@ -39,7 +39,7 @@ user_info["favourite_meals"].extend([third_meal, fourth_meal])
 print("Duplicated 3rd and 4th meals:", user_info["favourite_meals"])
 
 # 6. Remove duplicates from the favourite_meals list
-user_info["favourite_meals"] = list(dict.fromkeys(user_info["favourite_meals"]))
+user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))
 print("Removed duplicates:", user_info["favourite_meals"])
 
 # 7. Swap the first and last items in the favourite_meals list

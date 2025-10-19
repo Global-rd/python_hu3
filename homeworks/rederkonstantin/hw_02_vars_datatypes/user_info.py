@@ -16,7 +16,6 @@ user_info = {
 }
 }
 
-
 skills = input("Addj meg négy programozási nyelvet, vesszóvel válaszd el őket egymástól: ").strip()     # információ bekérése.
 list_of_skills = list(skills.split(","))                                                                # lista készítése vesszó mentén.
 user_info["skills"] = list_of_skills                                                                    # a lista beépítése a user_info-ba skills kulcs alá.

@@ -1,8 +1,6 @@
 """ 
 Ask and store basic information about user's character.
-
 """
-
 """
 name_of_character = input("Add meg a karaktered nevét: ")\
     .lstrip()\
@@ -10,11 +8,8 @@ name_of_character = input("Add meg a karaktered nevét: ")\
     .upper()
 
 A strip funkcióról azt hittem, hogy a string besejében levő space-ekat is kiveszi..... 
-
 """
 name_of_character = input("Add meg a karaktered nevét: ").strip().upper()
-
-
 
 age_of_character_in_years = int(input("Add meg a karaktered életkorát években: "))
 age_of_character_in_days = age_of_character_in_years * 365

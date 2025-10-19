@@ -29,10 +29,18 @@ user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])      # A 
 
 user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))      # A favourite_meals lista duplikációinak megszűntetése.
 
+""" Első megoldás:
 first_food = user_info["favourite_meals"][0]                                # Az első elem a listából változóba másolva.
 last_food = user_info["favourite_meals"][-1]                                # Az utolsó elem a listából változóba mentve.
 user_info["favourite_meals"][0] = last_food                                 # Az utolsó elem az első helyre másolva.
 user_info["favourite_meals"][-1] = first_food                               # Az első elem az utolsó helyre másolva.
+"""
+
+# Javasolt, jobb megoldás:
+user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = (
+    user_info["favourite_meals"][-1],
+    user_info["favourite_meals"][0],
+)
 
 user_info["phone_contacts"]["Jony"] = "+3672555776"                         # A telefonlista bővítve Jony-val.
 
@@ -40,9 +48,20 @@ del user_info["phone_contacts"]["Tim"]                                      # Ti
 
 user_info["phone_contacts"]["Koni"] = ["+3680555555", "+3620777555"]        # Koni hozzáadva két tel számmal, ezek listában, hogy lehessen visszakeresni.
 
+""" Első megoldás:
 print(sorted(user_info["skills"][-3:], reverse=True))                       # A skills lista utolsó három elemét fordítva kiírja. ( ezt már nyomozni kellett...)
+"""
 
+# Javaslot, jobb megoldás: 
+print(user_info["skills"][-3:][::-1])
+# itt az [-3:] egy kiválasztás, a [::-1] pedig az egyesével való visszafelé való "lépkedés".
+
+""" Első megoldás:
 user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"]["Tim2"]    # Lemásolom Tim2-őt Tim-néven.
 del user_info["phone_contacts"]["Tim2"]                                     #Törlöm Tim2-őt. ( csórókám :) )
+"""
+
+# Javasolt, jobb megoldás:
+user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"].pop("Tim2")
 
 pprint(user_info)

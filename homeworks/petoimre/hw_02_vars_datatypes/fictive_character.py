@@ -2,10 +2,23 @@
 Exercise one
 Fictive character
 '''
-character_name = (input("Type in your name:"))
-character_age = int(input("Give me how old are you:"))
-character_experience = int(input("How much experience do you have in Python?"))
-character_name = character_name.title()
-character_name = character_name.strip()
-character_age_in_day = character_age*365
-print(f"My character is {character_age} years old. His/her name is {character_name} and he/she has {character_experience} years experience in Python." )
+
+#  Task-1 
+character_name = (input("Type in your name: "))                                # Bekért név
+character_age = int(input("Give me how old are you: "))                        # Bekért kor egyből int-be, mert számolunk vele
+character_experience = input("How much experience do you have in Python? ")    # Bekért exp. Marad str, mert nem számolunk vele
+character_name = character_name.title()                                        # Minden szó első char nagy betű
+character_name = character_name.strip()                                        # Elől-hátul üres str-t kivesz
+character_age_in_day = character_age*365                                       # Évekből napok száma
+character_profil = f"My character is lives {character_age_in_day} days ago. His/her name is {character_name} and he/she has {character_experience} years experience in Python."      # Az egészet összefűz
+print(character_profil)                                                        # print
+# Task-1 end
+# ----------
+# Extra task
+character_want_prof = input("Do you want to became professional Python developer? Please answer yes or no: ") # Kérdés
+character_want_prof = "" if character_want_prof == "yes" else "doesn't"                                       # yes-> semmi, else-> doesn't
+character_want_prof = f"{character_profil} He/she {character_want_prof} want to be Python developer"          # Összefűz
+print(character_want_prof)                                                                                    # Print
+# Extra task end
+
+

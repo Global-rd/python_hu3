@@ -24,6 +24,7 @@ print(user_info["favourite_meals"])
 favourite_meals = user_info.get("favourite_meals")
 print(favourite_meals[-2])
 #4.feladat
+favourite_meals.append("spaghetti")
 favourite_meals.extend(user_info["favourite_meals"][2:4])
 print(favourite_meals)
 #5.feladat

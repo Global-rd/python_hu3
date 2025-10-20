@@ -19,9 +19,9 @@ user_info = {
 }
 # 1. feladat
 # adatbekérés
-skills_bekérés = str(input("Adj meg 4 programozási nyelvet vesszővel elválasztva: "))
+skills_request = str(input("Adj meg 4 programozási nyelvet vesszővel elválasztva: "))
 #lista
-skills= skills_bekérés.split(",")
+skills= skills_request.split(",")
 #hozzáadás
 user_info["skills"] = skills
 pprint(user_info)
@@ -62,19 +62,19 @@ print (user_info["favourite_meals"])
 
 #7. feladat
 print ("------------------------------------------")
-első=user_info["favourite_meals"].pop(0)
-utolsó=user_info["favourite_meals"].pop(-1)
+first=user_info["favourite_meals"].pop(0)
+last=user_info["favourite_meals"].pop(-1)
 
 print (user_info["favourite_meals"])
 
-user_info["favourite_meals"].insert(0, utolsó)
-user_info["favourite_meals"].insert(-1, első)
+user_info["favourite_meals"].insert(0, last)
+user_info["favourite_meals"].insert(-1, first)
 
 print (user_info["favourite_meals"])
 
 #8. feladat
 print ("------------------------------------------")
-user_info["phone_contacts"]["Béla"]="+36801234567"
+user_info["phone_contacts"]["Bela"]="+36801234567"
 
 pprint(user_info["phone_contacts"])
 
@@ -86,7 +86,7 @@ pprint(user_info["phone_contacts"])
 
 #10. feladat
 print ("------------------------------------------")
-user_info["phone_contacts"]["Géza"]=["+36811234567","+36909999999"]
+user_info["phone_contacts"]["Geza"]=["+36811234567","+36909999999"]
 pprint(user_info["phone_contacts"])
 
 # +1

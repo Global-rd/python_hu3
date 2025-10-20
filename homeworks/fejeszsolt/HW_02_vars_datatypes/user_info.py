@@ -56,19 +56,22 @@ pprint(user_info)
 
 #6. feladat
 print ("------------------------------------------")
-set_user_info = set(user_info["favourite_meals"])
-user_info["favourite_meals"]= list(set_user_info)
+#set_user_info = set(user_info["favourite_meals"])
+#user_info["favourite_meals"]= list(set_user_info)
+list(set(user_info["favourite_meals"]))
 print (user_info["favourite_meals"])
 
 #7. feladat
 print ("------------------------------------------")
-first=user_info["favourite_meals"].pop(0)
-last=user_info["favourite_meals"].pop(-1)
+#first=user_info["favourite_meals"].pop(0)
+xlast=user_info["favourite_meals"].pop(-1)
 
-print (user_info["favourite_meals"])
+#print (user_info["favourite_meals"])
 
-user_info["favourite_meals"].insert(0, last)
-user_info["favourite_meals"].insert(-1, first)
+#user_info["favourite_meals"].insert(0, last)
+#user_info["favourite_meals"].insert(-1, first)
+
+user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0]
 
 print (user_info["favourite_meals"])
 

@@ -20,7 +20,7 @@ print(len(prog_nyelv_list))
 print(type(prog_nyelv_list))
 """
 
-user_info.update({"skills" : prog_nyelv}) # Hozzáadjom a megadott listát
+user_info.update({"skills" : prog_nyelv}) # Hozzáadom a megadott listát
 
 # 2. feladat
 user_info["favourite_meals"].sort() # Rendezem az adatokat

@@ -19,7 +19,7 @@ user_info["skills"] = input("Enter 4 programming languages separated by commas (
 user_info["favourite_meals"].sort()
 print(user_info["favourite_meals"][-2])
 user_info["favourite_meals"].append("spaghetti")
-user_info["favourite_meals"] += [user_info["favourite_meals"][2], user_info["favourite_meals"][3]]
+user_info["favourite_meals"] += user_info["favourite_meals"][2:4]
 user_info["favourite_meals"] = list(dict.fromkeys(user_info["favourite_meals"]))
 #print(user_info["favourite_meals"])
 user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0]
@@ -28,6 +28,5 @@ user_info["phone_contacts"]["Laszlo"] = "+36301234567"
 del user_info["phone_contacts"]["Tim"]
 user_info["phone_contacts"]["Balasz"] = ["+36301112222", "+36309998888"]
 print(user_info["skills"][-3:][::-1])
-user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"]["Tim2"]
-del user_info["phone_contacts"]["Tim2"]
+user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"].pop("Tim2")
 #pprint.pprint(user_info)

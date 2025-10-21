@@ -11,16 +11,8 @@ user_info = {
 #print(user_info)
 
 # 1. feladat 
-prog_nyelv = input("Kérek 4 programozási nyelvet vesszővel elválasztva!")
-prog_nyelv_list = prog_nyelv.split(",")  # Listát készítek a beírt szövegből
-
-"""
-print(prog_nyelv_list)
-print(len(prog_nyelv_list))
-print(type(prog_nyelv_list))
-"""
-
-user_info.update({"skills" : prog_nyelv}) # Hozzáadom a megadott listát
+prog_language = input("Kérek 4 programozási nyelvet vesszővel elválasztva!")
+user_info["skills"] = prog_language.split(",") # Hozzáadom a megadott listát
 
 # 2. feladat
 user_info["favourite_meals"].sort() # Rendezem az adatokat
@@ -29,7 +21,7 @@ user_info["favourite_meals"].sort() # Rendezem az adatokat
 print(user_info["favourite_meals"][-1]) # Listázom a lista utolsó elemét
 
 # 4. feladat
-user_info["favourite_meals"].append("spaghetti") # Hozzáadom a"Spaghetti"-t
+user_info["favourite_meals"].append("spaghetti") # Hozzáadom a "Spaghetti"-t
 #print(user_info["favourite_meals"])
 
 # 5. feladat
@@ -42,10 +34,13 @@ user_info["favourite_meals"]=list(set(user_info["favourite_meals"])) # Törlöm 
 
 # 7. feladat
 user_info["favourite_meals"].sort() # Rendezem a listát újra
-elso = user_info["favourite_meals"][0] # Eltárolom a jelenlegi első elemet
-utolso = user_info["favourite_meals"][-1] # Eltárolom a jelenlegi utolsó elemet
-user_info["favourite_meals"][0]=utolso # Első elemnek megadom az eltárolt utolsó elemet
-user_info["favourite_meals"][-1]=elso # Utolsó elemnek megadom az eltárolt első elemet
+"""
+first = user_info["favourite_meals"][0] # Eltárolom a jelenlegi első elemet
+last = user_info["favourite_meals"][-1] # Eltárolom a jelenlegi utolsó elemet
+user_info["favourite_meals"][0]=last # Első elemnek megadom az eltárolt utolsó elemet
+user_info["favourite_meals"][-1]=first # Utolsó elemnek megadom az eltárolt első elemet
+"""
+user_info["favourite_meals"][0],user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1],user_info["favourite_meals"][0]
 #print(user_info["favourite_meals"])
 
 # 8. feladat

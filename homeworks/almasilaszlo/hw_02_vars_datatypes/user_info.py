@@ -15,12 +15,11 @@ user_info = {
     }
 }
 #print(user_info)
+
 #1. Kérj be a felhasználótól 4 programozási nyelvet vesszővel elválasztva, szóközök nélkül. Konvertáld a kapott stringet egy listává, és add hozzá a fenti dictionary-hez “skills” néven.
 dev_lan = input("Provde me 4 different programmaing languages seperated by a comma: ")
-dev_lan = dev_lan.split(",")
-#print(dev_lan)
-#print(type(dev_lan))
-user_info["skills"]=dev_lan
+#javított
+user_info["skills"]=dev_lan.split(",")
 
 #2. Rendezd a favourite_meals lista elemeit abc szerinti növekvő sorrendbe.
 user_info["favourite_meals"].sort()

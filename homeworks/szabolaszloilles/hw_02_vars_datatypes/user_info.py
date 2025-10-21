@@ -33,13 +33,14 @@ new_added_elements = user_info["favourite_meals"][2:4]
 
 user_info["favourite_meals"].extend(new_added_elements) #subtask No 5
 
-del user_info["favourite_meals"][4:6] #subtask No 6
+user_info["favourite_meals"] = list(set(user_info["favourite_meals"])) #subtask No 6
 
-first_element = user_info["favourite_meals"][0]
-last_element = user_info["favourite_meals"][-1]
+# first_element = user_info["favourite_meals"][0] 
+# last_element = user_info["favourite_meals"][-1]
+# user_info["favourite_meals"][0] = last_element
+# user_info["favourite_meals"][-1] = first_element 
 
-user_info["favourite_meals"][0] = last_element
-user_info["favourite_meals"][-1] = first_element #subtask No 7
+user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0] #subtask No 7
 
 
 user_info["phone_contacts"]["Jonathan"] = ("+36309125484") #subtask No 8
@@ -48,9 +49,11 @@ del user_info["phone_contacts"]["Tim"]  #subtask No 9
 
 user_info["phone_contacts"]["Eliah"] = ["+36704128596" ,"+36203359427"] #subtask No 10
 
-skill.reverse()
+print(user_info["skill"][-3:][::-1]) # extra task 1
 
-del skill[-1]
+user_info["phone_contacts"] ["Tim"] = user_info["phone_contacts"] ["Tim2"] # extra task 2
+
+del user_info["phone_contacts"] ["Tim2"]
 
 print(skill)
 

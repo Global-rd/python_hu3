@@ -42,3 +42,6 @@ print(False)
 
 #NONE TYPE
 print(None) #az információ hiányát jelöli
+
+var="random"
+print(var[-2:])

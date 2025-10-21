@@ -1,0 +1,6 @@
+name = input("Please enter your name: ")
+capitalname = name.upper()
+age = int(input("please enter your age: "))
+experience = int(input("please eneter years of experience: "))              
+print(f"My name is {capitalname}, I am {age} years old, and I have {experience} years of experience in python.")
+

@@ -18,10 +18,8 @@ user_info = {
 
 # 1. Programozási nyelvek bekérése és hozzáadása a dictionary-hez
 print("1. Programozási nyelvek hozzáadása")
-#languages_input = input("Adj meg 4 programozási nyelvet vesszővel elválasztva (pl: Python,Java,JavaScript,C++): ")
-languages_input = 'pit,jav,c,delphi'
-skills_list = languages_input.split(",")
-user_info["skills"] = skills_list
+languages_input = input("Adj meg 4 programozási nyelvet vesszővel elválasztva (pl: Python,Java,JavaScript,C++): ")
+user_info["skills"] = languages_input.split(",")
 print(f"Skills hozzáadva: {user_info['skills']}")
 pprint(user_info)
 print()
@@ -45,10 +43,7 @@ print()
 
 # 5. Harmadik és negyedik elem hozzáadása újra
 print("5. Harmadik és negyedik elem hozzáadása újra")
-third_element = user_info["favourite_meals"][2]
-fourth_element = user_info["favourite_meals"][3]
-user_info["favourite_meals"].append(third_element)
-user_info["favourite_meals"].append(fourth_element)
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
 print(f"Lista duplikátumokkal: {user_info['favourite_meals']}")
 print()
 

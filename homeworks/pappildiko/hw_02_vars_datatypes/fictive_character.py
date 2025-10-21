@@ -10,18 +10,17 @@ my_character = {
     "Python_experience": python_experience_in_years
 }
 
-print(f"My character is {age_in_days} days old. His/her name is {name} and he/she has {python_experience_in_years} years experience.")
+# print(f"My character is {age_in_days} days old. His/her name is {name} and he/she has {python_experience_in_years} years experience.")
 
 #extra - ternary operator
 become_python_developer = input("Would you like to become a Python developer? Please answer with Y or N ")
 
-yes_answer = f"My character is {age_in_days} days old. His/her name is {name} and he/she has {python_experience_in_years} years experience. He/she wants to be a Python developer!"
-no_answer = f"My character is {age_in_days} days old. His/her name is {name} and he/she has {python_experience_in_years} years experience. He/she does not want to be a Python developer!"
+dev_intention = "wants" if become_python_developer =="Y" else "does not want"
 
-print(yes_answer) if become_python_developer == "Y" else print(no_answer) if become_python_developer=="N" else print("Wrong answer, please try again!")
+answer = f"My character is {age_in_days} days old. His/her name is {name} and he/she has {python_experience_in_years} years experience. He/she {dev_intention} to be a Python developer!"
 
-"""
-n = 5
-res = "Even" if n % 2 == 0 else "Odd"
-print(res)
-"""
+if become_python_developer in ('Y', 'N'):
+   print(answer)
+else:
+    print("Wrong answer, please try again!")
+

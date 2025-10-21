@@ -21,12 +21,10 @@ user_info = {
 Konvertáld a kapott stringet egy listává, és add hozzá a fenti dictionary-hez “skills” néven.'''
 prog_languages = input("Give me 4 programming languages separated by a comma, without spaces: ")
 # spaces are cut off only at the beginning of the first word and at the end of the last word
-prog_languages_list = prog_languages.strip().split(",") 
-user_info["skills"]= prog_languages_list
-
+user_info["skills"] = prog_languages.strip().split(",")
 
 '''2. Rendezd a favourite_meals lista elemeit abc szerinti növekvő sorrendbe.'''
-sorted(user_info["favourite_meals"])
+user_info["favourite_meals"].sort()
 
 
 '''3. Printeld ki a favourite_meals lista utolsó előtti elemét'''
@@ -34,19 +32,16 @@ print(user_info["favourite_meals"])
 print(user_info["favourite_meals"][-2])
 
 
-
 '''4. Adj hozzá egy “spaghetti” string-et ugyanehhez a listához.'''
 user_info["favourite_meals"].append("spaghetti")
 
 
 '''5. Add hozzá a favourite_meals-hez az aktuális favourite_meals lista harmadik és negyedik elemét (nem az index-ét) újra.'''
-user_info["favourite_meals"].append(user_info["favourite_meals"][2])
-user_info["favourite_meals"].append(user_info["favourite_meals"][3])
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
 
 
 '''6. Ezután töröld az így keletkezett duplikátumokat!'''
-user_info["favourite_meals"].remove("sushi")
-user_info["favourite_meals"].remove("spaghetti")
+list(set(user_info["favourite_meals"]))
 
 
 '''7. Cseréld fel a favourite_meals lista első és utolsó elemét!'''
@@ -63,16 +58,19 @@ del user_info["phone_contacts"]["Tim"]
 
 
 '''10. Adj hozzá egy olyan új embert “phone_contacts”-hoz, akinek 2 telefonszáma is van!'''
-user_info["phone_contacts"]["Aron"] = "+3654443333"
-user_info["phone_contacts"]["Aron2"] = "+3654442222"
+user_info["phone_contacts"]["Aron"] = ["+3654443333","+3654442222"]
 
 
 '''Extra 1: Printeld ki a “skills” lista utolsó 3 elemét ellentétes sorrendben!''' 
-print(user_info["skills"])
+'''print(user_info["skills"])
 reversed_skills = sorted(user_info["skills"], reverse=True)
-print(reversed_skills[:3])
+print(reversed_skills[:3])'''
+print(user_info["skills"][-3:][::-1])
 
 
 '''Extra 2: Most, hogy Tim-nek már csak 1 telefonszáma van, érdemes lenne átnevezni Tim2-t Tim-re!'''
-user_info["phone_contacts"]['Tim'] = user_info["phone_contacts"]['Tim2']
-del user_info["phone_contacts"]['Tim2']
+'''user_info["phone_contacts"]['Tim'] = user_info["phone_contacts"]['Tim2']
+del user_info["phone_contacts"]['Tim2']'''
+pprint(user_info["phone_contacts"])
+user_info["phone_contacts"]['Tim'] = user_info["phone_contacts"].pop('Tim2')
+pprint(user_info["phone_contacts"])

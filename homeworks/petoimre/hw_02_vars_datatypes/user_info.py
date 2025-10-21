@@ -11,33 +11,27 @@ user_info = {
                      "Jim": "+364005000"}
 }
 
-user_input =  input("Type in four prgraming language. Use comma to separate them: ")  # Bekéri a szavakat
+user_input = input("Type in four prgraming language. Use comma to separate them: ")  # Bekéri a szavakat
 user_input = user_input.split(",")                                                   # list lesz belőle
 # print(type(user_input))                                                            # check
 # print(user_input)                                                                  # chk
 user_info ["skills"] = user_input                                                    # hozzáteszi a list-et dict-hez
 # print(user_info)                                                                   # chk
-user_info["favourite_meals"] = sorted(user_info["favourite_meals"])                  # abc sorrenbe teszi
+# user_info["favourite_meals"] = sorted(user_info["favourite_meals"])                # megtartom hogy lássam a különbséget
+user_info["favourite_meals"].sort()                                                  # abc sorrenbe teszi
 # print(user_info)                                                                   # chk 
-print(user_info["favourite_meals"][-2:-1])                                           # print az utólsó előtti elemet
+print(user_info["favourite_meals"][-2])                                              # print az utólsó előtti elemet
 user_info["favourite_meals"].append("spaghetti")                                     # hozzáadja a 'spagetti'-t
 # print(user_info)                                                                   # chk
-user_info["favourite_meals"] = sorted(user_info["favourite_meals"])                  # legyen újra abc-ben
+user_info["favourite_meals"].sort()                                                  # legyen újra abc-ben
 # print(user_info)                                                                   # chk
 user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])               # hozzáteszi a saját harmadik és negyedik elemét
 # print(user_info)                                                                   # chk
-favourite_meals_set = set(user_info["favourite_meals"])                              # set-ként betéve a változóba
-# print(favourite_meals_set)                                                         # chk eltűnt a duplikáció
-user_info["favourite_meals"] = list(favourite_meals_set)                             # list-ként visszatéve a dict-be
+user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))               # set-é alakítjuk, és egyből listává majd megy vissza
+# print(user_info)                                                                   # chk eltűnt a duplikáció
+user_info["favourite_meals"].sort()                                                  # legyen újra abc-ben
 # print(user_info)                                                                   # chk
-user_info["favourite_meals"] = sorted(user_info["favourite_meals"])                  # legyen újra abc-ben
-# print(user_info)                                                                   # chk
-favourite_meals_first = user_info["favourite_meals"].pop(0)                          # kitesszük és töröljük az első elemet
-favourite_meals_last = user_info["favourite_meals"].pop(-1)                          # kitesszük és töröljük az utólsó elemet
-# print(favourite_meals_first)                                                       # chk
-# print(favourite_meals_last)                                                        # chk
-user_info["favourite_meals"].insert(0, favourite_meals_last)                         # utólsó megy előre
-user_info["favourite_meals"].append(favourite_meals_first)                           # első megy a végére
+user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0] # megcseréli az elsőt és az utólsót
 # print(user_info)                                                                   # chk
 user_info["phone_contacts"]["Ivy"] = +36303033785                                    # hozzámegy egy új kulcs-érték pár
 # print(user_info)                                                                   # chk

@@ -3,11 +3,9 @@ Exercise one
 Fictive character
 '''
 # Task-1 
-character_name = (input("Type in your name: "))                                # Bekért név
+character_name = (input("Type in your name: ")).title().strip()                # Bekért név, egyből nagybetűssé tesz és szóközöket kivesz
 character_age = int(input("Give me how old are you: "))                        # Bekért kor egyből int-be, mert számolunk vele
 character_experience = input("How much experience do you have in Python? ")    # Bekért exp. Marad str, mert nem számolunk vele
-character_name = character_name.title()                                        # Minden szó első char nagy betű
-character_name = character_name.strip()                                        # Elől-hátul üres str-t kivesz
 character_age_in_day = character_age*365                                       # Évekből napok száma
 character_profil = f"My character is lives {character_age_in_day} days ago. His/her name is {character_name} and he/she has {character_experience} years experience in Python."      # Az egészet összefűz
 print(character_profil)                                                        # print

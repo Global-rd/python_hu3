@@ -1,7 +1,6 @@
-name = input("Add meg a felhasználó nevét:")
+name = input("Add meg a felhasználó nevét:").strip().capitalize()
 age_inpt = input("Add meg a felhasználó életkorát (években):)")
 python_exp = float(input("Add meg a Python tapasztalait:"))
-name = name.strip().capitalize()
 age = int(age_inpt)
 age_in_days = age * 365
 print(f"A felhasználó neve: {name}")

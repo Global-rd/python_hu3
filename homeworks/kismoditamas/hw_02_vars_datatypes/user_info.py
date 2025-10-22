@@ -17,7 +17,8 @@ user_info = {
 }
 
 # 1. Get program laguages and add it to user_info dictionary
-user_info["skills"]=['C','C++','C#','Python']
+#user_info["skills"]=['C','C++','C#','Python']
+user_info.update({"skills": input("Adj meg 4 programozási nyelvet vesszővel elválasztva, szóközök nélkül: ").split(",")})
 
 # 2. Sort favourite_meals 
 user_info["favourite_meals"].sort()
@@ -29,8 +30,9 @@ print(user_info["favourite_meals"][-2])
 user_info["favourite_meals"].append("spaghetti")
 
 # 5. Add 2-3 items
-user_info["favourite_meals"].append(user_info["favourite_meals"][2])
-user_info["favourite_meals"].append(user_info["favourite_meals"][3])
+#user_info["favourite_meals"].append(user_info["favourite_meals"][2])
+#user_info["favourite_meals"].append(user_info["favourite_meals"][3])
+user_info["favourite_meals"].extend(user_info["favourite_meals"].range[2:4])
 
 # 6. Remove duplicated
 user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))

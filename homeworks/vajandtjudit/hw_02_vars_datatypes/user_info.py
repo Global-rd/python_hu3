@@ -14,8 +14,7 @@ user_info = {
     }
 }
 languages = input("Adj meg 4 programozási nyelvet vesszővel elválasztva (pl: python,java,c++,html): ")
-skills_list = languages.split(",")
-user_info["skills"] = skills_list
+user_info["skills"] = languages.split(",")
 print("\nFrissített user_info (skills hozzáadva):")
 print(user_info)
 user_info["favourite_meals"].sort()
@@ -30,8 +29,7 @@ user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))
 user_info["favourite_meals"].sort()
 print("\nDuplikátumok eltávolítva:")
 print(user_info["favourite_meals"])
-user_info["favourite_meals"].append(user_info["favourite_meals"][2])
-user_info["favourite_meals"].append(user_info["favourite_meals"][3])
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
 print("\nDuplikált lista (3. és 4. elem újra hozzáadva):")
 print(user_info["favourite_meals"])
 user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = \

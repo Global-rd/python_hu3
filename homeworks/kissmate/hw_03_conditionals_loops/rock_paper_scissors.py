@@ -1,6 +1,6 @@
 player1_score = 0
 player2_score = 0
-choice_rounds = 0
+round_count = 0
 while True:
     rounds = int(input("Enter number of rounds to play: "))
     if rounds % 2 == 0:
@@ -9,7 +9,7 @@ while True:
         print(f"Starting a game of {rounds} rounds!")
         break
 print("Game setup complete.")
-while True:
+while round_count < rounds:
     player1 = input("Player 1, enter your choice (rock, paper, scissors): ")
     if player1 not in ["rock", "paper", "scissors"]:
         print("Invalid choice. Please choose rock, paper, or scissors.")
@@ -25,13 +25,11 @@ while True:
          (player1 == "paper" and player2 == "rock"):
         print("Player 1 wins this round!")
         player1_score += 1
-        rounds += 1
-        choice_rounds += 1
+        break
     else:
         print("Player 2 wins this round!")
         player2_score += 1
-        choice_rounds += 1
-    if choice_rounds == rounds:
-        print("Game over!")
-        print(f"Final Scores - Player 1: {player1_score}, Player 2: {player2_score}")
         break
+    round_count += 1
+print("Game over!")
+print(f"Final Scores - Player 1: {player1_score}, Player 2: {player2_score}")

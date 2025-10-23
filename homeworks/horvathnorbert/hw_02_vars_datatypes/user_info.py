@@ -25,8 +25,7 @@ user_info = {
 # A 4 kedvenc programozási nyelv bekérése. Az így létrehozott listát a user_info dictionaryhoz adjuk.
 
 proglang_list = input("What are your 4 favourite programming language? (Seperated by a comma): ")
-proglang_list = proglang_list.split(",")
-user_info['skills'] = proglang_list
+user_info['skills'] = proglang_list.split(",")
 
 # A favourite_meals lista növekvő sorrendbe rendezése az abc szerint.
 
@@ -75,9 +74,7 @@ print("----------------------------------------------------------------")
 # Tim2 átnevezése Tim-re
 
 user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"].pop("Tim2")
-print(user_info["phone_contacts"])
 
 
 
-      
 

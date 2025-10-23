@@ -16,16 +16,12 @@ pprint(user_info["favourite_meals"][-2])
 user_info["favourite_meals"].append("spaghetti")
 print(user_info["favourite_meals"])
 user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
+user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))
 print(user_info)
-del user_info["favourite_meals"][-2]
-print(user_info["favourite_meals"])
-del user_info["favourite_meals"][-1]
 print(user_info["favourite_meals"])
 if len(user_info["favourite_meals"]) >=2:
-       first =user_info["favourite_meals"][0]
-       last= user_info["favourite_meals"][-1]
-       user_info["favourite_meals"][0]= last
-       user_info["favourite_meals"][-1]=first 
+       meals = user_info["favourite_meals"]
+       meals[0], meals[-1] = meals[-1], meals[0]
        
 print(user_info["favourite_meals"])
 user_info["phone_contacts"]["Thomas"] = "+36304496995"
@@ -36,15 +32,11 @@ user_info["phone_contacts"]["Laura"]=["+36205112724", "+36204456785"]
 print(user_info["phone_contacts"]["Laura"])
 print(user_info)
 programming_languages= "Java,C++,Python,JavaScript"
-skills=programming_languages.split(",")
-user_info["skills"]=skills
+user_info["skills"] = programming_languages.split(",")
 
-print(user_info["skills"])
-last_three=user_info["skills"][-3:]
-last_three.reverse()
+print(user_info["skills"][-3:][::-1])
 print(last_three)
-user_info["phone_contacts"]["Tim"]=user_info["phone_contacts"]["Tim2"]
-del user_info["phone_contacts"]["Tim2"]
+user_info["phone_contacts"]["Tim"] = user_info["phone_contacts"].pop("Tim2")
 print(user_info)
 
 

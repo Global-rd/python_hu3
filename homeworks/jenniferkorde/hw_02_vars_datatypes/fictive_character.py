@@ -1,20 +1,22 @@
-first_name = "Alice"
-last_name = "Wismayer"
-full_name = first_name + " " + last_name 
-print(full_name)
-age = 42
-age = age*365
-print(age)
-python_tapasztalat = "2 years"
-print(python_tapasztalat)
-introduction=f"My character is {age}old.Her name is {full_name}  and she has {python_tapasztalat}  experience."
-print(introduction)
-x="igen"
-y="nem"
-szeretne_e_profi_fejleszto_lenni= True
-print(x if szeretne_e_profi_fejleszto_lenni else y)
-introduction=f"My character is {age}old.Her name is {full_name}  and she has {python_tapasztalat}  experience.She wants to be a Python developer"
-print(introduction)
+first_name = input("First name: ").strip().upper()
+last_name =input("Last name: ").strip().upper()
+age_years  = int(input("Age (in years): ").strip())
+python_exp_in_years = int(input("Python exp (years): ").strip())
+wants_dev = input("Do you want the character to be a Python developer? (yes/no): ").strip().lower()
+
+full_name  = f"{first_name} {last_name}"
+age_in_days = age_years * 365
+
+print(
+    f"My character is {age_in_days} days old. "
+    f"His/her name is {full_name} "
+    f"and he/she has {python_exp_in_years} years experience. "
+    f"{(
+        'He/she wants to be a Python developer!'
+        if wants_dev == 'yes'
+        else 'He/she does not want to be a Python developer!'
+    )}"
+)
 
 
 

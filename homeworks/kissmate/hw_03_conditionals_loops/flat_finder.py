@@ -4,6 +4,8 @@ if any(city.strip() in [ "Chicago"] for city in cities):
 budget = float(input("Enter your budget: "))
 if any(city.strip() in ["New York", "San Francisco"] for city in cities) and budget >= 4000:
     print(f"You can afford to live in one of the selected cities.")
-else:
+elif budget >= 3000:
     print(f"Consider looking for cities with a lower cost of living.")
+else:
+    print(f"Your budget is quite low")
 

@@ -25,11 +25,10 @@ while round_count < rounds:
          (player1 == "paper" and player2 == "rock"):
         print("Player 1 wins this round!")
         player1_score += 1
-        break
     else:
         print("Player 2 wins this round!")
         player2_score += 1
-        break
     round_count += 1
-print("Game over!")
-print(f"Final Scores - Player 1: {player1_score}, Player 2: {player2_score}")
+    if round_count == rounds:
+        print("Game over!")
+        print(f"Final Scores - Player 1: {player1_score}, Player 2: {player2_score}")

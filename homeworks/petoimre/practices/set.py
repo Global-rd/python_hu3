@@ -12,5 +12,22 @@ original_numbers.update(new_numbers)        # kiveszi a duplikátumokat    adres
 
 # list-ból kiszedni a duplikációt
 numbers_list = [0,0,0,0,1,1,1,1,2,2,2,3,3,3,4,4,5,5,6]   # ez egy lista
+<<<<<<< Updated upstream
 numbers_list = list(set(numbers_list))
 print(numbers_list)
+=======
+numbers_list = list(set(numbers_list))     # először set-é, majd listává alakít
+print(numbers_list)
+
+# add element
+original_numbers.add(10)                    # hozzáadja a 10-et
+original_numbers.remove(10)                 # kitörli a 10-et
+inter_num = original_numbers.intersection(new_numbers)   # a metszete a két set-nek
+
+
+# frozrnset
+
+
+
+
+>>>>>>> Stashed changes

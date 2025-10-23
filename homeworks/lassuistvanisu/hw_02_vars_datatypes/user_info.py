@@ -19,10 +19,11 @@ print("Feladat 1.")
 get_skills = input("Give me three programming language, separate by a coma: ")
 
 #LISTÁBA TESZ
-skills_list = get_skills.split(",")
-
+"""skills_list = get_skills.split(",")
+user_info["skills"] = get_skills.split(",")
+"""
 #LÉTREHOZ EGY SKILLS KULCSOT ÉS HOZZÁADJA A BEKÉRT ADATOKAT LISTÁBA
-user_info["skills"] = skills_list
+user_info["skills"] = get_skills.split(",")
 print(user_info["skills"])
 
 print("Feladat 2.")
@@ -43,9 +44,12 @@ print(user_info["favourite_meals"][-1:])
 
 print("Feladat 5.")
 #3. és 4. ELEMEK ISMÉTELT HOZZÁADÁS
-third = user_info["favourite_meals"][2]
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
+
+"""third = user_info["favourite_meals"][2]
 fourth = user_info["favourite_meals"][3]
 user_info["favourite_meals"].extend([third, fourth])
+"""
 print(user_info["favourite_meals"])
 
 print("Feladat 6.")

@@ -15,10 +15,8 @@ user_info = {
 }
 # 1. Bekérek 4 programizási nyelvet
 languages = input("Adj meg 4 programozási nyelvet vesszővel elválasztva, szóközök nélkül: ")
-# Szöveg listává alakítom
-skills_list = languages.split(",")
+user_info["skills"] = languages.split(",") 
 # Hozzáadom a dictionary-hez
-user_info["skills"] = skills_list
 # 2. A favourite_meals elemeit ABC sorrendbe rendezem
 user_info["favorite_meals"].sort()
 # 3. Printelem az utolsó előtti ételt
@@ -26,12 +24,9 @@ print("Utolsó előtti kedvenc étel:", user_info["favorite_meals"][-2])
 # 4. Hozzáadom a spagettit a listához
 user_info["favorite_meals"].append("spaghetti")
 # 5. A favourite_meals-hez hozzáadom az aktuális favourite_meals lista harmadik és negyedik elemét
-third_item = user_info["favorite_meals"][2]
-fourth_item = user_info["favorite_meals"][3]
-user_info["favorite_meals"].extend([third_item, fourth_item])
+user_info["favorite_meals"].extend(user_info["favorite_meals"][2:4])
 # 6. Törlöm a duplikációt
-user_info["favorite_meals"].remove("sushi")
-user_info["favorite_meals"].remove("spaghetti")
+user_info["favorite_meals"] = list(set(user_info["favorite_meals"]))
 # 7. Felcserélem az első, és az utolsó elemet
 meals = user_info["favorite_meals"]
 meals[0], meals[-1] = meals[-1], meals[0]

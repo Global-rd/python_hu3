@@ -1,11 +1,12 @@
 cities = input("Enter city names separated by commas: ").split(",")
+if any(city.strip() in [ "Washington"] for city in cities):
+    print(f"Sarah don't want to be live in Washington.")
 if any(city.strip() in [ "Chicago"] for city in cities):
-    print(f"You have selected Chicago.")
+    print(f"Sarah definitly like that place.")
 budget = float(input("Enter your budget: "))
 if any(city.strip() in ["New York", "San Francisco"] for city in cities) and budget >= 4000:
-    print(f"You can afford to live in one of the selected cities.")
-elif budget >= 3000:
-    print(f"Consider looking for cities with a lower cost of living.")
-else:
-    print(f"Your budget is quite low")
+    print(f"Sarah will be happy to enter this citytis for that price.")
+if budget >= 3000:
+    print(f"Sarah good with this choice.")
+
 

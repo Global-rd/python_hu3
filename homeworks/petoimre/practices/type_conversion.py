@@ -34,6 +34,9 @@ print(bool(1))            # minden a mi több mint 0 = True
 print(bool(0))            # False
 print(bool(""))           # üres karakterlánc False
 print(bool("apple"))      # ha van benne szöveg mindig True  Ellenőrizni, hoy tatalmaz-e karaktereket.
+print(bool([]))           # üres lista False
+print(bool([1,2,3]))      # adatot tartalmazó lista = True
+
 
 
 

@@ -13,9 +13,7 @@ while True:
     if dev_python_inp in ["yes","no"]:
         break
 
-if dev_python_inp == "yes":
-    dev_python = "He/she wants to be a Python developer!"
-else:
-    dev_python = " He/she does not want to be a Python developer!"
+dev_python = "wants" if dev_python_inp == "yes" else "does not want"
 
-print(f"My character is {age_in_days} old. His/her name is {name} and he/she has {python_exp_in_years} years experience. {dev_python}")
+print(f"My character is {age_in_days} old. His/her name is {name} and he/she has {python_exp_in_years} \
+years experience. He/she {dev_python} to be a Python developer!")

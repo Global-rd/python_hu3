@@ -32,6 +32,9 @@ user_info["favorite_meals"].extend([third_item, fourth_item])
 # 6. Törlöm a duplikációt
 user_info["favorite_meals"].remove("sushi")
 user_info["favorite_meals"].remove("spaghetti")
+user_info["favorite_meals"].extend(user_info["favorite_meals"][2:4])
+# 6. Törlöm a duplikációt
+user_info["favorite_meals"] = list(set(user_info["favorite_meals"]))
 # 7. Felcserélem az első, és az utolsó elemet
 meals = user_info["favorite_meals"]
 meals[0], meals[-1] = meals[-1], meals[0]

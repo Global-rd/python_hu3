@@ -25,10 +25,11 @@ while round_count < rounds:
          (player1 == "paper" and player2 == "rock"):
         print("Player 1 wins this round!")
         player1_score += 1
+        round_count += 1
     else:
         print("Player 2 wins this round!")
         player2_score += 1
-    round_count += 1
+        round_count += 1
     if round_count == rounds:
         print("Game over!")
         print(f"Final Scores - Player 1: {player1_score}, Player 2: {player2_score}")

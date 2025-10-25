@@ -2,7 +2,7 @@
 
 while True:
     max_game_rounds = input(
-        "Please enter the number of game_rounds (only odd will accepted): "
+        "Please enter the number of game rounds (only odd will accepted): "
     ).strip()
 
     if (

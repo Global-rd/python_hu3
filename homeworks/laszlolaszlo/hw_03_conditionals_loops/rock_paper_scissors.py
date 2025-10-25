@@ -10,7 +10,7 @@ while True:
         break
     else:
         print(
-            f"You have to enter an odd number largen than 0. You entered '{max_rounds}'"
+            f"You have to enter an odd number larger than 0. You entered '{max_rounds}'"
         )
 
 allowed_choices = {"rock", "paper", "scissors"}

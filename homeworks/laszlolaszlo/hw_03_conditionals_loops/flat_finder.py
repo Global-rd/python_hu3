@@ -50,5 +50,5 @@ elif int(rent_price) <= 3000:
     )
 else:
     print(
-        f"Sarah, you did not find a suiteable flat in {city.title()} at now. Please try again later."
+        f"Sarah, you did not find a suitable flat in {city.title()} at now. Please try again later."
     )

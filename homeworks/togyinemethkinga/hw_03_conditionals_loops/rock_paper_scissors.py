@@ -2,7 +2,7 @@ game=["rock","paper","sciccors"]
 first_player_points = 0
 second_player_points = 0
 
-# Bekérema körök számát és maradékos osztással megvizsgálom, hogy a szám páratlan legyen.
+# Bekérem a körök számát és maradékos osztással megvizsgálom, hogy a szám páratlan legyen.
 while True:
     rounds = int(input("How many rounds would you like to play?"))
     if rounds % 2 != 0:

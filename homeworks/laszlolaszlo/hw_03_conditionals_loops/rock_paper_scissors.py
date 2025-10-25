@@ -61,7 +61,7 @@ while round <= max_rounds:
                     f"User2 have to enter one of the allowed values from 'rock, paper, scissors'. Try again!"
                 )
 
-        result = rules[(user1_choice, user2_choice)]
+        result = rules[(user1_choice.lower(), user2_choice.lower())]
 
         if result == "user1":
             print(f"User1 won the round!")

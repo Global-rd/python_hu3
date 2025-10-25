@@ -3,9 +3,8 @@
 answer = ["rock","paper","scissors"]
 
 while True:
-    rounds = int(input("Hány kört szeretnél játszani? "))
+    rounds = int(input("Hány kört szeretnél játszani? (Páratlan számot írj!) "))
     if rounds % 2 != 0:
-
         break
 print("Kezdődjön a játék!")
 print("------------------")
@@ -20,44 +19,39 @@ while round < rounds:
     print(f"{round+1}.kör")
     print("---------")
     # Tippek bekérése    
-    tipp1, tipp2 = ('','')
+    tip_pl1, tip_pl2 = ('','')
     while True:
-        while True:
-            tipp1 = input("1.játékos tipp:")
-            if tipp1 in answer:
-                break
-        while True:
-            tipp2 = input("2.játékos tipp:")
-            if tipp2 in answer:
-                break            
-        if tipp1 != tipp2:
+        tip_pl1 = input("1.játékos tipp:")
+        if tip_pl1 in answer:
             break
-        else:
-            print("Ugyanaz....")
+    while True:
+        tip_pl2 = input("2.játékos tipp:")
+        if tip_pl2 in answer:
+            break            
     # Pontozás
-    if tipp1 == 'rock':
-        if tipp2 == "paper":
-            pts_pl2 +=1
-        else:
+    if tip_pl1 == tip_pl2:
+        print("Döntetlen, kérem újra a tippeket!")
+        continue
+    if (
+        (tip_pl1 == "rock" and tip_pl2 == "scissors" ) or 
+        (tip_pl1 == "paper" and tip_pl2 == "rock") or
+        (tip_pl1 == "scissors" and tip_pl2 == "paper")
+        ):
             pts_pl1 +=1
-    if tipp1 == 'paper':
-        if tipp2 == "rock":
-            pts_pl1 +=1
-        else:
+    else:
             pts_pl2 +=1
-    if tipp1 == 'scissors':
-        if tipp2 == "rock":
-            pts_pl2 +=1
-        else:
-            pts_pl1 +=1
+
     round +=1
+ 
+# Eredményhirdetés        
+
 print("----------")
 print("A játék végeredmény:")
 
-nyertes = "1.játékos" if pts_pl1 > pts_pl2 else "2.játékos"
-nyertes_pts = pts_pl1 if pts_pl1 > pts_pl2 else pts_pl2
+winner = "1.játékos" if pts_pl1 > pts_pl2 else "2.játékos"
+winner_pts = pts_pl1 if pts_pl1 > pts_pl2 else pts_pl2
 
-print(f"A játékot a(z) {nyertes} nyerte {nyertes_pts} ponttal.")
+print(f"A játékot a(z) {winner} nyerte {winner_pts} ponttal.")
 
 
 

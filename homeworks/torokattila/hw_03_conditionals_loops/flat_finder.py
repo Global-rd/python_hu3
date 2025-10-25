@@ -1,12 +1,10 @@
-pref_town = ["New York","San Francisco"]
+pref_towns = ["New York","San Francisco"]
 max_price = 4000
 
-town = input("Add meg a várost:")
+town = input("Add meg a várost:").strip().title()
 price = int(input("Lakbér($):"))
 
-choice_msg = ""
-
-if town in pref_town and price < max_price:
+if town in pref_towns and price < max_price:
     choice_msg = "Kitűnő választás!"
 elif town == "Washington":
     choice_msg = "Ezt semmi pénzért ne válaszd!"

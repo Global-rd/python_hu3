@@ -1,22 +1,26 @@
 # Task 02
 
 while True:
-    max_rounds = input(
-        "Please enter the number of rounds (only odd will accepted): "
+    max_game_rounds = input(
+        "Please enter the number of game_rounds (only odd will accepted): "
     ).strip()
 
-    if max_rounds.isnumeric() and int(max_rounds) % 2 != 0 and int(max_rounds) > 0:
-        max_rounds = int(max_rounds)
+    if (
+        max_game_rounds.isnumeric()
+        and int(max_game_rounds) % 2 != 0
+        and int(max_game_rounds) > 0
+    ):
+        max_game_rounds = int(max_game_rounds)
         break
     else:
         print(
-            f"You have to enter an odd number larger than 0. You entered '{max_rounds}'"
+            f"You have to enter an odd number larger than 0. You entered '{max_game_rounds}'"
         )
 
 allowed_choices = {"rock", "paper", "scissors"}
 user1_points = 0
 user2_points = 0
-round = 1
+game_round = 1
 
 # Result mapping
 rules = {
@@ -31,8 +35,8 @@ rules = {
     ("scissors", "scissors"): "draw",
 }
 
-while round <= max_rounds:
-    print(f"Round {round}: ")
+while game_round <= max_game_rounds:
+    print(f"game_round {game_round}: ")
     result = ""
 
     while result not in ("user1", "user2"):
@@ -64,17 +68,17 @@ while round <= max_rounds:
         result = rules[(user1_choice.lower(), user2_choice.lower())]
 
         if result == "user1":
-            print(f"User1 won the round!")
+            print(f"User1 won the game_round!")
             user1_points += 1
             break
         elif result == "user2":
-            print("User2 won the round!")
+            print("User2 won the game_round!")
             user2_points += 1
             break
         else:
             print("Draw, try again!")
 
-    round += 1
+    game_round += 1
 
 if user1_points > user2_points:
     print(f"User1 won the game with {user1_points} vs {user2_points} points.")

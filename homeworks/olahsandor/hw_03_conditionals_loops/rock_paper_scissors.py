@@ -1,68 +1,85 @@
 #rock_paper_scissors
 
 # Bekéri a 1-es játékos nevét és üres név esetén hiba
-player_1_name = input("Enter Player 1's name: ").strip().title()
-while player_1_name == "":
-    print("Error: Please enter a valid name.")
+while True:
+    player_1_name = input("Enter Player 1's name: ").strip().title()
+    if player_1_name:
+        break
+        print("Error: Please enter a valid name.")
 
 # Bekéri a 2-es játékos nevét és üres név esetén hiba
-player_2_name = input("Enter Player 2's name: ").strip().title()
-while player_2_name == "":
-    print("Error: Please enter a valid name.")
+while True:
+    player_2_name = input("Enter Player 2's name: ").strip().title()
+    if player_2_name:
+        break
+        print("Error: Please enter a valid name.")
 
 #Körök száma , de csak páratlan értékeket fogad el
 while True:
     rounds_played = int(input("How many rounds do you want to play? (Must be an odd number): "))
     if rounds_played % 2 == 1:
         break
-    print("Please enter an odd number and try again.")
+        print("Error: Please enter an odd number and try again.")
 
 # játékosok pontjainak inicializálása
 player_1_score = 0
 player_2_score = 0
+# megfelelő kézjelek listája
+hand_signs = ["rock", "paper", "scissors"]
 
 #Kezdés
 print("-------------------------------------------------------------")
-print(F"GAME IS COMMING ...  {rounds_played} ROUNDS: {player_1_name} vs. {player_2_name}!")
+print(F"GAME IS STARTING ...  {rounds_played} ROUNDS: {player_1_name} vs. {player_2_name}!")
 
-# megfelelő kézjelek listája
-hand_sign = ["rock", "paper", "scissors"]
-for round in range(1, rounds_played + 1):
+round_num = 1 
+while round_num <= rounds_played:
+
     print("-------------------------------------------------------------")
-    print(F"ROUND: {round}!")
+    print(F"ROUND: {round_num}!")
     print("-------------------------------------------------------------")
+   
     # Kézjelek 1 játékosnál, érvénytelen esetén újra
-    player_1_hand = input(F"{player_1_name}, enter your hand sign (rock, paper, scissors): ").strip().lower()
-    while player_1_hand not in hand_sign:
-        print("Invalid!!!! Please try again.")
+    while True:
         player_1_hand = input(F"{player_1_name}, enter your hand sign (rock, paper, scissors): ").strip().lower()
-    
+        if player_1_hand in hand_signs:
+            break
+        print("Invalid hand sign!!!! Please try again.")
+       
     # Kézjelek 2 játékosnál, érvénytelen esetén újra
-    player_2_hand = input(F"{player_2_name}, enter your hand sign (rock, paper, scissors): ").strip().lower()
-    while player_2_hand not in hand_sign:
-        print("Invalid!!!! Please try again.")
+    while True:
         player_2_hand = input(F"{player_2_name}, enter your hand sign (rock, paper, scissors): ").strip().lower()
-
-    # eredmény meghatározása,ha döntetlen
-    if player_1_hand == player_2_hand:
-        print("-------------------------------------------------------------")
-        print("Tie!!! Play again.")
+        if player_2_hand in hand_signs:
+            break
+        print("Invalid hand sign!!!! Please try again.")
+            
+   
 
     #amikor az 1-es játekos nyer, megadva a pontot
-    elif (player_1_hand == "rock" and player_2_hand == "scissors") or (player_1_hand == "paper" and player_2_hand == "rock") or (player_1_hand == "scissors" and player_2_hand == "paper"):
+    if (player_1_hand == "rock" and player_2_hand == "scissors") or (player_1_hand == "paper" and player_2_hand == "rock") or (player_1_hand == "scissors" and player_2_hand == "paper"):
         print("-------------------------------------------------------------")
         print(F"{player_1_name} won this round!")
-        print("-------------------------------------------------------------")
+        
         player_1_score += 1
+        # A körszám nő, megyünk a következő körre!
+        round_num += 1 
 
     # 2-es játékos nyer, megadva a pontot     
-    else:
+    elif (player_2_hand == "rock" and player_1_hand == "scissors") or (player_2_hand == "paper" and player_1_hand == "rock") or (player_2_hand == "scissors" and player_1_hand == "paper"):
         print("-------------------------------------------------------------")
         print(F"{player_2_name} won this round!")
-        print("-------------------------------------------------------------")
+        
         player_2_score += 1
+            # A körszám nő, megyünk a következő körre!
+        round_num += 1
+     # eredmény meghatározása,ha döntetlen
+    else:
+        print("-------------------------------------------------------------")
+        print("Tie!!! Play again.")
+        continue
 
-print("GAME OVER!")
+print("===============================================================")
+print("                      G A M E   O V E R!                       ")
+print("===============================================================")
 
 # végső eredmény kiírása    
 print(F"{player_1_name}'s score: {player_1_score}")
@@ -73,11 +90,7 @@ if player_1_score > player_2_score:
     print("-------------------------------------------------------------")
     print(F"{player_1_name} wins the game! Congratulations!")
     print("-------------------------------------------------------------")
-elif player_2_score > player_1_score:
-    print("-------------------------------------------------------------")
-    print(F"{player_2_name} wins the game! Congratulations!")
-    print("-------------------------------------------------------------")
 else:
     print("-------------------------------------------------------------")
-    print("The game is a tie!")
+    print(F"{player_2_name} wins the game! Congratulations!")
     print("-------------------------------------------------------------")

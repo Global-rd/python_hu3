@@ -19,8 +19,5 @@ else:
     able_to = False
 
 # Eredmény kiíratása f-string segítségével
-if  able_to:
-    print(f"She is able to rent a flat in {city} for ${rent} per month.")
-else:
-    print(f"She isn't able to rent a flat in {city} for ${rent} per month.")
-    
+status = "is" if able_to else "isn't"
+print(f"She {status} able to rent a flat in {city} for ${rent} per month.")

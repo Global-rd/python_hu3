@@ -1,6 +1,6 @@
 city = input("Add meg a várost: ")
 rent = int(input("Add meg az albérlet havi árát USD-ben: "))
-if (city == "New York" or city == "San Francisco") and rent < 4000:
+if city in ["New York", "San Francisco"] and rent < 4000:
     print("Sarah ki fogja venni a lakást!")
 elif city == "Washington":
     print(f"Sarah gyűlöli {city}, és semmi pénzért nem lakna ott!")

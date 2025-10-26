@@ -48,8 +48,6 @@ if p1_score > p2_score:
     print(f"Az első játékos nyert {p1_score - p2_score} ponttal!")
 elif p2_score > p1_score:
     print(f"A második játékos nyert {p2_score - p1_score} ponttal!")
-else:
-    print("Döntetlen")
 
 
 

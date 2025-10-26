@@ -5,17 +5,17 @@
 # loop: ennek az egésznek az automatizálása
 
 import time
-
-songs = ["Dal_1", "Dal_2", "Dak_3", "Dal_4"]
-
-it = iter(songs)
+'''
+songs = ["Dal_1", "Dal_2", "Dal_3", "Dal_4"]
+print(type(songs))                              # <class 'list'>
 print(songs)
-print(type(it))           # 'list_iterator'
+it = iter(songs)
+print(type(it))           # <class 'list_iterator'>
 
-print(next(it))
-print(next(it))
-print(next(it))
-print(next(it))
+print(next(it))           # Dal_1
+print(next(it))           # Dal_2
+print(next(it))           # Dal_3
+print(next(it))           # Dal_4
 
 
 # for loop     egy iterable (list, tuple, dict, set, range, str stb) feletti iterációra szolgál
@@ -23,7 +23,7 @@ print(next(it))
 for song in songs:
     print(song)
  #   time.sleep(1)
-
+#-----------------------------------------
 
 student = {"name": "Jimmy",
            "age": 20,
@@ -33,60 +33,97 @@ student = {"name": "Jimmy",
            "is_active": True}
 
 for k,v in student.items():
-    print(f"Key:  {k}, Value:  {v}")
+    print(f"Key:  {k}, Value:  {v}")  # Key:  name, Value:  Jimmy, Key:  name, Value:  Jimmy, Key:  grades, Value:  {'grammar': [4, 5, 5], 'math': [2, 3, 4]}
 
-for k in student.keys():
-    print(k)
+for k in student.keys():  
+    print(k)              # name, age, grades, major, is_active
 
 for v in student.values():
-    print(v)
-
+    print(v)   # Jimmy, 20, {'grammar': [4, 5, 5], 'math': [2, 3, 4]}, Computer Science, True
+   
+  
+#----------------------------------------------
 # range   (iterable)
+#----------------------------------------------
+ 
+for i in range(1,5):       # 1-től 4-ig    első: inclusive, utólsó: exclusive
+    print(i)               # 1 2 3 4
+#------------------------------------
 
-for i in range(0,5):
-    print(i)
+for i in range(5):
+    if i == 3:
+        break
+print(i)                    # 3
 
+#--------------------------------------------
+
+a = range(1,11)       
+print(type(a))              # <class 'range'>
+print(a)                    # range(1, 11)
+
+b = list(range(1,11))       
+print(type(b))              # <class 'list'>    
+print(b)                    # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+c = set(range(1,11))       
+print(type(c))              # <class 'set'>    
+print(c)                    # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+#----------------------------------------------------------------------------------
 # while loop       utasításkészletet hajtunk végre amíg a megadott feltétel igaz.
-
+#----------------------------------------------------------------------------------
 i = 1
-
 while i <= 6:
     print(i)
     i += 1              # 1-6-ig írja ki
-
-# input adatbekérés
-
+#-----------------------------------------------------------------------------------
+# input adatbekérés   Nem enged tovább amíg jó válasz ne érkezik.
+#-----------------------------------------------------------------------------------
 while True:
     answer = input("Do you want to be a professional python developer? (yes/no)")
     if answer in ["yes", "no"]:
-        break
-
+        break    
+   
+#-----------------------------------------------------------------------------------
 # list comprehension
-
+#-----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
 # without list comprehension    listát tölt fel négyzetre emelt értékekkel
-numbers = [1, 2, 3, 4, 5]
+#-----------------------------------------------------------------------------------
+numbers = set(range(1,6))
+#numbers = [1, 2, 3, 4, 5]        # így is jó
 sqr = []
 
 for number in numbers:
     sqr.append(number ** 2)    # négyzetre emeli
 print(sqr)
-
+#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
 # with list comprehension
 
 sqr = [number ** 2 for number in numbers]
+print(sqr)
+#------------------------------------------------------------------------------------
 
-# without list comprehension csak párosak
-
+#------------------------------------------------------------------------------------
+# without list comprehension csak a párosakat emeljük négyzetre
+numbers = set(range(1,11))
 even_sqr = []
 for number in numbers:
-    if number % 2 == 0:           # ha maradék osztás == 0
+    if number % 2 == 0:                # ha maradék osztás == 0  akkor páros a szám
         even_sqr.append(number ** 2)
 print(even_sqr)
-
+#------------------------------------------------------------------------------------
+'''
+#------------------------------------------------------------------------------------
 # with list comprehension
-
+numbers = set(range(1,11))
 even_sqr = [number ** 2 for number in numbers if number % 2 == 0]
+print(even_sqr)
 
+'''
 # futási sebesség mérése
 
 numbers = range(1, 1000000)
@@ -201,7 +238,7 @@ print(result)
 
 
 
-
+'''
 
     
 

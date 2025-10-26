@@ -5,7 +5,7 @@
 # loop: ennek az egésznek az automatizálása
 
 import time
-'''
+
 songs = ["Dal_1", "Dal_2", "Dal_3", "Dal_4"]
 print(type(songs))                              # <class 'list'>
 print(songs)
@@ -116,27 +116,29 @@ for number in numbers:
         even_sqr.append(number ** 2)
 print(even_sqr)
 #------------------------------------------------------------------------------------
-'''
 #------------------------------------------------------------------------------------
 # with list comprehension
 numbers = set(range(1,11))
 even_sqr = [number ** 2 for number in numbers if number % 2 == 0]
 print(even_sqr)
 
-'''
+#-------------------------------------------------------------------------------------
 # futási sebesség mérése
-
+#-------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------
+# loop-al
+#-------------------------------------------------------------------------------------
 numbers = range(1, 1000000)
-
-# loop -al
 start = time.time()
 print(start)
 sqr_loop = []
 for num in numbers:
     sqr_loop.append(num ** 2)
 print(f"For loop: {time.time() - start}") 
-
-# comp-al
+#-------------------------------------------------------------------------------------
+# comprehension-al
+#-------------------------------------------------------------------------------------
+numbers = range(1, 1000000)
 start = time.time()
 sqr_comp = [num ** 2 for num in numbers]
 print(f"Comp: {time.time() - start}") 
@@ -150,14 +152,14 @@ print(f"Comp: {time.time() - start}")
 
 # pass: nem kizárólag a loop-hoz kötődik. "placeholder" olyan kódrészletekgez, amit később írunk meg.
 
-# break
+#---------------------------------------------------------------------------------------------
 # a felh max 3-szor próbálkozhat
-
+#---------------------------------------------------------------------------------------------
 attemps = 0
 
 while attemps < 3:
     passw = input("Enter your password: ")
-    if passw == "secret":
+    if passw == "1234":
         print("Access granted")
         break
     else:
@@ -166,8 +168,9 @@ while attemps < 3:
 else:
     print("Reached maximum amoun of retries, try again tomorrow! ")
 
+#------------------------------------------------------------------------------------
 # continue
-
+#------------------------------------------------------------------------------------
 number = 0
 
 while number < 10:
@@ -238,7 +241,7 @@ print(result)
 
 
 
-'''
+
 
     
 

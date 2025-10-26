@@ -70,9 +70,14 @@ while True:
         # logic of winner
 
         # same choice checker
-        if ((choice_a == "rock" and choice_b == "rock") or 
-            (choice_a == "paper" and choice_b == "paper") or
-            (choice_a == "scissors" and choice_b == "scissors")):
+
+        # eredeti kód, jajjj...... :D
+        #if ((choice_a == "rock" and choice_b == "rock") or 
+        #    (choice_a == "paper" and choice_b == "paper") or
+        #    (choice_a == "scissors" and choice_b == "scissors")):
+        
+        # Javasolt kód! as simple as possible.... :)
+        if choice_a == choice_b:
             print("Same choice, give choice again. :)")
 
         # win chouce counter

@@ -25,4 +25,4 @@ original_numbers.remove(10)                 # kitörli a 10-et
 inter_num = original_numbers.intersection(new_numbers)   # a metszete a két set-nek
 
 
-# frozrnset
+# frozernset

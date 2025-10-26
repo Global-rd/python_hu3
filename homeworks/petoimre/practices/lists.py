@@ -10,7 +10,8 @@ do_list = list()     # constructorral
 names = ["Sarah", "Tim", "Jimi", "Joe"]
 names.append("Marta")       # elem hozzáadása           methodd
 names.remove("Joe")             # elem eltávolítása
-mixed_list = ["apple", 255, 3,14, None, True]
+mixed_list = ["apple", 255, 3.14, None, True]
+print(mixed_list)
 
 # iterable
 # range obj

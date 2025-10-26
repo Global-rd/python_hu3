@@ -16,6 +16,7 @@ ellenében költözne oda.
 # ████████████████████████████████████████████████████████████████████████████
 
 # lista, hogy ne lógjak ki a megengedett maximum soronkénti karakterszámból...
+# az eredeti kódhoz kellett a four_cities, a módosítotthoz nem kell
 four_cities = ["New York", "San Fransisco", "Washington", "Chicago"]
 
 # fő vonal ( végtelen ciklusba, hogy a tesztelésnél ne keljen indítgatni...)
@@ -26,7 +27,12 @@ while True:
     maximum_rent_cost = int(input("Please give maxumum cost of a rent ($): "))
 
     # kiértékelések
-    if ((city == "New York" or city == "San Fransisco")
+
+    # eredeti kód
+    #if ((city == "New York" or city == "San Fransisco")
+
+    # javasolt kód
+    if ((city in ["New york", "San Francisco"])
         and maximum_rent_cost < 4000):
         print(f"You can move into {city} for a rent of ${maximum_rent_cost}.")
     elif city == "Washington":
@@ -34,7 +40,10 @@ while True:
     elif city == "Chicago":
         print(f"Do it! You must move {city},\
             ${maximum_rent_cost} is a joke for it!")
-    elif city not in four_cities and maximum_rent_cost < 3000:
+    # eredeti kódrész
+    #elif city not in four_cities and maximum_rent_cost < 3000:
+    # javasolt kód
+    elif maximum_rent_cost < 3000:
         print(f"You can move {city} on ${maximum_rent_cost} cost.")
     else:
         print(f"You don't want to move {city}\

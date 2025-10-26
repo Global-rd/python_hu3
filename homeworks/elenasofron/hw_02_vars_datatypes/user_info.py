@@ -28,8 +28,7 @@ print(user_info["favourite_meals"][-2])
 user_info["favourite_meals"].append("spaghetti")
 #print(user_info["favourite_meals"]) #print(user_info["favourite_meals"]) selfcheck
 #5. Add hozzá a favourite_meals-hez az aktuális favourite_meals lista harmadik és negyedik elemét (nem az index-ét) újra. 
-user_info["favourite_meals"].append(user_info["favourite_meals"][2])
-user_info["favourite_meals"].append(user_info["favourite_meals"][3])
+user_info["favourite_meals"].append(user_info["favourite_meals"][2:4])
 #print(user_info["favourite_meals"]) selfcheck
 #6. Ezután töröld az így keletkezett duplikátumokat! 
 user_info["favourite_meals"] = list(set(user_info["favourite_meals"]))  
@@ -49,7 +48,7 @@ user_info["phone_contacts"]["Antonio"] = ["+36204343434", "+36708787878"]
 print(user_info["phone_contacts"]) 
 
 #Extra 1: Printeld ki a “skills”  lista utolsó 3 elemét ellentétes sorrendben! 
-user_info["skills"].sort(reverse=True)
+user_info["skills"][-3:][::-1]
 print(user_info["skills"]) 
 #Extra 2: Most, hogy Tim-nek már csak 1 telefonszáma van, érdemes lenne átnevezni Tim2-t Tim-re!
 user_info["phone_contacts"]['Tim'] = user_info["phone_contacts"].pop('Tim2')

@@ -5,21 +5,21 @@ while True:
     player_1_name = input("Enter Player 1's name: ").strip().title()
     if player_1_name:
         break
-        print("Error: Please enter a valid name.")
+    print("Error: Please enter a valid name.")
 
 # Bekéri a 2-es játékos nevét és üres név esetén hiba
 while True:
     player_2_name = input("Enter Player 2's name: ").strip().title()
     if player_2_name:
         break
-        print("Error: Please enter a valid name.")
+    print("Error: Please enter a valid name.")
 
 #Körök száma , de csak páratlan értékeket fogad el
 while True:
     rounds_played = int(input("How many rounds do you want to play? (Must be an odd number): "))
     if rounds_played % 2 == 1:
         break
-        print("Error: Please enter an odd number and try again.")
+    print("Error: Please enter an odd number and try again.")
 
 # játékosok pontjainak inicializálása
 player_1_score = 0

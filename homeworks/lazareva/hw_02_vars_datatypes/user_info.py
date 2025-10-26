@@ -22,12 +22,7 @@ skills_in = input("Give me four programming languages separated by a comma: ")
 print(skills_in)
 print(type(skills_in))
 
-skills = skills_in.split(",") #programozási nyelvek listává alakítása
-
-print(skills)
-print(type(skills))
-
-user_info["skills"] = skills #programozási nyelvek hozzáadása
+user_info["skills"] = skills_in.split(",") #programozási nyelvek listává alakítása
 
 pprint(user_info) #formázott kiírás
 

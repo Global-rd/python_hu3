@@ -40,7 +40,6 @@ print(f"My character is {fictive_character2['age']} days old. His/her name is {f
 #szorgalmi
 python_developer_goal = input("Does he/she want to be a Python developer? (yes/no): ").strip().lower()
 
-result = "He/she wants be a Python developer!" if python_developer_goal == "yes" else "He/she does not want to be a Python developer."
+result = "wants" if python_developer_goal == "yes" else "does not want"
 
-print(f"My character is {fictive_character2['age']} days old. His/her name is {fictive_character2['name']} and he/she has {fictive_character2['python_experience_in_years']} years experience. {result}")
-
+print(f"My character is {fictive_character2['age']} days old. His/her name is {fictive_character2['name']} and he/she has {fictive_character2['python_experience_in_years']} years experience. He/she {result} to be a Python developer.")

@@ -32,27 +32,14 @@ while play_round <= rounds:
         print("It's a tie, round has to be replayed!")
         continue
     
-    if player_1 == "rock":
-        if player_2 == "paper":
-            print(player_2_won_message)
-            player_2_wincount += 1
-        elif player_2 == "scissors":
-            print(player_1_won_message)
-            player_1_wincount += 1
-    elif player_1 == "paper":
-        if player_2 == "rock":
-            print(player_1_won_message)
-            player_1_wincount += 1
-        elif player_2 == "scissors":
-            print(player_2_won_message)
-            player_2_wincount += 1
-    elif player_1 == "scissors":
-        if player_2 == "rock":
-            print(player_2_won_message)
-            player_2_wincount += 1
-        elif player_2 == "paper":
-            print(player_1_won_message)
-            player_1_wincount += 1
+    if (player_1 == "rock" and player_2 == "scissors") or \
+        (player_1 == "scissors" and player_2 == "paper") or \
+        (player_1 == "paper" and player_2 == "rock"):
+        print(player_1_won_message)
+        player_1_wincount += 1
+    else:
+        print(player_2_won_message)
+        player_2_wincount += 1
 
     play_round += 1
     # Ha már valamelyik játékos nyert, kilépni a ciklusból

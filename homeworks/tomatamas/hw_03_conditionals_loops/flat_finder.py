@@ -1,7 +1,7 @@
 city = input("Preferált város: ").strip()
 rent = int(input("Maximum lakbér: ").strip())
 
-if city == "New York" or city == "San Francisco" and rent <= 4000:
+if city in ["New York", "San Francisco"] and rent <= 4000:
     print(f"Ezekkel a feltételekkel {city} városban, ${rent} áron ki tudod venni a lakást.")
 elif city == "Chicago":
     print(f"Ezekkel a feltételekkel {city} városban, ${rent} áron ki tudod venni a lakást.")

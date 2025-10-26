@@ -5,8 +5,7 @@ while True:
     rounds = int(input("How many rounds would you like to play? (Must be an odd number): "))
     if rounds % 2 == 1:
         break
-    else:
-        print("Error: You must enter an odd number to avoid a tie!")
+    print("Error: You must enter an odd number to avoid a tie!")
 
 score1 = 0
 score2 = 0
@@ -46,3 +45,4 @@ if score1 > score2:
     print(f"Player 1 wins the game with {score1} points!")
 else:
     print(f"Player 2 wins the game with {score2} points!")
+    

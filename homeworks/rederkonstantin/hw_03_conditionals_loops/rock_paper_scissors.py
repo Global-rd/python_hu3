@@ -21,12 +21,21 @@ print("")
 # Main cycle
 while True:
     # Number of games
+
+    # eredeti kód rész
+    #while True:
+    #    rounds = int(input("How many games would you like to play? "))
+    #    if rounds % 2 == 0:
+    #        print("Please give odd number.")
+    #        continue
+    #    break
+
+    # Javasolt kódrész
     while True:
         rounds = int(input("How many games would you like to play? "))
-        if rounds % 2 == 0:
-            print("Please give odd number.")
-            continue
-        break
+        if rounds % 2 != 0:
+            break
+        print("Please give an odd number.")
     print("")
 
     # input player names

@@ -51,6 +51,17 @@ print(a == b)  # egyenlő-e?
 print(a != b)  # ugye nem egyenlő?
 print(a >= b)  # a nagyobb egyenlő?
 
+#--------------------
+# True False példa
+#--------------------
+rent = 6000
+decision = rent < 4000
+print(decision)               # False
+print(type(decision))         # <class 'bool'>
+
+
+
+
 # identity, membership, bitwise, ternary operators --> next lesson
 
 

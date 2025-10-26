@@ -1,14 +1,25 @@
 
 
-fruits = 'apple'         # apposztróffal
-berryes = "cramberry"    # idézőjellel is jó
-
-print(fruits)
-
-print(berryes)
-
-print(fruits+" and "+berryes)
+rent = 6000
+decision = rent < 4000
+print(decision)
+print(type(decision))
 
 
+# --------------------------------------------------------------------
+city = input("Enter the city: ").strip().lower()
+rent = float(input("Enter the monthly rent in USD: "))
 
+
+if city == "washington":
+    decision = False
+elif city == "chicago":
+    decision = True
+elif city in ["new york", "san francisco"]:
+    decision = rent < 4000
+else:
+    decision = rent <= 3000
+
+print(f"Sarah {'can' if decision else 'cannot'} move to {city.title()} with a rent of ${rent:.2f}/month.")
+#----------------------------------------------------------------------
 

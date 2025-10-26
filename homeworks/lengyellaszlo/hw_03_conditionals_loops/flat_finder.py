@@ -1,11 +1,14 @@
 # Szabályok
 city_limits = {
-    4000: ["Chicago"],
-    3000: ["New York", "San Francisco"]
+    #5000: ["Boston"],
+    4000: ["New York", "San Francisco"]
 }
 
 # never
 forbidden = ["Washington"]
+
+# always
+any_price = ["Chicago"]
 
 # város input
 city = input("Enter the city name: ").strip().title()
@@ -31,6 +34,10 @@ thresholds = sorted(city_limits.keys(), reverse=True)
 if city in forbidden:
     print(f"You would never move to {city}.")
 
+# always
+elif city in any_price:
+    print(f"You'd move to {city} at any price.")
+
 # olcsó lakások
 elif price <= min(thresholds):
     print(f"You can move to {city} for ${price} per month.")
@@ -38,7 +45,7 @@ elif price <= min(thresholds):
 # kivételek
 else:
     for limit in thresholds:
-        if price >= limit and city in city_limits[limit]:
+        if price <= limit and city in city_limits[limit]:
             print(f"You can move to {city} for ${price} per month.")
             break
     else:

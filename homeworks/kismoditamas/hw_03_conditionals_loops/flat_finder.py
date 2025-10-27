@@ -9,7 +9,7 @@ elif cost >= 4000:
     else:
         print("Ekkora összegért csak Chicago-t választaná.")
 else:
-    if place_name.lower() == "new york" or place_name.lower() == "san fransisco":
+    if place_name.lower() in [ "new york" , "san fransisco"]:
         print(f"Kivenné a lakást { place_name.capitalize() } városban.")
     elif cost < 3000:
         print(f"Kivenné a lakást { place_name.capitalize() } városban.")

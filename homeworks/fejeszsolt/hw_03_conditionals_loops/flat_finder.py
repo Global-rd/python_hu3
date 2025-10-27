@@ -15,11 +15,8 @@ if city == "Washington":
     print ("Sajnáljuk, nem érdekel az ajánlat")
 elif city == "Chicago":
     print ("Az ajánlatát elfogadjuk")
-elif city== "New York" or "San Fransisco":
-    if price <= 4000:
-        print ("Az ajánlatát elfogadjuk")
-    else:
-        print ("Sajnáljuk, nem érdekel az ajánlat")
+elif city in ["New York", "San Francisco"] and price<=4000:
+    print ("Az ajánlatát elfogadjuk")
 elif price <= 3000:
     print ("Az ajánlatát elfogadjuk")
 else: print ("Sajnáljuk, nem érdekel az ajánlat")

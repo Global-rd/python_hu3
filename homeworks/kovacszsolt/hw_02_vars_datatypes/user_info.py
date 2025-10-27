@@ -45,20 +45,26 @@ user_info["favourite_meals"].append("spaghetti")
 print(user_info["favourite_meals"][-1])
 
 # 5. Extend the meal list with third and fourth meals
-third_element = user_info["favourite_meals"][2]
-fourth_element= user_info["favourite_meals"][3]
-user_info["favourite_meals"].append(third_element)
-user_info["favourite_meals"].append(fourth_element)
+"""third_element = user_info["favourite_meals"][2]
+#fourth_element= user_info["favourite_meals"][3]
+#user_info["favourite_meals"].append(third_element)
+#user_info["favourite_meals"].append(fourth_element)"""
+
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
+
 #check the extended list with print
 print(user_info["favourite_meals"])
 
 # 6. Clear the duplicated meals from the list
-new_favourite_meals_list=[]
+"""new_favourite_meals_list=[]
 for x in user_info["favourite_meals"]:
     if x not in new_favourite_meals_list:
         new_favourite_meals_list.append(x)
 
-user_info["favourite_meals"]=new_favourite_meals_list
+user_info["favourite_meals"]=new_favourite_meals_list"""
+
+user_info["favourite_meals"]=list(set(user_info["favourite_meals"]))
+
 #Check 
 print(user_info["favourite_meals"])
 

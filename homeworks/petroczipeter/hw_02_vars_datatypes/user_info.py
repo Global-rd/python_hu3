@@ -26,12 +26,6 @@ print("Utolsó előtti kedvenc étel:", user_info["favorite_meals"][-2])
 # 4. Hozzáadom a spagettit a listához
 user_info["favorite_meals"].append("spaghetti")
 # 5. A favourite_meals-hez hozzáadom az aktuális favourite_meals lista harmadik és negyedik elemét
-third_item = user_info["favorite_meals"][2]
-fourth_item = user_info["favorite_meals"][3]
-user_info["favorite_meals"].extend([third_item, fourth_item])
-# 6. Törlöm a duplikációt
-user_info["favorite_meals"].remove("sushi")
-user_info["favorite_meals"].remove("spaghetti")
 user_info["favorite_meals"].extend(user_info["favorite_meals"][2:4])
 # 6. Törlöm a duplikációt
 user_info["favorite_meals"] = list(set(user_info["favorite_meals"]))

@@ -71,7 +71,7 @@ print("----------")
 
 #10. feladat
 
-user_info["phone_contacts"]["Laci"] = "+36301231231" , "+36304567456"
+user_info["phone_contacts"]["Laci"] = ["+36301231231" , "+36304567456"]
 print(user_info["phone_contacts"])
 print("----------")
 

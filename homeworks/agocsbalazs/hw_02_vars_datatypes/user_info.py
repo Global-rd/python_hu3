@@ -48,8 +48,7 @@ print(user_info["favourite_meals"])
 
 #5 második és harmadik elem újra hozzáadása
 #user_info["favourite_meals"].append(user_info["favourite_meals"] [1:3]) #sushi és spagetti hozzáadása
-user_info["favourite_meals"].append(user_info["favourite_meals"][1])
-user_info["favourite_meals"].append(user_info["favourite_meals"][2])
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
 print(user_info["favourite_meals"])
 
 

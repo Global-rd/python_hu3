@@ -17,12 +17,12 @@ user_info = {
 # lesson 1
 
 languages = input("Give me four programming languages separated by comma and without spaces: ")
-languages = list(languages.split(","))
+languages = languages.split(",")
 user_info["skills"] = languages
 
 # lesson 2
 
-user_info["favourite_meals"] = sorted(user_info["favourite_meals"])
+user_info["favourite_meals"].sort()
 print(user_info["favourite_meals"])
 
 # lesson 3 
@@ -36,10 +36,7 @@ print(user_info["favourite_meals"])
 
 # lesson 5 
 
-# user_info["favourite_meals"].append(user_info["favourite_meals"][3])
-# user_info["favourite_meals"].append(user_info["favourite_meals"][4])
-user_info["favourite_meals"].append("sushi")
-user_info["favourite_meals"].append("spaghetti")
+user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4])
 print(user_info["favourite_meals"])
 
 # lesson 6 
@@ -49,7 +46,7 @@ print(user_info["favourite_meals"])
 
 # lesson 7 
 
-user_info["favourite_meals"][0], user_info["favourite_meals"][3] = user_info["favourite_meals"][3], user_info["favourite_meals"][0]
+user_info["favourite_meals"][0], user_info["favourite_meals"][-1] = user_info["favourite_meals"][-1], user_info["favourite_meals"][0]
 print(user_info["favourite_meals"])
 
 # lesson 8 

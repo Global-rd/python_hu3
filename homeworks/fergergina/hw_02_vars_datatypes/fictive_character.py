@@ -1,9 +1,6 @@
-name = input("What is your name? ")
-age = input("How old are you? ")
+name = input("What is your name? ").title().strip()
+age = int(input("How old are you? "))
 python_experience = input("Python experience in years? ")
 
-name = name.title().strip()
-
-age = int(age)
-days = age * 365
-print(f"My character is {days} days old. Her name is {name} and she has {python_experience} years experience.")
+age_in_days = age * 365
+print(f"My character is {age_in_days} days old. Her name is {name} and she has {python_experience} years experience.")

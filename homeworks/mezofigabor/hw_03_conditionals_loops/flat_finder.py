@@ -8,20 +8,19 @@ if city == "Chicago":
 elif city == "Washington":
     can_move = False
     reason = "mert nincs az a pénz, amiért Washington-ba költözne"
-elif city == "New York" or city == "San Francisco":
+elif city in ["New York", "San Francisco"]:
     if fee < 4000:
         can_move = True
         reason = f"mert szereti {city}-t és a lakbér ({fee} USD) kevesebb mint 4000 USD"
     else:
         can_move = False
         reason = f"mert bár szereti {city}-t, a lakbér ({fee} USD) nem kevesebb mint 4000 USD"
+elif fee <= 3000:
+    can_move = True
+    reason = f"mert a lakbér ({fee} USD) legfeljebb 3000 USD"
 else:
-    if fee <= 3000:
-        can_move = True
-        reason = f"mert a lakbér ({fee} USD) legfeljebb 3000 USD"
-    else:
-        can_move = False
-        reason = f"mert a lakbér ({fee} USD) meghaladja a 3000 USD-t"
+    can_move = False
+    reason = f"mert a lakbér ({fee} USD) meghaladja a 3000 USD-t"
 
 
 if can_move:

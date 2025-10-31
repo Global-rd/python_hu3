@@ -8,7 +8,7 @@ if city == "chicago":
     move = True
 elif city == "washington":
     move = False
-elif city == "new york" or city == "san francisco":
+elif city in ["new york", "san francisco"]:
     move = rent < 4000
 else:
     move = rent <= 3000

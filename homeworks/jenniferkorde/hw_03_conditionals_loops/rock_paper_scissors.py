@@ -10,44 +10,34 @@ p1_score = 0
 p2_score = 0
 decided = 0
 
+valid_answers=["rock", "paper", "scissors"]
 while decided < rounds:
     print(f"\nRound {decided + 1} of {rounds}")
 
     while True:
         m1 = input("Player 1 (rock/paper/scissors): ").strip().lower()
-        if not (m1 == "rock" or m1 == "paper" or m1 == "scissors"):
+        if m1 not in valid_answers:
             print("Invalid. Type exactly: rock, paper, or scissors.")
             continue
 
         m2 = input("Player 2 (rock/paper/scissors): ").strip().lower()
-        if not (m2 == "rock" or m2 == "paper" or m2 == "scissors"):
+        if m2 not in valid_answers:  
             print("Invalid. Type exactly: rock, paper, or scissors.")
             continue
 
         if m1 == m2:
             print("Draw. Replay this round.")
-            continue
-
-
-        if m1 == "rock" and m2 == "scissors":
-            p1_score += 1
-            print("Player 1 wins this round!")
-        elif m1 == "rock" and m2 == "paper":
-            p2_score += 1
-            print("Player 2 wins this round!")
-        elif m1 == "paper" and m2 == "rock":
-            p1_score += 1
-            print("Player 1 wins this round!")
-        elif m1 == "paper" and m2 == "scissors":
-            p2_score += 1
-            print("Player 2 wins this round!")
-        elif m1 == "scissors" and m2 == "paper":
-            p1_score += 1
-            print("Player 1 wins this round!")
-        elif m1 == "scissors" and m2 == "rock":
-            p2_score += 1
+        elif (m1 == "rock" and m2 == "scissors") or \
+             (m1 == "paper" and m2 == "rock") or \
+             (m1 == "scissors" and m2 == "paper"):
+             p1_score += 1
+             print("Player 1 wins this round!")
+        else:
+             p2_score += 1
             print("Player 2 wins this round!")
 
+
+        
         decided+=1
         break
 

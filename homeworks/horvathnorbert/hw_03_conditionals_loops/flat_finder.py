@@ -16,6 +16,22 @@ flat_price = int(input("Flat price? : ").replace(" ","")) #Szóközök eltávol�
 
 # A feladatban leírt kritériumok ellnőrzés.
 
+if city_name in flat_criteria:
+    limit = flat_criteria[city_name]
+else:
+    limit = 3000  
+
+if limit == float('-inf'):
+    print(f"I hate {city_name.title()}! You could not pay me to live here!")
+elif limit == float('inf'):
+    print(f"I love {city_name.title()}!, It is worth every cent to live here.")
+elif flat_price < limit:
+    print(f"I would love to rent this apartment.")
+else:
+    print(f"I would not like to rent this apartment. Maybe if it were a bit cheaper.")
+
+
+"""
 if city_name == "newyork" and flat_price < flat_criteria[city_name]:
     print("I would love to rent this apartment.")
 
@@ -32,3 +48,4 @@ elif flat_price < 3000:
     print("I would love to rent this apartment.")
 else:
     print("I would not like to rent this apartment. Maybe if it were a bit cheaper.")
+"""

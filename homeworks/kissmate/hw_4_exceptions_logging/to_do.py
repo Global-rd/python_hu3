@@ -29,17 +29,20 @@ def display_menu():
     print("4. Exit")
 #assign user selection
 def get_user_selection():
-    if selection == '1':
+    if selection == "1":
         return add_task()
-    elif selection == '2':
+    elif selection == "2":
         return view_tasks()
-    elif selection == '3':
+    elif selection == "3":
         return remove_task()
-    elif selection == '4':
-        return exit()   
+    elif selection == "4":
+        return exit 
 #user inpunt/user mistake handling
+while True:
+    display_menu()
+    break
 selection = input("Select an option (1-4): ")
-if selection not in ['1', '2', '3', '4']:
+if selection not in ["1", "2", "3", "4"]:
     raise ValueError("Invalid menu selection.")
 try:
     result = get_user_selection()  

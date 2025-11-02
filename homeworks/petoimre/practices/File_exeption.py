@@ -51,15 +51,24 @@ finally:                                                   # el lehet hagyni
     print("Division attempt finishrd.")
 
 
-# raise exeption  (aját hibakezelés)
+# raise exeption  (saját hibakezelés)
 
-def calc_rectangle_area(length, width):
-    if length <= 0 or width <= 0:
-        raise ValueError("ff")  # ha ide fut, kiszáll. Ezért nem kell else: (early return:)
+def calculate_rectangle_area(length, width):
+    if length <=0 or width <=0:
+        raise ValueError("Both params must be a positive number!")    # ha ide fut, kiszáll. Ezért nem kell else: (early return:)
     return length * width
 
-calc_rectangle_area(10, -5)
-#print(area)
+# calculate_rectangle_area(10, -2)
+
+try:
+    area = calculate_rectangle_area(10, -2)
+except ValueError as e:
+    print(f"Value error: {e}")
+
+
+
+
+
 
 
 

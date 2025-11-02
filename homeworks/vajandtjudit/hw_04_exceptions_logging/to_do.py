@@ -1,9 +1,29 @@
-import logging
-import logging.config
 from logging_config import setup_logging
+import logging
 
 setup_logging()
 logger = logging.getLogger(__name__)
+
+def read_tasks_from_file(filename):
+    """Feladatok beolvasása fájlból"""
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            tasks = [line.strip() for line in file.readlines()]
+            logger.info("Feladatok beolvasva a fájlból.")
+            return tasks
+    except FileNotFoundError:
+        logger.warning("A fájl nem található, üres listával indul a program.")
+        return []
+
+def save_tasks_to_file(filename, tasks):
+    """Feladatok mentése a fájlba"""
+    try:
+        with open(filename, "w", encoding="utf-8") as file:
+            for task in tasks:
+                file.write(task + "\n")
+        logger.info("Feladatok mentve a fájlba.")
+    except Exception as e:
+        logger.error(f"Hiba a fájlba íráskor: {e}")
 
 def display_menu():
     print("\nVálassz egy opciót:")
@@ -21,6 +41,7 @@ def add_task(tasks):
     except Exception as e:
         print("Hiba történt a feladat hozzáadásakor.")
         logger.error(f'Hiba a feladat hozzáadásakor: {e}')
+
 def view_tasks(tasks):
     if not tasks:
         print("\nNincs egyetlen feladat sem a listában.")
@@ -31,24 +52,26 @@ def view_tasks(tasks):
 
 def remove_tasks(tasks):
     view_tasks(tasks)
-
     if not tasks:
-        logger.warning("Törlési kísérlet az üres listából")
-        return #ha üres a lista kilépünk
+        logger.warning("Törlési kísérlet az üres listából.")
+        return
     
     try:
         index = int(input("Add meg a törlendő feladat sorszámát: ")) - 1
         if index < 0 or index >= len(tasks):
-            print("X Érvénytelen sorszám")
+            print("X Érvénytelen sorszám.")
             logger.warning(f"Érvénytelen sorszám: {index + 1}")
         else:
             removed = tasks.pop(index)
             print(f'"{removed}" törölve a listából.')
             logger.info(f'Feladat törölve: {removed}')
     except ValueError as e:
-            print("X Hibás bevitel! Kérlek, számot adj meg.")
-            logger.error(f'Hibás bevitel (nem szám): {e}')
-tasks = []
+        print("X Hibás bevitel! Kérlek, számot adj meg.")
+        logger.error(f'Hibás bevitel (nem szám): {e}')
+
+# ---- Főprogram ----
+FILENAME = "tasks.txt"
+tasks = read_tasks_from_file(FILENAME)
 
 while True:
     display_menu()
@@ -63,6 +86,7 @@ while True:
     elif choice == "4":
         print("Kilépés... Viszlát!")
         logger.info("Program leállt a felhasználó kérésére.")
+        save_tasks_to_file(FILENAME, tasks)
         break
     else:
         print("X Érvénytelen opció! Próbáld újra.")

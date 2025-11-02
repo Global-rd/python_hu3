@@ -1,13 +1,20 @@
 import logging
+from logging_config import setup_logging
+setup_logging()
+logger = logging.getLogger(__name__) 
+logger = logging.getLogger('to_do.log')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler = logging.FileHandler('to_do.log')
 stream_handler = logging.StreamHandler()
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(formatter)
 stream_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
 my_list =[] 
 #add task
 def add_task():
     my_list.append(input("Enter a task: "))
+    return my_list
 #read tasks
 def read_tasks():
     return my_list
@@ -34,17 +41,19 @@ def get_user_selection():
     elif selection == "2":
         return view_tasks()
     elif selection == "3":
-        return remove_task()
-    elif selection == "4":
-        return exit 
+        return remove_task() 
 #user inpunt/user mistake handling
 while True:
     display_menu()
     break
-selection = input("Select an option (1-4): ")
-if selection not in ["1", "2", "3", "4"]:
-    raise ValueError("Invalid menu selection.")
-try:
-    result = get_user_selection()  
-except ValueError("Please enter a valid option."):
-    print("Invalid input. Please enter a number.")
+while True:
+    selection = input("Select an option (1-4): ")
+    if selection not in ["1", "2", "3", "4"]:
+        raise ValueError("Invalid menu selection.")
+    try:
+       result = get_user_selection()  
+    except ValueError("Please enter a valid option."):
+        print("Invalid input. Please enter a number.")
+    if selection == "4":
+        print("Exiting the program.")
+        break

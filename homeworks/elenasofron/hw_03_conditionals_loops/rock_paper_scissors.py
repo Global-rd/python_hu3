@@ -5,11 +5,11 @@ player2_points = 0
 
 # number of rounds
 while True:
-    rounds = int(input("How many rounds would you like to play?"))
+    rounds = int(input("How many rounds would you like to play? Please add odd number: "))
     if rounds % 2 != 0:
+        #print("Not ok. Give another number.")
         break
-    else:
-        print("Not ok.")
+
 
 # start a game
 current_round = 1

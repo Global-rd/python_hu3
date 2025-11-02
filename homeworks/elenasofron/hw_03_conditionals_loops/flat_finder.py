@@ -1,10 +1,10 @@
 location = input ("Please write the city: ")
 price = int(input("Please write your price: "))
 
-if location == "Washington" and price > 0:
+if location == "Washington":
     print("No way, you hate this city and you know it.")
 
-elif location == ("New York" or "San Francisco") and price < 4000:
+elif (location == "New York" or location =="San Francisco") and price < 4000:
         print(f"Welcome to {location} and you monthly fee will be {price} USD")
 
 elif location == "Chicago":

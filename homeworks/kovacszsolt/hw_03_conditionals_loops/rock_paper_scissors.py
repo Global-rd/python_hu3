@@ -1,19 +1,20 @@
 # rock paper scissors
 
-round=2
-i=1
+i_round_counter=1
 
-A=0
-B=0
-a=0
-b=0
+a_player_point=0 #A
+b_player_point=0 #B
+a_player_collected_points=0 #a
+b_player_collected_points=0 #b
 
-while round %2==0 :
-    rounds= input("How many rounds shall we play? (it has to be odd): ")
+while True:
+    rounds= int(input("How many rounds shall we play? (it has to be odd): "))
     round=int(rounds)
-    print(round)
-    if round %2==0:
-        print (f" Wrong data because it isn't odd! Let's do it agan.")
+    if rounds % 2 == 1:
+        break
+    print(f"Wrong data because it isn't odd! Let's do it agan.")
+
+
 print(f"It's ok. There will be {round} round(s).  Let's start it!")
 
 answer_a_player=""
@@ -21,76 +22,54 @@ answer_b_player=""
 
 
 
-while  i<=round:
+while  i_round_counter<=round:
 
-    
-
-    answer_a_player = input("Player 'A' Enter your choice from these: stone or scissors or paper ").strip()
-    
-    while answer_a_player not in ("stone","scissors","paper"):
-        print (f" Wrong data from 'A' player: {answer_a_player} Let's write it agan.")
+    while True:
         answer_a_player = input("Player 'A' Enter your choice from these: stone or scissors or paper ").strip()
-    else: 
-        print(f"Player 'A' {i} choice is:{answer_a_player}")
-        
-
-    answer_b_player = input("'B' Player Enter your choice from these: stone or paper or scissors ").strip()
-
-    while answer_b_player not in ("stone","scissors","paper"):
-            print (f" Wrong data from 'B' player: {answer_b_player} Let's write it agan .")
-            answer_b_player = input("'B' Player Enter your choice from these: STONE or PAPER or SCISSORS ").strip()
-    else: 
-            print(f"'B' Player {i} choce is :{answer_b_player}")
-        
-
-    print(f"Number of round in this :{i}")
-    print(f"Size of Round(s) :{round}")
-    i+=1
+        while answer_a_player not in ("stone","scissors","paper"):
+            print (f" Wrong data from 'A' player: {answer_a_player} Let's write it agan.")
+            answer_a_player = input("Player 'A' Enter your choice from these: stone or scissors or paper ").strip()
+        else: 
+            print(f"Player 'A' {i_round_counter} choice is:{answer_a_player}")
+            break
+      
+    while True:
+        answer_b_player = input("Player 'B' Enter your choice from these: stone or scissors or paper ").strip()
+        while answer_b_player not in ("stone","scissors","paper"):
+            print (f" Wrong data from 'B' player: {answer_b_player} Let's write it agan.")
+            answer_b_player = input("Player 'A' Enter your choice from these: stone or scissors or paper ").strip()
+        else: 
+            print(f"Player 'A' {i_round_counter} choice is:{answer_b_player}")
+            break
 
     # POINTS CALCULATOR
-    if answer_a_player==answer_b_player:
-        A=0
-        B=0
-       
+  
+    if (
+        (answer_a_player == "stone" and answer_b_player == "scissors") or
+        (answer_a_player == "scissors" and answer_b_player == "paper") or
+        (answer_a_player == "paper" and answer_b_player == "stone")
+    ):
+        a_player_point, b_player_point = 1, 0  # A wins
+    else:
+        a_player_point, b_player_point = 0, 1  # B wins
 
-        print(f"There is no winner in this {i-1} round so we must repet it !")
-        i=i-1
-
-        continue
-
-    elif answer_a_player=="stone" and answer_b_player=="paper":
-        A=0
-        B=1
-    elif answer_a_player=="stone" and answer_b_player=="scissors":
-        A=1
-        B=0
-    elif answer_a_player=="scissors" and answer_b_player=="stone":
-        A=0
-        B=1
-    elif answer_a_player=="scissors" and answer_b_player=="paper":
-        A=1
-        B=0
-    elif answer_a_player=="paper" and answer_b_player=="stone":
-        A=1
-        B=0
-    elif answer_a_player=="paper" and answer_b_player=="scissors":
-        A=0
-        B=1
-    
+    # SUMM of points
+  
+    a_player_collected_points=a_player_collected_points+a_player_point
+    b_player_collected_points=b_player_collected_points+b_player_point
+    print(f" 'A' player has {a_player_point} points in this {i_round_counter} round and she/he collects :{a_player_collected_points} points till now")
+    print(f" 'B' player has {b_player_point} points in this {i_round_counter} round and she/he collects :{b_player_collected_points} points till now")
    
-    a=a+A
-    b=b+B
-    print(f" 'A' player has {A} points in this {i-1} round and she/he collects :{a} points till now")
-    print(f" 'B' player has {B} points in this {i-1} round and she/he collects :{b} points till now")
-   
-
-print(f" The 'A' player collects at the end of this game :{a} points")
-print(f" The 'B' player collects at the end of this game :{b} points")
+    i_round_counter=i_round_counter+1
 
 
-if a>b:
+print(f" The 'A' player collects at the end of this game :{a_player_collected_points} points")
+print(f" The 'B' player collects at the end of this game :{b_player_collected_points} points")
+
+
+if a_player_collected_points>b_player_collected_points:
     print(f"The WINNER is the 'A' player!")
-elif b>a:
+elif b_player_collected_points>a_player_collected_points:
      print(f"The WINNER is the 'B' player!")
 
 

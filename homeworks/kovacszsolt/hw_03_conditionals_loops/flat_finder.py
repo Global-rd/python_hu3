@@ -25,7 +25,7 @@ if city_name == "WASHINGTON":
     print(f"SARAH HATES WASHINGTON !")
 elif city_name =="CHICAGO":
      print(f"SARAH ADORES CHICAGO! She can accept the offer at {fee} USD/month")
-elif (city_name=="NEW YORK" or city_name=="SAN FRANCISCO") and (fee<4000):
+elif city_name in["NEW YORK","SAN FRANCISCO"] and fee<4000:
     print(f"SARAH LIKES {city_name} She can accept the offer at {fee} USD/month")
 elif fee<=3000:
     print(f"The rental fee  {fee} is ok in {city_name} for Sarah")

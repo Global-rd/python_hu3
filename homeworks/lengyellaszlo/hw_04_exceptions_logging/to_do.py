@@ -98,7 +98,6 @@ while True:
         if choice == 1:
             new_task = input("Add meg az új feladatot: ")
             add_task(tasks, new_task)
-            write_tasks(tasks)
 
         elif choice == 2:
             display_tasks(tasks)

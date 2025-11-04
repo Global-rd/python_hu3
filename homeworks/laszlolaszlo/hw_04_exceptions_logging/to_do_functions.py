@@ -10,7 +10,7 @@ def create_tasks_file(file_path) -> bool:
 
 
 def read_tasks_file(file_path) -> list[str]:
-    """Read task file from filesystem and return it as a Python list and create it if does not exists."""
+    """Read task file from filesystem and return it as a Python list and create it if it does not exist."""
 
     if not os.path.exists(path=file_path):
         create_tasks_file(file_path=file_path)

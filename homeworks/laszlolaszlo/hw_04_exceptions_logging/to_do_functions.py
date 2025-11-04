@@ -28,7 +28,7 @@ def write_tasks_file(tasks, file_path) -> None:
 
 
 def view_tasks(tasks: list[str]) -> None:
-    # Use list comprehension and ennumarate to display tasks with index+1 for human eyes
+    # Use list comprehension and enumerate to display tasks with index+1 for human eyes
     # Index start from zero in lists.
     # [print(f"{i+1}: {x}") for i, x in enumerate(tasks)]
 

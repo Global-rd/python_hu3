@@ -8,24 +8,20 @@ working_list = []
 if os.path.exists(file_path):
     hw_fc.file_open(file_path, working_list)
 
-print(f"working_list_start: {working_list}")
 
 while True:
-    print("")
+    print("------------------------------------")
     print("Type one of them below items number.")
     hw_fc.display_menu()
-    user_list_nun_input = input(" :").strip()
+    user_list_nun_input = input("INPUT:").strip()
     if user_list_nun_input == "1":
-        user_task_input = input("Give me the task: ")
-        working_list = hw_fc.add_task(user_task_input, working_list)
-        print(f"working_list_1: {working_list}")
+        user_task_input = input("Give me the adding task: ")
+        hw_fc.add_task(user_task_input, working_list)
     elif user_list_nun_input == "2":
         hw_fc.wiew_tasks(working_list)
-        print(f"working_list_2: {working_list}")
     elif user_list_nun_input == "3":
-        user_task_input = input("Give me the task: ")
-        working_list = hw_fc.remove_task(user_task_input, working_list)
-        print(f"working_list_3: {working_list}")
+        user_task_input = input("Give me the removing task: ")
+        hw_fc.remove_task(user_task_input, working_list)
     elif user_list_nun_input == "4":
         hw_fc.file_save(file_path, working_list)
         break

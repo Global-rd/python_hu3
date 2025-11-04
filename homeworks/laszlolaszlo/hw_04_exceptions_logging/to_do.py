@@ -97,7 +97,7 @@ def main() -> None:
             # Remove Task
             elif user_input == "3":
                 print("### Remove Tasks ###")
-                logger.debug("Entering 'Remove Task\" menu.")
+                logger.debug("Entering 'Remove Task' menu.")
 
                 if len(tasks) > 0:
                     print("Current task(s) in the list:")

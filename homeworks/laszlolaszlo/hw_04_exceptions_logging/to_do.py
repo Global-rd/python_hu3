@@ -24,14 +24,6 @@ file_path: Path = (
     / "tasks.txt"
 )
 
-app_log_file_path: Path = (
-    Path(os.getcwd())
-    / "homeworks"
-    / "laszlolaszlo"
-    / "hw_04_exceptions_logging"
-    / "app.log"
-)
-
 setup_logging()
 logger = logging.getLogger(__name__)
 

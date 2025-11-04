@@ -4,7 +4,6 @@ import logging
 
 from logging_config import setup_logging
 from to_do_functions import (
-    create_tasks_file,
     read_tasks_file,
     write_tasks_file,
     view_tasks,
@@ -113,8 +112,8 @@ def main() -> None:
                 ):
                     removed_task = tasks[int(remove_task_input) - 1]
                     remove_task(remove_tasks_input=int(remove_task_input), tasks=tasks)
-                    print(f'Task, "{removed_task}" removed succesfully.')
-                    logger.debug(f'Task, "{removed_task}" removed succesfully.')
+                    print(f'Task, "{removed_task}" removed successfully.')
+                    logger.debug(f'Task, "{removed_task}" removed successfully.')
                     continue
 
             # Exit
@@ -124,9 +123,9 @@ def main() -> None:
                 # print(f"Trying to write out tasks file...")
                 try:
                     write_tasks_file(tasks=tasks, file_path=file_path)
-                    print("Tasks file saved succesfully.")
+                    print("Tasks file saved successfully.")
                     print("Good bye!")
-                    logger.info(f"Tasks file saved succesfully.")
+                    logger.info(f"Tasks file saved successfully.")
                     logger.info(f"Saved file path: {file_path} .")
                     break
                 except OSError as e:

@@ -2,7 +2,7 @@ import os
 
 
 def create_tasks_file(file_path) -> bool:
-    """Create tasks file if it does not exists."""
+    """Create tasks file if it does not exist."""
     if not os.path.exists(path=file_path):
         with open(file=file_path, mode="w", encoding="utf-8"):
             return True

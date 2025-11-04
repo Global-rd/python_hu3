@@ -22,11 +22,20 @@ def add_task():
     logger.info(f"Task '{task}' added to the list.")
 #read tasks
 def read_tasks():
+    try:
+        with open(file_path, 'r') as f:
+            pass
+    except FileNotFoundError:
+        logger.error("The to-do list file was not found.")
     with open(file_path, 'r') as f:
         tasks = f.readlines()
     return [task.strip() for task in tasks]
 #write tasks
 def tasks_write(tasks):
+    try:
+        existing_tasks = read_tasks()
+    except FileNotFoundError:
+        existing_tasks = []
     with open(file_path, 'a') as f:
         for task in tasks:
             f.write(task + '\n')

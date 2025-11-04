@@ -81,7 +81,7 @@ def main() -> None:
             # View Tasks
             elif user_input == "2":
                 print("### View Tasks ###")
-                logger.debug("Entering 'View Task\" menu.")
+                logger.debug("Entering 'View Task' menu.")
 
                 # If the tasks list is empty
                 if not len(tasks):

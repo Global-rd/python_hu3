@@ -8,8 +8,13 @@
 city=input("Kérem adjon meg egy város nevét:").upper()
 rent=float(input("adja meg a bérleti díjat:"))
 
-if city==("CHICAGO"):print("költözik")
-elif city==("WASHINGTON"):print("nem költözik")
-elif city==("NEW YORK" or "SAN FRANCISCO") and (rent<=4000):print("költözik")
-elif rent<=(3000):print("költözik")
-else : print("nem költözik")
+if city==("CHICAGO"):
+    print("költözik")
+elif city==("WASHINGTON"):
+    print("nem költözik")
+elif city in ("NEW YORK" , "SAN FRANCISCO") and (rent<=4000):
+    print("költözik")
+elif rent<=(3000):
+    print("költözik")
+else : 
+    print("nem költözik")

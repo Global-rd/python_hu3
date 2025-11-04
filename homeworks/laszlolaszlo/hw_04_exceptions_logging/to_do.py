@@ -128,7 +128,7 @@ def main() -> None:
             # Exit
             # I should use else but for me a new elif is more readable
             elif user_input == "4":
-                logger.debug("Entering 'Exit\" menu.")
+                logger.debug("Entering 'Exit' menu.")
                 # print(f"Trying to write out tasks file...")
                 try:
                     write_tasks_file(tasks=tasks, file_path=file_path)

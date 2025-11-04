@@ -155,6 +155,9 @@ def register_user(users, name, age):       # def register_user(users:list, name:
     print(f"user reg success: {user}")
 
 def update_user_age(users, name, new_age):
+    """
+    Modifie the user age.
+    """
     for user in users:
         if user["name"] == name:
             user["age"] == new_age
@@ -163,6 +166,9 @@ def update_user_age(users, name, new_age):
     print(f"no user name {name} found in the registry")        
 
 def display_user_info(users, name):
+    """
+    Display the user information based the name.
+    """
     for user in users:
         if user["name"] == name:
             print(f"user info - name: {user['name']} age: {user['age']}")
@@ -170,6 +176,9 @@ def display_user_info(users, name):
     print(f"no user name {name} found in the registry") 
 
 def display_all_users(users):
+    """
+    Print all user info with enum.
+    """
     print("regitered users")
     for id, user in enumerate(users, 1):
         print(f"{id}, - name: {user['name']}")

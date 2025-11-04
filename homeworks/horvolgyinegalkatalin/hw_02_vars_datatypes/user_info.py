@@ -14,23 +14,26 @@ user_info = {
 }
 
 # programnyelv bekérése
-Programnyelvek_lista=[]  
-while 4!=len(Programnyelvek_lista):
-    Programnyelvek=input("Adjál meg 4 programozási nyelvet vesszővel elválasztva szóköz nélkül:")
-    Programnyelvek_lista=Programnyelvek.split(',')
+language_list=[]  
+while 4!=len(language_list):
+    languages=input("Adjál meg 4 programozási nyelvet vesszővel elválasztva szóköz nélkül:")
+    language_list=languages.split(',')  
 
-user_info ['skills']=Programnyelvek_lista
+    if len(language_list) != 4:
+        print("Hibás bevitel! Pontosan 4 nyelvet adj meg.")
+user_info ['skills']=language_list
 
 #favorite meals
 user_info["favourite_meals"].sort()
 
-print(user_info["favourite_meals"][-2])
+print (user_info["favourite_meals"].extend(user_info["favourite_meals"][2:4]))
+
 
 user_info["favourite_meals"].append("spaghetti")
-harmadik=user_info["favourite_meals"][2]
-negyedik=user_info["favourite_meals"][3]
-user_info["favourite_meals"].append(harmadik)
-user_info["favourite_meals"].append(negyedik)
+third=user_info["favourite_meals"][2]
+fourth=user_info["favourite_meals"][3]
+user_info["favourite_meals"].append(third)
+user_info["favourite_meals"].append(fourth)
 
 # print(user_info["favourite_meals"])
 
@@ -56,5 +59,5 @@ user_info["phone_contacts"].update({'Zoli':["+36301234567","+36306820595"]})
 # print (user_info)
 
 # extra feladat, gondolom nem ez az elegáns megoldása a feladatnak :-)
-print(user_info ['skills'][-1], user_info ['skills'][-2],user_info ['skills'][-3])
+print(user_info["skills"][-3:][::-1])
 

@@ -67,8 +67,8 @@ def main() -> None:
                     logger.debug(f"Checking add_task_input: {add_task_input}")
 
                     add_task(task=add_task_input, tasks=tasks)
-                    print(f'New task, "{add_task_input}" added succesfully.')
-                    logger.info(f'New task, "{add_task_input}" added succesfully.')
+                    print(f'New task, "{add_task_input}" added successfully.')
+                    logger.info(f'New task, "{add_task_input}" added successfully.')
 
                     add_task_input_length = len(add_task_input)
                     # Print as many "-" as new task and the other part of the message length.

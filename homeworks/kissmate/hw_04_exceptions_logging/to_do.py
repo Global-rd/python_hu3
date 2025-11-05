@@ -2,16 +2,8 @@ import logging
 import os
 from logging_config import setup_logging
 setup_logging()
-logger = logging.getLogger(__name__) 
 logger = logging.getLogger('to_do.log')
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler = logging.FileHandler('to_do.log')
-stream_handler = logging.StreamHandler()
-file_handler.setFormatter(formatter)
-stream_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
-file_path = "homeworks/kissmate/hw_4_exceptions_logging/to_do_list.txt"
+file_path = "homeworks/kissmate/hw_04_exceptions_logging/to_do_list.txt"
 if not os.path.exists(file_path):
     with open(file_path, 'w'):
         pass

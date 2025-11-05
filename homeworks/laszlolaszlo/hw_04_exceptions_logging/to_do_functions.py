@@ -1,13 +1,11 @@
 import os
 from pathlib import Path
+import logging
 
+from logging_config import setup_logging
 
-def create_tasks_file(file_path: Path) -> bool:
-    """Create tasks file if it does not exist."""
-    if not os.path.exists(path=file_path):
-        with open(file=file_path, mode="w", encoding="utf-8"):
-            return True
-    return False
+setup_logging()
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 def read_tasks_file(file_path: Path) -> list[str]:
@@ -22,9 +20,17 @@ def read_tasks_file(file_path: Path) -> list[str]:
 
 def write_tasks_file(tasks: list[str], file_path: Path) -> None:
     """Write tasks from memory into task file"""
-    with open(file=file_path, mode="w", encoding="utf-8") as file:
-        formatted_tasks = "\n".join(tasks)
-        file.write(formatted_tasks)
+    try:
+        with open(file=file_path, mode="w", encoding="utf-8") as file:
+            formatted_tasks = "\n".join(tasks)
+            file.write(formatted_tasks)
+        logger.info(f"Successful task write to : {file_path}")
+    except OSError as e:
+        logger.error(f"Write to ({file_path}) failed: {e}")
+        raise
+    except Exception:
+        logger.exception("Unexpected error while writing tasks file")
+        raise
 
 
 def view_tasks(tasks: list[str]) -> None:

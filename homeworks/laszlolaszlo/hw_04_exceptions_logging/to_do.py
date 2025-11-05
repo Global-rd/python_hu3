@@ -13,7 +13,6 @@ file_path: Path = (
     / "tasks.txt"
 )
 
-print(type(file_path))
 setup_logging()
 logger: logging.Logger = logging.getLogger(__name__)
 
@@ -119,13 +118,11 @@ def main() -> None:
                     logger.info(f"Tasks file saved successfully.")
                     logger.info(f"Saved file path: {file_path} .")
                     break
-                except OSError as e:
-                    print(
-                        "Some error happened. Please check your filesystem usage or file, directory permission."
-                    )
-                    print("Please check application log file!")
-                    logger.error(e)
+                except Exception:
+                    print("Task file save failed, please check application log file.")
+                    logger.exception("Save failed")
                     continue
+
         else:
             print("Invalid choice!")
             logger.debug(f"Invalid choice: {user_input}")

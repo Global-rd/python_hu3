@@ -6,7 +6,7 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 
-file_path = Path("homeworks") / "kismoditamas" /  "hw_04_exceptions_logging" / "tasks.txt" #relative path
+file_path = Path("homeworks") / "kismoditamas" /  "hw_04_exceptions_logging" / "tasks.txt" 
 
 def import_tasks(tasks):
     '''Import tasks from file'''    

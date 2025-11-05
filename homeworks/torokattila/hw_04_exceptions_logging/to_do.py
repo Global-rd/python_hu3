@@ -12,22 +12,27 @@ file_path = Path("homeworks") / "torokattila" / "hw_04_exceptions_logging" / "ta
 # Functions declaration
 # Beolvassa a tasks.txt fájlból a TASK információkat.
 def read_tasks(file_path):
-    with open(file_path,"r",encoding="UTF-8") as file:
-        for line in file:
-            yield line.strip()
-    logger.info("Data read from file")
-# Kiírja a task.txt fájlba a TASK információkat a programból való kilépéskor
-def write_tasks(task_list):
     try:
-        with open(file_path,"w",encoding="UTF-8") as file:
-            try:
-                for line in task_list:            
-                    file.write(line + "\n")  
-            except:
-                print ("Error writing file)")
-    except:
-        print("Error opening file")
-    logger.info("Data write into file - 2")
+        with open(file_path, "r", encoding="utf-8") as file:
+            tasks = [line.strip() for line in file if line.strip()]
+        logger.info("Tasks successfully read from file.")
+        return tasks
+    except FileNotFoundError:
+        logger.warning(f"File not found: {file_path}. Starting with empty task list.")
+        return []
+    except Exception as e:
+        logger.exception(f"Error reading from file: {e}")
+        return []
+# Kiírja a task.txt fájlba a TASK információkat a programból való kilépéskor
+def write_tasks(task_list, file_path):
+    try:
+        with open(file_path, "w", encoding="utf-8") as file:
+            for task in task_list:
+                file.write(task + "\n")
+        logger.info("Tasks successfully written to file.")
+    except Exception as e:
+        logger.exception(f"Error writing to file: {e}")
+
 def display_tasks(task_list):
     print("-----------")
     print("Tasks list:")
@@ -60,16 +65,15 @@ def main():
     task_list = []
     # Ha létezik a tasks.txt akkor beolvassuk soronként és beírjuk a task_list-be.        
     if file_path.exists():
-        for line in read_tasks(file_path):
-            task_list.append(line.strip())
-    
+        read_tasks(file_path)
+
     while True:
         display_menu()
         try:
             answare = int(input ("Choose an option: "))
             
             if answare == 4:
-                write_tasks(task_list)
+                write_tasks(task_list,file_path)
                 break
             if answare == 3:
                 task_name_to_delete = input("Which task should I delete? ")

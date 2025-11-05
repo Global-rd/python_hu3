@@ -29,6 +29,7 @@ lista készítése"""
             todo_list = [line.strip() for line in file]
     except Exception as e:
         logging.error(f"Hiba: nincs ilyen fájl, vagy nincs hozzá jogosúltságod {e}.")
+        todo_list = []
     logging.info("sikeres beolvasás")
     if not todo_list:
             logging.warning("A fájl sikeresen beolvasva, de még üres.")
@@ -64,7 +65,10 @@ def remove_task(extask, todo_list):
 
 def write_task(todo_list, file_path):
     """Feladatok kiírása, miután a fájlt teljesen kiürítettük"""
-    with open(file_path, "w") as file:
-        for line in todo_list:
-            file.write(line + "\n")
-    logging.info("a fájl írása sikeresen megtörtént.")
+    try:
+        with open(file_path, "w") as file:
+            for line in todo_list:
+                file.write(line + "\n")
+        logging.info("A fájl írása sikeresen megtörtént.")
+    except Exception as e:
+        logging.error(f"Hiba a fájl írása közben: {e}")

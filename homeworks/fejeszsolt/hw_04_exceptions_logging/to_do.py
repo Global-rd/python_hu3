@@ -1,4 +1,3 @@
-import logging
 import os
 from pathlib import Path
 from definitions import read_menu
@@ -8,29 +7,16 @@ from definitions import view_tasks
 from definitions import remove_task
 from definitions import write_task
 from definitions import read_file
+from logging_config import setup_logging
+import logging
 
+setup_logging()
+logger = logging.getLogger(__name__)
 
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-file_handler = logging.FileHandler("app.log")
-file_handler.setLevel(logging.DEBUG)
-file_handler.setFormatter(formatter)
-
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-console_handler.setFormatter(formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(console_handler)
 
 file_path = Path("homeworks") / "fejeszsolt" / "hw_04_exceptions_logging" / "to_do.txt" 
 
 todo_list=[]
-
-read_file(file_path)
 
 todo_list = read_file(file_path)
 

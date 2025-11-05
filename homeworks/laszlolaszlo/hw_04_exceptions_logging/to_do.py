@@ -3,17 +3,7 @@ from pathlib import Path
 import logging
 
 from logging_config import setup_logging
-from to_do_functions import (
-    read_tasks_file,
-    write_tasks_file,
-    view_tasks,
-    remove_task,
-    add_task,
-    display_menu,
-    check_user_input,
-    check_remove_task_input,
-    check_add_task_input,
-)
+import to_do_functions as tdf
 
 file_path: Path = (
     Path(os.getcwd())
@@ -23,14 +13,15 @@ file_path: Path = (
     / "tasks.txt"
 )
 
+print(type(file_path))
 setup_logging()
-logger = logging.getLogger(__name__)
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 def main() -> None:
     logger.info("Application started")
     try:
-        tasks: list[str] = read_tasks_file(file_path=file_path)
+        tasks: list[str] = tdf.read_tasks_file(file_path=file_path)
     except OSError as e:
         # log a warning into log file, need implement later
         tasks = []
@@ -40,11 +31,11 @@ def main() -> None:
 
     while True:
 
-        display_menu()
+        tdf.display_menu()
         # call the real built-in input even if a notebook variable named `input` exists
         user_input: str = input("Please choose a Task (1,2,3,4): ").strip()
 
-        if check_user_input(user_input=user_input):
+        if tdf.check_user_input(user_input=user_input):
             # Add Tasks
             logger.debug(f"Checking user input: {user_input}")
 
@@ -54,10 +45,10 @@ def main() -> None:
 
                 add_task_input: str = input("Please add a new task: ").strip()
 
-                if check_add_task_input(add_task_input=add_task_input):
+                if tdf.check_add_task_input(add_task_input=add_task_input):
                     logger.debug(f"Checking add_task_input: {add_task_input}")
 
-                    add_task(task=add_task_input, tasks=tasks)
+                    tdf.add_task(task=add_task_input, tasks=tasks)
                     print(f'New task, "{add_task_input}" added successfully.')
                     logger.info(f'New task, "{add_task_input}" added successfully.')
 
@@ -80,7 +71,7 @@ def main() -> None:
                     print("-------------------------------")
                     logger.debug("The tasks list is empty at now.")
                 else:
-                    view_tasks(tasks=tasks)
+                    tdf.view_tasks(tasks=tasks)
                     print("-------------------------------")
                     logger.debug(f"tasks list content:")
                     logger.debug(tasks)
@@ -94,7 +85,7 @@ def main() -> None:
                     print("Current task(s) in the list:")
                     logger.debug(f"tasks list content:")
                     logger.debug(tasks)
-                    view_tasks(tasks=tasks)
+                    tdf.view_tasks(tasks=tasks)
                 else:
                     print("Current tasks list is empty at now.")
                     print("You are not able to any delete task.")
@@ -107,11 +98,13 @@ def main() -> None:
                 ).strip()
                 logger.debug(f"Checking user input: {remove_task_input}")
 
-                if check_remove_task_input(
+                if tdf.check_remove_task_input(
                     remove_tasks_input=remove_task_input, tasks=tasks
                 ):
                     removed_task = tasks[int(remove_task_input) - 1]
-                    remove_task(remove_tasks_input=int(remove_task_input), tasks=tasks)
+                    tdf.remove_task(
+                        remove_tasks_input=int(remove_task_input), tasks=tasks
+                    )
                     print(f'Task, "{removed_task}" removed successfully.')
                     logger.debug(f'Task, "{removed_task}" removed successfully.')
                     continue
@@ -122,16 +115,13 @@ def main() -> None:
                 logger.debug("Entering 'Exit' menu.")
                 # print(f"Trying to write out tasks file...")
                 try:
-                    write_tasks_file(tasks=tasks, file_path=file_path)
+                    tdf.write_tasks_file(tasks=tasks, file_path=file_path)
                     print("Tasks file saved successfully.")
                     print("Good bye!")
                     logger.info(f"Tasks file saved successfully.")
                     logger.info(f"Saved file path: {file_path} .")
                     break
                 except OSError as e:
-                    # log e into log file
-                    # need implement
-
                     print(
                         "Some error happened. Please check your filesystem usage or file, directory permission."
                     )

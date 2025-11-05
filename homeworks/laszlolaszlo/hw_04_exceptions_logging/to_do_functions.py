@@ -1,7 +1,8 @@
 import os
+from pathlib import Path
 
 
-def create_tasks_file(file_path) -> bool:
+def create_tasks_file(file_path: Path) -> bool:
     """Create tasks file if it does not exist."""
     if not os.path.exists(path=file_path):
         with open(file=file_path, mode="w", encoding="utf-8"):
@@ -9,18 +10,17 @@ def create_tasks_file(file_path) -> bool:
     return False
 
 
-def read_tasks_file(file_path) -> list[str]:
-    """Read task file from filesystem and return it as a Python list and create it if it does not exist."""
+def read_tasks_file(file_path: Path) -> list[str]:
+    """Read task file from filesystem and return it as a Python list and return an empty list[] if file does not exist."""
+    try:
+        with open(file=file_path, mode="r", encoding="utf-8") as file:
+            tasks: list[str] = [line.strip() for line in file]
+            return tasks
+    except FileNotFoundError:
+        return []
 
-    if not os.path.exists(path=file_path):
-        create_tasks_file(file_path=file_path)
 
-    with open(file=file_path, mode="r", encoding="utf-8") as file:
-        tasks = [line.strip() for line in file]
-        return tasks
-
-
-def write_tasks_file(tasks, file_path) -> None:
+def write_tasks_file(tasks: list[str], file_path: Path) -> None:
     """Write tasks from memory into task file"""
     with open(file=file_path, mode="w", encoding="utf-8") as file:
         formatted_tasks = "\n".join(tasks)
@@ -41,11 +41,10 @@ def remove_task(remove_tasks_input: int, tasks: list[str]) -> None:
     tasks.pop(remove_tasks_input - 1)
 
 
-def add_task(task, tasks: list[str]) -> None:
+def add_task(task: str, tasks: list[str]) -> None:
     """Append a task into the tasks list"""
-    if len(task) != 0:
-        tasks.append(task)
-        return
+    tasks.append(task)
+    return
 
 
 def display_menu() -> None:

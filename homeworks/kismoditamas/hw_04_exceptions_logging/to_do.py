@@ -16,7 +16,7 @@ def import_tasks(tasks):
                 add_task(tasks, line.strip())
         print(f"The tasks have been imported from the file ({file_path})")
         logger.info(f"The tasks have been imported from the file ({file_path})")
-    except FileExistsError as e:
+    except FileNotFoundError as e:
         print(f"No file found to import ({file_path})")
         logger.debug(f"No file found to import ({file_path})")
     except Exception:
@@ -111,4 +111,5 @@ def main():
                 logger.exception(f"Save failed ({file_path})")    
             break
 
-main()
+if __name__=="__main__":
+    main()

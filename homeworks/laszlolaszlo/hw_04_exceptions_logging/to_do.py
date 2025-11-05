@@ -49,13 +49,11 @@ def main() -> None:
                     logger.debug(f"Checking add_task_input: {add_task_input}")
 
                     tdf.add_task(task=add_task_input, tasks=tasks)
-                    print(f'New task, "{add_task_input}" added successfully.')
                     logger.info(f'New task, "{add_task_input}" added successfully.')
 
-                    add_task_input_length = len(add_task_input)
-                    # Print as many "-" as new task and the other part of the message length.
-                    # Little be ugly solution, not so Pythonic.
-                    print((add_task_input_length + 31) * "-")
+                    message = f'New task, "{add_task_input}" added successfully.'
+                    print(message)
+                    print("-" * len(message))
                 else:
                     logger.debug("User add an empty task description.")
                     print("Please give a non empty task description.")

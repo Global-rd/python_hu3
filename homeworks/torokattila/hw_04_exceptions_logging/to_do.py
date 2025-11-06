@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 file_path = Path("homeworks") / "torokattila" / "hw_04_exceptions_logging" / "tasks.txt"
 
 # Functions declaration
+
 # Beolvassa a tasks.txt fájlból a TASK információkat.
 def read_tasks(file_path):
     try:
@@ -23,6 +24,7 @@ def read_tasks(file_path):
     except Exception as e:
         logger.exception(f"Error reading from file: {e}")
         return []
+    
 # Kiírja a task.txt fájlba a TASK információkat a programból való kilépéskor
 def write_tasks(task_list, file_path):
     try:
@@ -33,6 +35,7 @@ def write_tasks(task_list, file_path):
     except Exception as e:
         logger.exception(f"Error writing to file: {e}")
 
+# Kilistázza a task_list lista tartalmát
 def display_tasks(task_list):
     print("-----------")
     print("Tasks list:")
@@ -40,18 +43,20 @@ def display_tasks(task_list):
     for task in task_list:
         print(task)
     
+# Új TASK hozzáadása
 def add_task(task_list, name:str):
     task = name
     task_list.append(task)
     logging.info("Task added")    
 
+# TASK törlése
 def remove_task(task_list, name:str):
     for task in task_list:
         if task == name:
             task_list.remove(task)
             logging.info("Task deleted")
             return
-    
+
 def display_menu():
     print ("M E N U")
     print("-----------")
@@ -60,13 +65,18 @@ def display_menu():
     print ("3 - Remove a task")
     print ("4 - Exit")
 
+# Itt indul a fő (main) program
 def main():
     logger.info("Application started")
-    task_list = []
-    # Ha létezik a tasks.txt akkor beolvassuk soronként és beírjuk a task_list-be.        
-    if file_path.exists():
-        read_tasks(file_path)
 
+    #task_list = []
+    # Ha létezik a tasks.txt akkor beolvassuk soronként és beírjuk a task_list-be.            
+
+    task_list = read_tasks(file_path)
+
+    #print(task_list) - csak a tesz miatt kellett
+    #print(type(task_list)) - csak a tesz miatt kellett
+    
     while True:
         display_menu()
         try:
@@ -88,4 +98,5 @@ def main():
             logger.exception(f"An error occured: {e}")                        
     logger.info("Application quit")
 
+#Start
 main()

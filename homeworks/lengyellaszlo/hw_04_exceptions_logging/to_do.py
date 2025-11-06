@@ -12,23 +12,19 @@ logger = logging.getLogger(__name__)
 def read_tasks():
     file_path = Path(__file__).parent / "tasks.txt"
 
-    if not file_path.exists():
-        try:
-            with open(file_path, "w") as file:
-                pass
-            logger.info("tasks.txt fájl létrehozva, mert nem létezett.")
-        except Exception as e:
-            logger.error(f"Hiba történt a fájl létrehozása során: {e}")
-
     try:
-        with open(file_path, "r") as file:
-            tasks = [line.strip() for line in file.readlines()]
-        logger.info(f"{len(tasks)} feladat beolvasva a fájlból.")
-    except Exception as e:
-        logger.error(f"Hiba történt a fájl beolvasása során: {e}")
-        tasks = []
+        file_path.touch(exist_ok=True)
 
-    return tasks
+        with file_path.open("r", encoding="utf-8") as file:
+            tasks = [line.strip() for line in file]
+        
+        logger.info(f"{len(tasks)} feladat beolvasva a fájlból.")
+        return tasks
+
+    except Exception as e:
+        logger.error(f"Hiba a fájl beolvasása során: {e}")
+        return []
+
 
 
 # hozzáadás

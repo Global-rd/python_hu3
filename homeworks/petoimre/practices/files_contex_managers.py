@@ -1,14 +1,15 @@
+
 # Files contex managers
 import os
 from pathlib import Path
 
-print (os.getcwd())   
+print (os.getcwd())     # cwd = current working directory
 
 # file_path = "homeworks/petoimre/practices/sample.txt"                               # relative path always
-file_path = Path("homeworks") / "petoimre" /"practices" / "sample.txt"
+file_path = Path("homeworks") / "petoimre" /"practices" / "sample.txt"                # good practice
 print(file_path)
 file = open(file_path, "w")
-#abs_path = "C:\PYTHON_LEARNING\python_hu3/homeworks/petoimre/practices/sample.txt"   # absolute path never
+#abs_path = "C:\PYTHON_LEARNING\python_hu3/homeworks/petoimre/practices/sample.txt"   # absolute path never used
 
 # writing without contex managers
 try:
@@ -36,12 +37,12 @@ with open(file_path, "r") as file:
 def read_file_line_by_line(file_path):
     with open(file_path, "r") as file:
         for line in file:
-            yield line.strip()
+            yield line.strip()                       # nem egy végleges return-t jelent
 
 gen = read_file_line_by_line(file_path)
 # print(next(gen()))
 # print(next(gen()))
-for line in read_file_line_by_line(file_path):
+for line in read_file_line_by_line(file_path):        # for loop-al végig megy 
     print(line)
     
 

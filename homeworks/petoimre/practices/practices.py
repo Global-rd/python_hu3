@@ -6,7 +6,7 @@ print(decision)
 print(type(decision))
 
 
-# --------------------------------------------------------------------
+# --------------------------------------------------------------------Jó házi péld
 city = input("Enter the city: ").strip().lower()
 rent = float(input("Enter the monthly rent in USD: "))
 

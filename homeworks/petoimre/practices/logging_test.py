@@ -1,8 +1,9 @@
+
 import logging
 
-# handler         hova írodjon a log üzenet (konzolra, vagy file-be)
 # formatter       milyen formátumban jelenjen meg a log üzenet
-# a formattertadjuk hozzá a handler-hez és a handlert adjuk a loggerhez.
+# handler         hova írodjon a log üzenet (konzolra (trminálra), vagy file-be)
+# logger          a formattert adjuk hozzá a handler-hez és a handlert adjuk a loggerhez.
 
 file_handler = logging.FileHandler("app.log")   # file-be menjen a log
 stream_handler = logging.StreamHandler()        # terminal-ba menjen a log

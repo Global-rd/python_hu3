@@ -41,9 +41,9 @@ try:
     # print(c)                                            # akkor, ha el van hagyva az else: és a finally:
 except ValueError as e:
     print(f"ValueError: {e}")
-except ZeroDivisionError as e:
+except ZeroDivisionError as e:                           # az  as e:  az e visszaadja a hiba szöveger és a kódot 
     print(f"ZeroDivisionError: {e}")
-except Exception as e:
+except Exception as e:                                    # előre nem definiált, váratlan hibákhoz.
     print(f"Something unexpected happend: {e}")
 else:                                                      # el lehet hagyni
     print(c)
@@ -51,7 +51,7 @@ finally:                                                   # el lehet hagyni
     print("Division attempt finishrd.")
 
 
-# raise exeption  (saját hibakezelés)
+# raise exeption  (saját hibakezelés. ValueError saját szöveggel)
 
 def calculate_rectangle_area(length, width):
     if length <=0 or width <=0:
@@ -62,11 +62,11 @@ def calculate_rectangle_area(length, width):
 
 try:
     area = calculate_rectangle_area(10, -2)
-except ValueError as e:
+except ValueError as e:                           # így az e:-ben a saját hibaüzenetünk jön elő.
     print(f"Value error: {e}")
 
 
-
+# custom exception   OOP tudás kell!
 
 
 

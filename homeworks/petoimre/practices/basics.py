@@ -14,6 +14,11 @@
 # pip install -r requirements.txt           feltelepíti a requirements.txt-ben levő csomagokat
 
 # terminal futásának megállítása:   ctr + C
+# DRY Don't Repeat Yourself !
+# Single Responsibylyty Prinviple --> Egy function egy feladat !
+# Kerüljük a mutuable objektumok haszálatát desfault argumentekként
+# 
+# https://www.w3schools.com/
 
 
 
@@ -87,4 +92,8 @@ while x < 5:
     continue
 
   print(x)
+
+
+
+ 
 

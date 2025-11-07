@@ -9,10 +9,10 @@ logger = logging.getLogger(__name__)
 TASKS_FILE = Path("homeworks") / "pappildiko" / "hw_04_exceptions_logging"/"tasks.txt"
 
 
-def read_tasks(tasks = None):
+def read_tasks() -> list[str]:
     """Reads the tasks from a file. Returns an empty list if the file doesn't exist."""
-    if tasks is None:
-        tasks = []
+    
+    tasks = []
 
     if os.path.exists(TASKS_FILE):
         try:

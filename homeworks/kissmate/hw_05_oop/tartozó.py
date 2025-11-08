@@ -1,33 +1,44 @@
-class car:
+class Car:
     def __init__(self, brand, modell, year,mileage=0,fuel_level=100):
-        self.barnd = brand
+        self.brand = brand
         self.modell = modell
         self.year = year
         self.mileage = mileage
         self.fuel_level = fuel_level
+    
     def drive(self, distance):
-        self.mileage += distance
-        self.fuel_level -= distance / 10
-        if self.fuel_level < 0:
-            self.fuel_level = 0
-            print(f'Drove {distance} km. Mileage is now {self.mileage} km. Fuel level is now {self.fuel_level}%.')
+        max_distance = self.fuel_level / 0.1 
+        if distance > max_distance:
+            print(f"Not enough fuel for {distance} km. Driving only {max_distance:.1f} km.")
+            distance = max_distance
+    
     def refuel(self, amount):
+        if amount <= 0:
+            raise ValueError("Refuel amount must be positive.")
         self.fuel_level += amount
         if self.fuel_level > 100 and amount > 0:
             self.fuel_level = amount
         print(f'Refueled {amount}%. Fuel level is now {self.fuel_level}%.')
-class Fleet(car):
+
+class Fleet:
     def __init__(self):
         self.cars = []
+
     def add_car(self, car):
-        self.cars.append(car)    
+        self.cars.append(car)
+
     def remove_car(self, car):
-        self.cars.remove(car)
+        for car in self.cars:
+            if car == car:
+                self.cars.remove(car)
+                break
+
     def total_mileage(self):
         total = sum(car.mileage for car in self.cars)
         return total
-car1 = car('Toyota', 'Corolla', 2020, 15000, 80)
-car2 = car('Honda', 'Civic', 2019, 20000, 60)
+    
+car1 = Car('Toyota', 'Corolla', 2020, 15000, 80)
+car2 = Car('Honda', 'Civic', 2019, 20000, 60)
 fleet = Fleet()
 fleet.add_car(car1)
 fleet.add_car(car2)

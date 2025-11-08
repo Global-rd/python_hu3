@@ -36,6 +36,7 @@ class ToyMachine:           # Pascal case-t ( nem snake case-t) használunk.
         return cls.toy_count
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @staticmethod                                # nincs köze sem az osztályhoz sem a példányhoz, de valamiért ide tartozik.    
     def is_toy_safe_for_age(toy_type, age):      # az osztályhoz köthető, de az osztály adatait nem használó függvények.
 =======

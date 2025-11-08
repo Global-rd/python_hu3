@@ -43,6 +43,10 @@ class ToyMachine:           # Pascal case-t ( nem snake case-t) használunk.
     @staticmethod
     def is_toy_safe_for_age(toy_type, age):
 >>>>>>> Stashed changes
+=======
+    @staticmethod
+    def is_toy_safe_for_age(toy_type, age):
+>>>>>>> Stashed changes
         if toy_type == "matchbox" and age < 3:
             return False
         return True
@@ -66,7 +70,11 @@ toy_count = ToyMachine.get_toy_count()        # best practie, hogy metódussal h
 print(toy_count)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 print(ToyMachine.is_toy_safe_for_age("matchbox", 3))  # @staticmethod eredménye. A class-ra kell meghívn. (best practice)
+=======
+print(ToyMachine.is_toy_safe_for_age("matchbox", 3))
+>>>>>>> Stashed changes
 =======
 print(ToyMachine.is_toy_safe_for_age("matchbox", 3))
 >>>>>>> Stashed changes

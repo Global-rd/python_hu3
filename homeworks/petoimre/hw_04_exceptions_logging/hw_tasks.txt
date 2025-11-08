@@ -1,5 +1,3 @@
-walking
-do the washing
-cleaning
+Running
+Walking
 ride a bike
-working

@@ -36,6 +36,8 @@ def read_tasks(file_path):                  # feladatok ovlasása file-ból
             return lines
     except Exception as e:
         logger.exception(f"Something problem happened: {e}")
+        empty_list = list()
+        return empty_list
 
 
 def write_tasks(file_path, list):           # feladatok írása file-ba
@@ -43,7 +45,9 @@ def write_tasks(file_path, list):           # feladatok írása file-ba
     """
     try:
         with open(file_path, "w") as file:
-            file.write(list)
+            for task in list:
+                file.write(task.strip() + "\n")
+
     except Exception as e: 
         logger.exception(f"Something unexpected happened: {e}")
 

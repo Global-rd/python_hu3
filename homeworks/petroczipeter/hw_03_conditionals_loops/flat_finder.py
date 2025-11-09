@@ -2,20 +2,11 @@
 city = input("Kérlek add meg a várost: ")
 rent = int(input("Kérlek add meg a havi lakbért USD-ben: "))
 # Sara preferenciái
-if city == "Chicago":
-    decision = True
-elif city == "New York" or city == "San Francisco":
-    if rent < 4000:
-        decision = True
-    else:
-        decision = False
-elif city == "Washington":
-    decision = False
-else:
-    if rent <= 3000:
-        decision = True
-    else:
-        decision = False
+decision = (
+    city == "Chicago"
+    or (city in ("New York", "San Francisco") and rent < 4000)
+    or (city not in ("Washington", "New York", "San Francisco", "Chicago") and rent <= 3000)
+    )
 # Printelem f-stringgel
 if decision:
     print(f"Sarah beköltözne {city}ba, havi {rent} USD bérleti díjért")

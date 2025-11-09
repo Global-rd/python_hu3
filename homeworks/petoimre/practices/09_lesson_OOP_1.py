@@ -22,7 +22,7 @@ class ToyMachine:                                      # Pascal case-t ( nem sna
 
     toy_count = 0                                      # class variable   osztály szintü változó
 
-    def __init__(self, t_type, t_color):               # a gép kezelő felülete. A self a létrejött példányra utal
+    def __init__(self, t_type, t_color):               # a gép kezelő felülete. A self a létrejött példányra utal. (dunder, magic method)
         self.toy_type = t_type                         # instance variable (a példányra vonatkozik)
         self.toy_color = t_color
         ToyMachine.toy_count += 1
@@ -43,16 +43,16 @@ class ToyMachine:                                      # Pascal case-t ( nem sna
             return False
         return True
 
-print(ToyMachine.toy_count)                   # osztályon kívülről is elérhető a class variable 
+print(ToyMachine.toy_count)                   # osztályon kívülről is elérhető a class variable. No best practice. Best practice a metódus hívása
 print(toy_matchbox.toy_count)                 # egy példányból is elérhető a class variable
 toy_count = ToyMachine.get_toy_count()        # best practie, hogy metódussal hivatkozunk rá
 print(toy_count)
 
-toy_matchbox = ToyMachine(t_type="matchbox", t_color="yellow")
+toy_matchbox = ToyMachine(t_type="matchbox", t_color="yellow")  # az objektum létrehozása
 print(toy_matchbox)                                 # osztályon kívülről is elérhető a class variable 
-print(toy_matchbox.toy_color)
+print(toy_matchbox.toy_color)                       # attribútumok             
 print(toy_matchbox.toy_type)
-toy_matchbox.toy_color = "green"
+toy_matchbox.toy_color = "green"                    # az attribútum azosztályon kívülről megváltoztatható
 print(toy_matchbox.toy_color)
 
 toy_matchbox.play()

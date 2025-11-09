@@ -63,18 +63,13 @@ def setup_logging(logging_config_path: pathlib.Path, log_dir: pathlib.Path, log_
                 raise ValueError(f"Üres vagy érvénytelen logging config: {logging_config_path}")
 
             # A log config file-ban a #LOG_FILE# helyőrző szerepel, amit le kell cserélni
-            for handler in (config.get("handlers") or {}).values():
-                if not isinstance(handler, dict):
-                    continue
-
-                filename = handler.get("filename")
-                if not isinstance(filename, str):
-                    # pl. console handlernél nincs filename, kihagyjuk
-                    continue
-
-                target = (log_dir / log_file).resolve()
-                if "#LOG_FILE#" in filename:
-                    handler["filename"] = filename.replace("#LOG_FILE#", str(target))
+            if "handlers" in config and "file" in config["handlers"]:
+                filename = config["handlers"]["file"].get("filename")
+                if isinstance(filename, str) and "#LOG_FILE#" in filename:
+                    target = (log_dir / log_file).resolve()
+                    config["handlers"]["file"]["filename"] = filename.replace("#LOG_FILE#", str(target))
+            else:
+                raise ValueError(f"A konfigurációs fájl formátuma hibás: {logging_config_path}")
 
             # Logging konfiguráció alkalmazása
             logging.config.dictConfig(config)
@@ -86,6 +81,7 @@ def setup_logging(logging_config_path: pathlib.Path, log_dir: pathlib.Path, log_
 
     except Exception as e:
         print(f"Nem sikerült betölteni a logging konfigurációt, emiatt nem tudunk elindulni! ({e})")
+        logger.exception("Nem sikerült betölteni a logging konfigurációt, emiatt nem tudunk elindulni! %s", e)
         sys.exit(1)
 
 
@@ -152,9 +148,7 @@ def print_tasks(tasks: list[str]) -> None:
 # ----- főprogram -----
 def main() -> None:
     config = load_config(BASE_DIR / "config.yaml")    
-    print(BASE_DIR / config["logging_config"])
-    print(BASE_DIR / config["log_dir"])
-    print(config["log_file"])
+
     logger = setup_logging(BASE_DIR / config["logging_config"],BASE_DIR / config["log_dir"], config["log_file"])
 
     TASKS_FILE = BASE_DIR / config["tasks_file"]

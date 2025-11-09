@@ -1,0 +1,25 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  default:
+    format: "%(asctime)s [%(levelname)s] %(name)s:%(lineno)d | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+    level: INFO
+
+  file:
+    class: logging.handlers.RotatingFileHandler
+    filename: "#LOG_FILE#"
+    maxBytes: 10000000
+    backupCount: 5
+    formatter: default
+    level: DEBUG
+
+root:
+  handlers: [console, file]
+  level: DEBUG

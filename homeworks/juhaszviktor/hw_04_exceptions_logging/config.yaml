@@ -1,0 +1,4 @@
+tasks_file: tasks.txt
+log_dir: logs
+log_file: app.log
+logging_config: logging_config.yaml

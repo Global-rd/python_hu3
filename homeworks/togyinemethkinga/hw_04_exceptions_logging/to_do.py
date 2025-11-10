@@ -23,4 +23,4 @@ elif choice == 3:
     remove_task()
 
 else :
-    exit
+    exit()

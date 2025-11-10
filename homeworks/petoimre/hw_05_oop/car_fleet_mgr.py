@@ -7,35 +7,39 @@ class Car:
         self.car_brand = brand
         self.car_model = model
         self.car_year = year
-        self.car_milage = 0
+        self.car_mileage = 0
         self.car_fuel_level = 100
+        
 
     def __str__(self):
-        return f"{self.car_license} {self.car_brand} {self.car_model}: Model year: {self.car_year}; Runned milage: {self.car_milage}; Fuel level: {self.car_fuel_level} %"    
+        return f"{self.car_license} {self.car_brand} {self.car_model}: Model year: {self.car_year}; Runned milage: {self.car_mileage}; Fuel level: {self.car_fuel_level} %"    
 
 
     def __repr__(self):
         return f"Car(license={self.car_license}, brand={self.car_brand}, model={self.car_model}, year={self.car_year})"
 
 
-    def drive(self,driving_milage):
-        if driving_milage <= (self.car_fuel_level*10):
-            self.car_milage += driving_milage
-            self.car_fuel_level -= driving_milage*0.1
+    def drive(self,driving_mileage):
+        if driving_mileage <= 0:
+            raise ValueError("You need to type bigger number then 0")
+        if driving_mileage <= (self.car_fuel_level*10):
+            self.car_mileage += driving_mileage
+            self.car_fuel_level -= driving_mileage*0.1
         else:
             print(f"you can max. {self.car_fuel_level*10} km driving.")    
 
 
     def get_car_condition(self):
-        print(f"{self.car_license}, {self.car_brand} {self.car_model}, year: {self.car_year}, Fuel level: {self.car_fuel_level} %, Milage: {self.car_milage} km")    
+        print(f"{self.car_license}, {self.car_brand} {self.car_model}, year: {self.car_year}, Fuel level: {self.car_fuel_level} %, Mileage: {self.car_mileage} km")    
 
-
+       
     def refuel_percent(self, fill_percent):
+        if fill_percent <= 0:
+            raise ValueError("You need to type bigger number then 0")
         if (self.car_fuel_level + fill_percent) <= 100:
             self.car_fuel_level += fill_percent
         else:
             print(f"You can max fill in {100-self.car_fuel_level} percent fuel.")
-
 
 
 class Fleet:
@@ -70,11 +74,13 @@ class Fleet:
 
 
     def sum_all_milage(self):
+        print(f"All cars of the fleet: {len(self.cars)} pcs. All mileage of the fleet's cars: {sum(car.car_mileage for car in self.cars)}")
+        '''
         all_milage = 0
         for car in self.cars:
             all_milage += car.car_milage
-        print(f"All cars of the fleet: {len(self.cars)} pcs. All milage of the fleet's cars: {all_milage}")
-
+        print(f"All cars of the fleet: {len(self.cars)} pcs. All mileage of the fleet's cars: {all_mileage}")
+'''
 
 
 car_1 = Car("ABC123","Opel", "Astra", 2010)
@@ -100,9 +106,9 @@ car_1.get_car_condition()
 car_1.drive(500)
 car_1.get_car_condition()
 car_1.drive(500)
-car_1.refuel_percent(20)
+car_1.refuel_percent(10)
 car_1.get_car_condition()
-car_1.drive(500)
+car_1.drive(147)
 car_1.get_car_condition()
 car_1.refuel_percent(80)
 car_1.get_car_condition()

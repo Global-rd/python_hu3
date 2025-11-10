@@ -69,4 +69,4 @@ print("Game over!")
 if player_1_points > player_2_points:
     print(f"Player 1 won with {player_1_points} points!")
 else:
-1    print(f"Player 2 won with {player_2_points} points!")
+   print(f"Player 2 won with {player_2_points} points!")

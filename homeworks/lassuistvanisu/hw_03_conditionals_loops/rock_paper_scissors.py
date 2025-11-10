@@ -30,21 +30,31 @@ while current_round <= rounds_input:
         
 #Ellenőrzés
         winner = None
-        if player_1_choice == "rock":
-            if player_2_choice == "scissors":
-                winner = 1
-            else:  # player_2_choice == "paper"
-                winner = 2
-        elif player_1_choice == "paper":
-            if player_2_choice == "rock":
-                winner = 1
-            else:  # player_2_choice == "scissors"
-                winner = 2
-        else:  # player_1_choice == "scissors"
-            if player_2_choice == "paper":
-                winner = 1
-            else:  # player_2_choice == "rock"
-                winner = 2
+        if (
+            (player_1_choice == "rock" and player_2_choice == "scissors")
+            or (player_1_choice == "paper" and player_2_choice == "rock")
+            or (player_1_choice == "scissors" and player_2_choice == "paper")
+        ):
+            winner = 1
+        else:
+            winner = 2
+
+#        if player_1_choice == "rock":
+#            if player_2_choice == "scissors":
+#                winner = 1
+#            else:  # player_2_choice == "paper"
+#                winner = 2
+#        elif player_1_choice == "paper":
+#            if player_2_choice == "rock":
+#                winner = 1
+#            else:  # player_2_choice == "scissors"
+#                winner = 2
+#        else:  # player_1_choice == "scissors"
+#            if player_2_choice == "paper":
+#                winner = 1
+#           else:  # player_2_choice == "rock"
+#                winner = 2
+
         print(f"Player {winner} won the round!")
         if winner == 1:
             player_1_points += 1
@@ -53,9 +63,10 @@ while current_round <= rounds_input:
         break
 
     current_round += 1
+
 # Eredmény
 print("Game over!")
 if player_1_points > player_2_points:
     print(f"Player 1 won with {player_1_points} points!")
 else:
-    print(f"Player 2 won with {player_1_points} points!")
+1    print(f"Player 2 won with {player_2_points} points!")

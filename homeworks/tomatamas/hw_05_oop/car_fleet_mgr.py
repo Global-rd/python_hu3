@@ -7,7 +7,8 @@ class Car:
 
     consumption_percent_per_km = 0.1
 
-    def __init__(self, brand:str, model:str, year:int, mileage:float = 0, fuel_level:int = 100.0):
+    def __init__(self, license_plate:str, brand:str, model:str, year:int, mileage:float = 0, fuel_level:int = 100.0):
+        self.license_plate = license_plate
         self.brand = brand
         self.model = model
         self.year = year
@@ -20,7 +21,7 @@ class Car:
         self.fuel_level = fuel_level
 
     def __repr__(self):
-        return f"{self.year} {self.brand} {self.model} – {self.mileage:.1f} km, üzemanyag: {self.fuel_level:.1f}%"
+        return f"{self.license_plate} {self.year} {self.brand} {self.model} – {self.mileage:.1f} km, üzemanyag: {self.fuel_level:.1f}%"
 
     def drive(self, kms):
         # Megpróbál kms kilométert menni. Ha nincs elég üzemanyag, csak amennyire elég
@@ -67,13 +68,12 @@ class Fleet:
     def add_car(self, car):
         self.cars.append(car)
 
-    def remove_car(self, model):
-        # Eltávolít egy autót a modell neve alapján
+    def remove_car(self, license_plate):
         for car in self.cars:
-            if car.model == model:
+            if car.license_plate == license_plate:
                 self.cars.remove(car)
                 return True
-        print(f"Nincs ilyen autó a flottában: {model}")
+        print(f"Nincs ilyen autó a flottában: {license_plate}")
         return False
 
     def list_cars(self):
@@ -97,8 +97,8 @@ class Fleet:
             total += car.mileage
         return total
     
-car_1 = Car(brand="Mazda", model="CX30", year=2015, mileage=98767, fuel_level=50)
-car_2 = Car(brand="Toyota", model= "Yaris", year=2013, mileage=118755)
+car_1 = Car(license_plate="AIAO3456", brand="Mazda", model="CX30", year=2015, mileage=98767, fuel_level=50)
+car_2 = Car(license_plate="QPR333", brand="Toyota", model= "Yaris", year=2013, mileage=118755)
 
 fleet_1 = Fleet(name="Flotta 1")
 
@@ -107,6 +107,6 @@ fleet_1.add_car(car_2)
 
 fleet_1.list_cars()
 
-fleet_1.remove_car("Yaris")
+fleet_1.remove_car("QPR333")
 
 fleet_1.list_cars()

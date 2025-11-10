@@ -1,6 +1,0 @@
-& C:/Users/petro/AppData/Local/Programs/Python/Python313/python.exe c:/Users/petro/OneDrive/Documents/GitHub/python_hu3/homeworks/petroczipeter/hw_04_exceptions_logging/to_do.py
-ló
-re
-werw
-fwfew
-fddsfdsfs

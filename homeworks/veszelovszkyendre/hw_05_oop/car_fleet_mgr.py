@@ -7,6 +7,9 @@ class Car:
         self.fuel_level = 100
 
     def drive(self, km):
+        if km < 0:
+            raise ValueError("A megtett távolság (km) nem lehet negatív.")
+
         max_possible_km = self.fuel_level / 0.1
         actual_km = min(km, max_possible_km)
 
@@ -18,6 +21,10 @@ class Car:
             f"{self.brand} {self.model} drove {actual_km:.1f} km, fuel level: {self.fuel_level:.1f}%")
 
     def refuel(self, amount):
+        if amount < 0:
+            raise ValueError(
+                "A tankolt üzemanyag mennyisége nem lehet negatív.")
+
         self.fuel_level += amount
         if self.fuel_level > 100:
             self.fuel_level = 100

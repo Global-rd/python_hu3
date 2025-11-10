@@ -14,6 +14,9 @@ class Car:
         self.fuel_consumption = fuel_consumption
 
     def drive(self, km):
+        if km < 0:
+            raise ValueError("A megtett távolság (km) nem lehet negatív.")
+
         max_possible_km = (self.fuel_level / self.fuel_consumption) * 100
         actual_km = min(km, max_possible_km)
 
@@ -25,6 +28,10 @@ class Car:
             f"{self.brand} {self.model} megtett {actual_km:.1f} km, üzemanyag szint: {self.fuel_level:.1f} L")
 
     def refuel(self, liters):
+        if liters < 0:
+            raise ValueError(
+                "A tankolt üzemanyag mennyisége nem lehet negatív.")
+
         max_fillable = self.tank_capacity - self.fuel_level
         if liters > max_fillable:
             print(
@@ -83,13 +90,23 @@ print("\n--- Flotta állapota ---")
 fleet.show_fleet()
 
 for car in fleet.cars:
-    km_to_drive = float(
-        input(f"\nHány km-t szeretnél vezetni a {car.brand} {car.model}-rel? "))
-    car.drive(km_to_drive)
+    while True:
+        try:
+            km_to_drive = float(
+                input(f"\nHány km-t szeretnél vezetni a {car.brand} {car.model}-rel? "))
+            car.drive(km_to_drive)
+            break
+        except ValueError as e:
+            print(f"Hiba: {e}. Próbáld újra!")
 
-    refuel_amount = float(
-        input(f"Hány litert tankolnál a {car.brand} {car.model}-be? "))
-    car.refuel(refuel_amount)
+    while True:
+        try:
+            refuel_amount = float(
+                input(f"Hány litert tankolnál a {car.brand} {car.model}-be? "))
+            car.refuel(refuel_amount)
+            break
+        except ValueError as e:
+            print(f"Hiba: {e}. Próbáld újra!")
 
 print("\n--- Flotta frissített állapota ---")
 fleet.show_fleet()

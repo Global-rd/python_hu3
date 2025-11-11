@@ -3,6 +3,7 @@ import os
 import homework_funcitons as hf
 import logging
 from pathlib import Path
+from logging_config import setup_logging
 
 menu_items = {1: "Add Task",
               2: "View Tasks",
@@ -13,25 +14,20 @@ menu_choice = None
 task_description = None
 task_to_delete = None
 tasks = {}
+"""
 current_dir = Path(__file__).resolve().parent
 file_path = current_dir / "tasks.txt"
+"""
 
-file_handler = logging.FileHandler(current_dir / "logs.txt")
-stream_handler = logging.StreamHandler()
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-stream_handler.setFormatter(formatter)
-file_handler.setLevel(logging.DEBUG)
-stream_handler.setLevel(logging.ERROR)
-logger = logging.getLogger()
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
-logger.setLevel(logging.DEBUG)
+setup_logging()
+logger = logging.getLogger(__name__)
+
 
 logger.debug("Application started")
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
+'''
 try:
   with open (file_path, "r") as file:
     for i, line in enumerate(file, start=1):
@@ -41,7 +37,8 @@ except:
   with open (file_path, "w") as file:
      pass
   logger.debug(f"{file} not exist, {file} created.")
-
+'''  
+hf.load_tasks(tasks)
 hf.menu_draw(menu_items,menu_choice)
 
 while True:
@@ -98,8 +95,11 @@ while True:
         
     hf.menu_draw(menu_items,None)
 
+hf.close_file(tasks)
+'''
 with open(file_path, "w") as file:
   for k, v in tasks.items():
     file.write(f"{v}\n")
+'''
   
 logger.debug("Application terminated")

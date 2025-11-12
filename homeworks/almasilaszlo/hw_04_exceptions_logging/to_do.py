@@ -4,7 +4,6 @@ from logging_config import setup_logging
 #import os
 #print(os.getcwd())
 file_path= Path("homeworks") / "almasilaszlo" / "hw_04_exceptions_logging" / "tasks.txt"
-tasks=[]
 
 #logger
 setup_logging()
@@ -22,10 +21,11 @@ def read_task():
     except FileNotFoundError as e:
         print(f"File don't exsist! Please create a file first!")
         logger.error(f"The task.txt does not exsist")
-        raise FileNotFoundError("The file does no texsist!")
+        return[]
     except Exception as e:
         print ("File reading error!")
         logger.error(f"File reading error!")
+        raise(f"Something went wrong!")
 
 #Write
 def write_task(tasks):

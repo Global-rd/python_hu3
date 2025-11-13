@@ -1,0 +1,5 @@
+name = input("Whats is your name?").upper().strip()
+age = int(input("How old are you?"))
+age_in_days = int(age * 365)
+experince = input("How many years do you have in python?")
+print(f"My character is {age_in_days} days old.His/her name is {name} and he/she has {experince} years experince.")

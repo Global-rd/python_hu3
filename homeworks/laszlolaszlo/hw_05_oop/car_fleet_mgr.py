@@ -1,6 +1,6 @@
 class Car:
     """
-    Cars class
+    Car class
     """
 
     FUEL_CONSUMPTION_RATE: float = 0.1  # fuel consumption rate in % per km

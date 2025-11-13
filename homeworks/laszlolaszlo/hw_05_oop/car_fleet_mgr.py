@@ -3,6 +3,8 @@ class Car:
     Cars class
     """
 
+    FUEL_CONSUMPTION_RATE: float = 0.1  # fuel consumption rate in % per km
+
     def __init__(
         self,
         brand: str,
@@ -20,7 +22,7 @@ class Car:
     def drive(self, distance: float) -> None:
         """Drive the car a certain distance if enough fuel is available."""
 
-        used_fuel: float = distance * 0.1
+        used_fuel: float = distance * Car.FUEL_CONSUMPTION_RATE
 
         if self.fuel_level - used_fuel >= 0:
             self.fuel_level -= used_fuel

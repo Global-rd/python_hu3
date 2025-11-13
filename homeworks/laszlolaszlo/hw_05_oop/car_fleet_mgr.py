@@ -4,6 +4,7 @@ class Car:
     """
 
     FUEL_CONSUMPTION_RATE: float = 0.1  # fuel consumption rate in % per km
+    MAX_FUEL_LEVEL: float = 100  # maximum fuel level in %
 
     def __init__(
         self,
@@ -42,11 +43,11 @@ class Car:
 
     def _is_tank_full(self) -> bool:
         """Check if the fuel tank is full."""
-        return self.fuel_level == 100
+        return self.fuel_level == Car.MAX_FUEL_LEVEL
 
     def _check_tank_capacity(self, fuel_amount: float) -> None:
         """Check if refueling would exceed tank capacity."""
-        if self.fuel_level + fuel_amount > 100:
+        if self.fuel_level + fuel_amount > Car.MAX_FUEL_LEVEL:
             raise ValueError(
                 f"Refueling {fuel_amount} % would exceed the tank capacity!\n"
                 f"Current fuel level: {self.fuel_level} %"

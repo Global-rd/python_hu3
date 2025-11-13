@@ -21,6 +21,8 @@ class Car:
 
     def drive(self, distance: float) -> None:
         """Drive the car a certain distance if enough fuel is available."""
+        if distance < 0:
+            raise ValueError("Distance to drive must be non-negative!")
 
         used_fuel: float = distance * Car.FUEL_CONSUMPTION_RATE
 

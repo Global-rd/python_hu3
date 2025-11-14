@@ -18,7 +18,10 @@ class Car:
         # A megtett km alapján kiszámoljuk az új km-állást
         try:
             self.taken_km = float(input("How many km have you done?"))
-        except self.taken_km < 0:
+        except ValueError:
+            raise ValueError("Please enter a numeric value.")
+        
+        if self.taken_km < 0:
             raise "Km can't be negative"
              
         if self.taken_km <= (self.fuel_level*10.00):
@@ -33,7 +36,10 @@ class Car:
         # Tankolással feltöltjük az üzemanyag szintet.
         try:
             self.fuel = float(input("What percentage of fuel did you fill up?"))
-        except self.fuel < 0:
+        except ValueError:
+            raise ValueError("Please enter a numeric value.")
+        
+        if self.fuel < 0:
             raise "Fuel can't be negative."
         
         if self.fuel <= 100-self.fuel_level:

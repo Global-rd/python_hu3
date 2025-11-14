@@ -81,12 +81,18 @@ class Fleet:
         self.cars: list[Car] = []
 
     def add_car(self, car: Car) -> None:
-        """Add a car to the fleet."""
-        self.cars.append(car)
+        """Add a car to the fleet if it's not already present."""
+        if car not in self.cars:
+            self.cars.append(car)
+        else:
+            print("The car is already in the fleet.")
 
     def remove_car(self, car: Car) -> None:
-        """Remove a car from the fleet."""
-        self.cars.remove(car)
+        """Remove a car from the fleet if it exists."""
+        if car in self.cars:
+            self.cars.remove(car)
+        else:
+            print("The car is not in the fleet.")
 
     def get_total_mileage(self) -> float:
         """Get the total mileage of all cars in the fleet."""

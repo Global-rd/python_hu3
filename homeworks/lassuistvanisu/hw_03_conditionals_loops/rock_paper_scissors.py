@@ -1,5 +1,5 @@
 valid_choices = ["rock", "paper", "scissors"]
-
+#Updated
 #Játék körének bekérése és hibakazelés
 while True:
     rounds_input = int(input("How many rounds would you like to play (odd number)? "))

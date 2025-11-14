@@ -1,4 +1,6 @@
 print("Sarah is looking for an apartment. Please send her your offers!")
+#Updated
+
 
 order_city = input("Please specify in which city you recommend renting a flat: ")
 price =int(input("Please specify the rent for the flat.: $"))

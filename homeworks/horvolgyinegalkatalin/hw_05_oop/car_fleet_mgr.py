@@ -12,6 +12,9 @@ class Car:
         self.fuel_level = 100 #fuel_level százalékban értendő
 
     def drive(self,miles):  #km óra állás növelése, üzemanyag csökkentése, megtett km nem viheti minuszba a fogyasztást
+        if miles<0:
+            raise ValueError("Nem lehet negatív szám!")
+
         consumption=0.1 #százalékban értendő
         fuel=(miles*consumption) #a megteendő úthoz szükséges üzemanyag, %-ban értendő
         
@@ -21,8 +24,12 @@ class Car:
         else:
             p1=self.fuel_level/consumption           
             print(f"Csak {p1} utat tehetsz meg a rendelkezésre álló üzemanyaggal")
-        
+    
+            
     def refuel(self, plus_fuel): #feltölti az üzemanyag szintet, figyelni a max 100%-ra fluel_level+tankolás nem lehet több mint 100%
+        if plus_fuel<0:
+            raise ValueError("Nem lehet negatív szám!")
+        
         used_fuel=100-self.fuel_level #százalékban értendő
         if used_fuel<plus_fuel:
             print(f"Csak {used_fuel} százalékot tankolhatsz")
@@ -36,8 +43,8 @@ car3=Car("Seat", "Ibiza", 2016)
 car4=Car("Seat", "Ibiza", 2017)
 car5=Car("Seat", "Ibiza", 2018)
 car1.drive(10)
-car1.refuel(81588)
-car2.drive(20)
+car1.refuel(20000)
+car2.drive(-50)
 car2.refuel(51)
 car3.drive(2000)
 car3.refuel(81)
@@ -60,8 +67,11 @@ class Fleet:
 
   
     def del_car(self,car):
-        self.car_list.remove(car)
-        Fleet.car_count -=1     
+        if car in self.car_list:
+            self.car_list.remove(car)
+            Fleet.car_count -=1
+        else:
+            print("Nincs ilyen adat, ezért nem törölhető!")  
 
    
     def count_miles(self):

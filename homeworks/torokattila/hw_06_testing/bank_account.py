@@ -11,10 +11,13 @@ class BankAccount:
         self.balance += amount
     
     def withdraw(self, amount: float):
+        if type(amount) == "str":
+            raise TypeError("Withdraw amount must be a number.")
         if amount <= 0:
             raise ValueError("Withdraw amount must be positive.")
         if amount > self.balance:
             raise ValueError("Insufficient funds.")
+        
         self.balance -= amount
 
     def transfer(self, amount: float, target_account: 'BankAccount'):
@@ -28,4 +31,5 @@ class BankAccount:
 
     def __str__(self):
         return f"Account owner: {self.owner}, Balance: {self.balance:.2f}"
+
 

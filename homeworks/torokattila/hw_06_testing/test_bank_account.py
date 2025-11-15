@@ -46,14 +46,16 @@ def test_transfer_to_non_bank_account_raises(another_account):
     with pytest.raises(TypeError, match="Target must be a BankAccount instance."):
         another_account.transfer(10.0, "not-an-account")
 
-# Test 5 - Withdraw not enought money or negh
+# Test 5 - Withdraw not enought money or negative
 # Itt nem tudom, hogy kell -e vizsgálni, hogy melyik raise-ágra kerül a végrehajtás?
 @pytest.mark.parametrize("amount,expected_exception",
      [
-          (-100, ValueError), # Negatív
-          (200, ValueError), # Not enought
+          (-100, ValueError), 
+          (200, ValueError),
+           ("alma",TypeError) 
      ]
 )
 def test_withdraw_not_money(another_account, amount, expected_exception):
      with pytest.raises(expected_exception):
           another_account.withdraw(amount)
+

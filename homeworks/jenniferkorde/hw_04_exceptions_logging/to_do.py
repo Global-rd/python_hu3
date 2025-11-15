@@ -5,15 +5,17 @@ logging.basicConfig(filename="task_manager.log",
                     level=logging.INFO,
                     format="%(levelname)s: %(message)s")
 
+
+
 def read_tasks(filename):
     tasks = []
     try:
-        f = open(filename, "r",)
-        for line in f:
-            line = line.strip()
-            if line != "":
-                tasks.append(line)
-        f.close()
+        with open(filename, "r") as file:
+            for line in file:
+                line = line.strip()
+                if line != "":
+                    tasks.append(line)
+
         msg = "Olvasva: " + str(len(tasks)) + " feladat"
         print(msg)
         logging.info(msg)
@@ -24,20 +26,24 @@ def read_tasks(filename):
         print("Olvasási hiba:", e)
         logging.error("Olvasási hiba: " + str(e))
     return tasks
+
+
+
 def write_tasks(filename, tasks):
     try:
-        f = open(filename, "w")
-        i = 0
-        while i < len(tasks):
-            f.write(tasks[i] + "\n")
-            i = i + 1
-        f.close()
+        with open(filename, "w") as file:
+            for task in tasks:
+                file.write(task + "\n")
+
         msg = "Mentve: " + str(len(tasks)) + " feladat"
         print(msg)
         logging.info(msg)
     except Exception as e:
         print("Írási hiba:", e)
         logging.error("Írási hiba: " + str(e))
+
+
+
 
 def view_tasks(tasks):
     if len(tasks) == 0:
@@ -48,6 +54,8 @@ def view_tasks(tasks):
         print(str(i + 1) + ". " + tasks[i])
         i = i + 1
 
+
+
 def add_task(tasks, text):
     text = text.strip()
     if text == "":
@@ -57,6 +65,8 @@ def add_task(tasks, text):
     print("Hozzáadva.")
     logging.info("Hozzáadva: " + text)
 
+
+
 def remove_task(tasks, index):
     if index < 1 or index > len(tasks):
         print("Érvénytelen sorszám.")
@@ -65,11 +75,15 @@ def remove_task(tasks, index):
     print("Törölve.")
     logging.info("Törölve: " + removed)
 
+
+
 def display_menu():
     print("\n1. Add Task")
     print("2. View Tasks")
     print("3. Remove Task")
     print("4. Exit")
+
+
 
 def main():
     tasks = read_tasks(FILENAME)

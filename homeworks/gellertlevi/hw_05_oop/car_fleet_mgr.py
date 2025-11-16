@@ -8,23 +8,37 @@ class Car:
         self.fuel_level = 100  
 
     def drive(self, run):
-        fuel_cons=run*0.1
-        self.fuel_level -= fuel_cons
-        self.mileage += run 
-        self.max_distance = self.fuel_level / 0.1
-        if fuel_cons>self.fuel_level:
-            print ("You have enough fuel for {self.max_distance} km.")
+        fuel_cons = run * 0.1
 
-        else:
-            print (f"You can drive  {run} km")
+        if fuel_cons > self.fuel_level:
+            max_distance = self.fuel_level / 0.1
+            print(f"You only have enough fuel for {max_distance:.1f} km.")
+            return
+
+        self.fuel_level -= fuel_cons
+        self.mileage += run
+        print(f"You have driven {run} km.")
     
-    def refuel (self, fuel):
-        if self.fuel_level ==100:
-            print("Tank is full.")
-        else:
-            print(f"Maximal refuel amount is {100-self.fuel_level} liters.")
+    def refuel(self, fuel):
+        try:
+        
+            if self.fuel_level == 100:
+                print("Tank is full.")
+                return
+
+        
+            if self.fuel_level + fuel > 100:
+                raise ValueError("Too much fuel!")
+
+        
             self.fuel_level += fuel
-            print(f"Refueled {fuel} liters. Current fuel level: {self.fuel_level} liters.")
+            print(f"Refueled {fuel} liters. Current fuel level: {self.fuel_level} %.")    
+
+        except ValueError:
+        
+            max_amount = 100 - self.fuel_level
+            print(f"Error: You cannot refuel {fuel} liters.")
+            print(f"Maximum allowed: {max_amount} liters.")
 
     def __str__(self):
         return f"{self.brand} {self.model} ({self.constr_year}) - {self.mileage} km, fuel: {self.fuel_level:.1f}%"
@@ -37,7 +51,7 @@ class Fleet:
     def remove_car(self, car_list):
     
         try:
-            self.car.remove(car_list) 
+            self.car_list.remove(car_list) 
             print(f"{Car} removed from fleet!")
         except ValueError:
             print("This car is not member of the fleet.")

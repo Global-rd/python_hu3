@@ -51,7 +51,10 @@ class Car:
             Distance mast be integer."""
         
         if not isinstance(move_distance, int):
-            raise TypeError("A Vlue argument must be of type int.")
+            raise TypeError("A value argument must be of type int.")
+        
+        if move_distance <= 0:
+            raise TypeError("A value argument must be of positive int LAMA!")
         
         if move_distance * self.fuel_consumption > self.fuel_level:
             raise FuelLevelError(f"{self} fuel level is not enough for this distance!")
@@ -59,9 +62,15 @@ class Car:
         self.fuel_level -= move_distance * self.fuel_consumption
         print(f"Current distance of {self} is {self.mileage}, current fuel level is {self.fuel_level}")
 
-    def refuel(self, amount_of_refilling):
+    def refuel(self, amount_of_refilling: float):
         """ Refilling fuel with % of quantity.
         """
+        if not isinstance(amount_of_refilling, float):
+            raise TypeError("A value argment must be type of float.")
+
+        if amount_of_refilling <= 0:
+            raise TypeError("A value argument must be positive Mr. Tesla.")
+
         if amount_of_refilling > (100 - self.fuel_level):
             raise RefillingError(f"{self} refilling quantity is too much.")
         self.fuel_level += amount_of_refilling
@@ -102,12 +111,21 @@ class Fleet:
         """Remove car from list of fleet.
         car_to_remove: instance of Car object """
 
-        for ccaarr in self.fleet_list:
-            if ccaarr == car_to_remove:
-                self.fleet_list.remove(ccaarr)
-                print(f"{self}, {ccaarr} has been removed from fleet.")
-                return
-        print(f"{car_to_remove} was not found in {self} fleet.")
+#   Eredeti kód:
+
+#        for ccaarr in self.fleet_list:
+#            if ccaarr == car_to_remove:
+#                self.fleet_list.remove(ccaarr)
+#                print(f"{self}, {ccaarr} has been removed from fleet.")
+#                return
+#        print(f"{car_to_remove} was not found in {self} fleet.")
+
+#   Módosított kód:
+
+        if car_to_remove in self.fleet_list:
+            self.fleet_list.remove(car_to_remove)
+        else:
+            print(f"{car_to_remove} was not found in {self} fleet.")
 
     def sum_of_all_mileage(self):
         """Remove car from list of fleet.
@@ -128,26 +146,59 @@ class Fleet:
 twingoq = Car("NXV-417", "Renault","Twingo", "2004")
 huy = Car("MZE-434", "Hyundai", "I20", 2020)
 
+# test zone
+
 try:
     for i in range(4):
         twingoq.drive(243)
-        twingoq.refuel(10)
-except:
-    print("Valamit túltoltunk. :) ")
+        twingoq.refuel(10.0)
+        
+except TypeError as e:
+    print(f"TypeError: {e}")
+except FuelLevelError as e:
+    print(f"FuelLevelError: {e}")
+except Exception as e:
+    print(f"Unexpected error: {type(e).__name__}: {e}")
 
 try:
     for i in range(3):
-        twingoq.refuel(20)
-except:
-    print("Valamit túltoltunk. :) ")
+        twingoq.refuel(20.0)
+except TypeError as e:
+    print(f"TypeError: {e}")
+except FuelLevelError as e:
+    print(f"FuelLevelError: {e}")
+except Exception as e:
+    print(f"Unexpected error: {type(e).__name__}: {e}")
 
 try:
     for i in range(2):
         huy.drive(300)
-        huy.refuel(4)
-except:       
-    print("Valamit túltoltunk. :) ")
+        huy.refuel(4.1)
+except TypeError as e:
+    print(f"TypeError: {e}")
+except FuelLevelError as e:
+    print(f"FuelLevelError: {e}")
+except Exception as e:
+    print(f"Unexpected error: {type(e).__name__}: {e}")
 
+
+try:
+    huy.drive(-300)
+except TypeError as e:
+    print(f"TypeError: {e}")
+except FuelLevelError as e:
+    print(f"FuelLevelError: {e}")
+except Exception as e:
+    print(f"Unexpected error: {type(e).__name__}: {e}")
+
+try:
+    twingoq.refuel(-10)
+except TypeError as e:
+    print(f"TypeError: {e}")
+except FuelLevelError as e:
+    print(f"FuelLevelError: {e}")
+except Exception as e:
+    print(f"Unexpected error: {type(e).__name__}: {e}")
 
 fleet_of_SD = Fleet("fleetofrentinSD")
 fleet_of_SD.add_car_to_fleet(twingoq)

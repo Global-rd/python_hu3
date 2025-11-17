@@ -9,6 +9,10 @@ class Car:
         self.fuel_level = 100  # in percentage
 
     def drive(self, kilometers):
+        if kilometers <= 0:
+            print(f"{self.brand} {self.model}: Distance must be positive.")
+            return
+
         fuel_needed = kilometers * 0.1  # 0.1% fuel per km
         max_possible_km = self.fuel_level / 0.1
 

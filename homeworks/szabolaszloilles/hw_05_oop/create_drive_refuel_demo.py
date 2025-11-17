@@ -26,6 +26,9 @@ car1.drive(200)
 car2.drive(300)
 car3.drive(600)
 
+# Invalid milage
+car1.drive(-100)
+
 # Invalid refuel
 car1.refuel(-20)
 

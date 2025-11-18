@@ -4,12 +4,15 @@ class BankAccount:
             raise ValueError("Initial balance cannot be negative.")
         self.owner = owner
         self.balance = balance
-    
+
     def deposit(self, amount: float):
-        if amount <= 0:
-            raise ValueError("Deposit amount must be positive.")
-        self.balance += amount
-    
+        try:
+            if amount <= 0:
+                raise ValueError("Deposit amount must be positive.")
+            self.balance += amount
+        except TypeError:
+            raise TypeError("Deposit amount must be a number.")    
+   
     def withdraw(self, amount: float):
         if amount <= 0:
             raise ValueError("Withdraw amount must be positive.")
@@ -18,8 +21,14 @@ class BankAccount:
         self.balance -= amount
 
     def transfer(self, amount: float, target_account: 'BankAccount'):
+        if amount <= 0:
+            raise ValueError("Transfer amount must be positive.")
         if not isinstance(target_account, BankAccount):
             raise TypeError("Target must be a BankAccount instance.")
+        if amount > self.balance:
+            raise ValueError("Insufficient funds for transfer.")
+        if self is target_account:
+            raise ValueError("Cannot transfer to the same account.")
         self.withdraw(amount)
         target_account.deposit(amount)
     

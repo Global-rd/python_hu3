@@ -27,7 +27,7 @@ def main():
     print("\n")
 
     #remove cars
-    fleet.remove_car(car_1)
+    fleet.remove_car(car_3)
     print("\n")
 
     fleet.Summary()

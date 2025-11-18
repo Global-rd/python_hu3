@@ -27,6 +27,9 @@ class Car:
     #refuel
     def refuel(self,fuel):
         max_refuel= 100-self.fuel_level
+        if fuel<=0:
+            print(f"ERROR! The fuel could be only a positive integer!")
+            return
         if fuel>max_refuel:
             print(f"Can't fuel {fuel}l to this car, maximum {max_refuel}l!")
             return
@@ -53,7 +56,8 @@ class Fleet:
     def remove_car(self,car):
         if car in self.cars:
             self.cars.remove(car)
-        print(f"Car {car} has been removed to Fleet")
+            print(f"Car {car} has been removed to Fleet")
+        return
     
     # fleet summary
     def Summary(self):

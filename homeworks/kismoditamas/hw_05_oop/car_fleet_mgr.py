@@ -13,18 +13,19 @@ class Car:
         elif distance * 0.1 > self.fuel_level:            
             self.mileage += self.fuel_level * 10
             self.fuel_level = 0         
-            raise ValueError("Not enough fuel to drive the requested distance.")
-        self.mileage += distance
-        self.fuel_level -= distance * 0.1  # Assume fuel consumption rate
+            #raise ValueError("Not enough fuel to drive the requested distance.")
+        else:
+            self.mileage += distance
+            self.fuel_level -= distance * 0.1  # Assume fuel consumption rate
 
     def refuel(self, amount):
         if amount < 0:
             raise ValueError("Refuel amount cannot be negative.")
         elif self.fuel_level + amount > 100:
             self.fuel_level = 100
-            raise ValueError("Fuel level cannot exceed 100%.")  
-        
-        self.fuel_level = min(100, self.fuel_level + amount)
+            #raise ValueError("Fuel level cannot exceed 100%.")  
+        else:
+            self.fuel_level = min(100, self.fuel_level + amount)
 
     def __str__(self):
         return f"{self.year} {self.brand} {self.model}, Mileage: {self.mileage} km , Fuel Level: {self.fuel_level}%"    

@@ -43,9 +43,10 @@ class Fleet:
         self.cars.append(car)
 
     def remove_car(self, car):
-        for x in self.cars:
-            if x == car:
-                self.cars.remove(car)
+        try:
+            self.cars.remove(car)
+        except ValueError:
+            raise ValueError("Car not found in the fleet.")
     
     def total_km(self):
         total = 0

@@ -9,7 +9,8 @@ class Car:
 
     
     def drive(self, distance_km):
-        
+        if distance_km < 0:
+            raise ValueError("Distance cannot be negative.")
         fuel_per_km = 0.1
         max_distance = self.fuel_level / fuel_per_km
 
@@ -25,7 +26,8 @@ class Car:
 
     
     def refuel(self, amount):
-       
+        if amount < 0:
+            raise ValueError("Refuel amount cannot be negative.")
         self.fuel_level += amount
         if self.fuel_level > 100.0:
             self.fuel_level = 100.0

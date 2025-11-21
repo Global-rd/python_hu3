@@ -57,9 +57,10 @@ class Fleet:
 
     cars_count = 0
 
-    def __init__(self, name: str, cars: Car) -> None:
+    def __init__(self, name: str, cars: list[Car]) -> None:
         self.name = name #fleet of foot"
         self.cars = cars
+        Fleet.cars_count += len(cars)
         self.fleet_history = []
 
     def add_car(self, car: Car) -> None:
@@ -72,6 +73,9 @@ class Fleet:
         })
    
     def remove_car(self, car: Car) -> None:
+        if car not in self.cars:
+            print(f"{car.brand} {car.model} ({car.year}) is not in the fleet.")
+            return
         self.cars.remove(car)
         Fleet.cars_count -= 1
         self.fleet_history.append({
@@ -95,7 +99,7 @@ class Fleet:
                      f"Mileage: {car.mileage} km, Fuel Level: {car.fuel_level}%\n")
         return info
     
-    def get_fleet_history(self, fleet_history) -> str:
+    def get_fleet_history(self) -> str:
         if not self.fleet_history:
             return "No cars in the fleet.\n"
         history = f"History for '{self.name}' :\n"
@@ -112,7 +116,7 @@ fleet = Fleet(name="Fleet of Foot", cars=[])
 
 # üres history
 print("\n----2. Empty fleet history")
-fleet_history = fleet.get_fleet_history(fleet.fleet_history)    
+fleet_history = fleet.get_fleet_history()    
 print(fleet_history)
 
 # korábban felvett autók hozzáadása a flottához 
@@ -158,7 +162,7 @@ print(f"Total cars in fleet: {Fleet.cars_count}")
 mileage_total = fleet.get_mileage_total()
 print(f"Total mileage of fleet: {mileage_total} km") 
 
-fleet_history = fleet.get_fleet_history(fleet.fleet_history)
+fleet_history = fleet.get_fleet_history()
 print(fleet_history)
 
 try:
@@ -179,4 +183,6 @@ except NotPositiveAmountError as e:
 try:
     car_3.drive(1000)
 except NotEnoughFuelError as e:
-    print(e)  
+    print(e) 
+
+fleet.remove_car(car_2) # removing a car which is not in the fleet 

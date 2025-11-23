@@ -48,17 +48,17 @@ def test_deposit(zero_balance):
     assert zero_balance.balance == 100.0
 
 
-@pytest.mark.parametrize("amount, target_account, expected_exception",
+@pytest.mark.parametrize("amount, expected_exception",
                          [
-                             (-100.0, test_account, TypeError), # negativ összeg
-                             ( 0.0, test_account, TypeError), # zero összeg
-                             (100.0, test_account, TypeError) # túl magas összeg
+                             (-100.0, ValueError), # negativ összeg
+                             ( 0.0, ValueError), # zero összeg
+                             (100.0, ValueError) # túl magas összeg
                          ])
 
-def test_transfer_invalid_number(zero_balance, amount, target_account, expected_exception):
+def test_transfer_invalid_number(zero_balance, test_account, amount, expected_exception):
     # negativ, 0 vagy túl magas értéket akarunk utalni
     with pytest.raises(expected_exception):
-        zero_balance.transfer(amount, target_account)
+        zero_balance.transfer(amount, test_account)
 
 
 def test_transfer_invalid_type(test_account):

@@ -58,7 +58,7 @@ def task_del():
 #def feladat írés
 def task_write(to_do):
     try:
-        with open(FILE_NAME, "a",) as file:
+        with open(FILE_NAME, "w",) as file:
             for task in to_do:
                 file.write(task + "\n")
         logging.info("Tasks saved successfully.")

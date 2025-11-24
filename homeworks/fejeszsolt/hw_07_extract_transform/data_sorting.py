@@ -1,13 +1,23 @@
 import pandas as pd
-import numpy as np
-from pathlib import Path
-from coingecko import json_path
-from definitions import change_direction
+#import numpy as np
+import requests
 
-csv_path = Path("homeworks") / "fejeszsolt" / "hw_07_extract_transform" / "top50.csv" 
+def change_direction(row):
+    if row["price_change_percentage_24h"] > 0:
+        return '+'
+    elif row["price_change_percentage_24h"] < 0:
+         return '-'
+    else:
+        return '0'
 
-df_coingecko=pd.read_json(json_path)
 
+url = "https://api.coingecko.com/api/v3/coins/markets"
+
+params = {"vs_currency": "HUF",
+          "per_page": 250}
+
+response = requests.get(url=url, params=params).json()
+df_coingecko=pd.DataFrame(response)
 
 empty_cells = df_coingecko.isnull().sum()
 print (empty_cells)
@@ -31,7 +41,8 @@ top50_df=top50_df.sort_values('price_change_percentage_24h',ascending=False)
 #    )
 
 
+
 top50_df['change_direction'] = top50_df.apply(change_direction, axis=1)
 print(top50_df)
 
-top50_df.to_csv(csv_path, index=False)
+

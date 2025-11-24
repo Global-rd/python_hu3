@@ -17,14 +17,14 @@ def ba_positive_balance():
     return ba("def", 1000)
 
 
-def test_deposit_by_zero_balance(ba_zero_balance):
+def test_deposit_with_zero_balance(ba_zero_balance):
     ba_zero_balance.deposit(100)
 
     assert ba_zero_balance.get_balance() == 100
     #assert ba_zero_balance.get_balance() == 101
 
 
-def test_deposit_by_pos_balance(ba_positive_balance):
+def test_deposit_with_pos_balance(ba_positive_balance):
     ba_positive_balance.deposit(100)
 
     assert ba_positive_balance.get_balance() == 1100
@@ -38,10 +38,23 @@ def test_deposit_by_pos_balance(ba_positive_balance):
                          ("ten", ValueError),
                          ])
 
-def test_deposit_by_invalid_input(ba_positive_balance, deposit, expected_exception):
+def test_deposit_with_invalid_input(ba_positive_balance, deposit, expected_exception):
     with pytest.raises(expected_exception):
         ba_positive_balance.deposit(deposit)
-        ba_positive_balance.withdraw(deposit)
+
+
+
+@pytest.mark.parametrize("deposit, expected_exception", 
+                         [
+                         (-1000, ValueError),
+                         (0, ValueError),
+                         ("ten", ValueError),
+                         ])    
+
+def test_withdraw_with_invalid_input(ba_positive_balance, deposit, expected_exception):
+    with pytest.raises(expected_exception):
+        ba_positive_balance.withdraw(deposit)        
+
 
 
 @pytest.mark.parametrize("money, ba_obj, expected_exception", 
@@ -53,7 +66,7 @@ def test_deposit_by_invalid_input(ba_positive_balance, deposit, expected_excepti
                          (100, ba("def",1000), ValueError),
                          ])
 
-def test_transfer_by_invalid_input(ba_positive_balance, money, ba_obj, expected_exception):
+def test_transfer_with_invalid_input(ba_positive_balance, money, ba_obj, expected_exception):
     with pytest.raises(expected_exception):
         ba_positive_balance.transfer(money, ba_obj)   
         

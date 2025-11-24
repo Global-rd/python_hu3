@@ -10,6 +10,21 @@ def fetch_data(url):
 
 df = pd.DataFrame(fetch_data(url))
 
-print(df.isnull().sum()) #Get every empty cell in the dataframe
+#Single colum emty cells check
+empty_cells = df.isnull().sum()
+print(empty_cells)
 
-print(df.market_cap).sum() #Get the total market cap of all cryptocurrencies in the dataframe
+#dataframe market cap sum
+market_cap_sum = df['market_cap'].sum()
+print(f"Total Market Cap: {market_cap_sum}")
+
+#top 50 cryptocurrencies decending order by current price
+price_change_percentage_24h = df['price_change_percentage_24h'].sort_values(ascending=False)
+top_50_cryptos = df.nlargest(50, 'current_price')
+print(top_50_cryptos[['name', 'current_price']])
+df.addchange_diretion = df['price_change_percentage_24h'].apply(lambda x: '+' if x > 0 else '-' if x < 0 else '0')
+
+
+
+
+

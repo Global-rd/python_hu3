@@ -60,11 +60,10 @@ def main() -> None:
         print(f"Total market cap: {market_cap_sum:,.2f} USD")
         print("-" * 30)
 
-        # Task 3: Create top 50 dataframe
-        # The API call already sorts by market cap, so we just take the first 50 rows.
-        top50_df: pd.DataFrame = df.head(n=50).copy()
+        # Task 3: Create top 50 dataframe by current_price
+        top50_df: pd.DataFrame = df.sort_values(by="current_price", ascending=False).head(50).copy()
 
-        # Task 4: Sort the top 50 dataframe
+        # Task 4: Sort the top 50 dataframe by price_change_percentage_24h
         top50_df = top50_df.sort_values(by="price_change_percentage_24h", ascending=False)
 
         # Task 5: Create 'change_direction' column

@@ -22,7 +22,7 @@ print(f"Total Market Cap: {market_cap_sum}")
 price_change_percentage_24h = df['price_change_percentage_24h'].sort_values(ascending=False)
 top_50_cryptos = df.nlargest(50, 'current_price')
 print(top_50_cryptos[['name', 'current_price']])
-df.addchange_diretion = df['price_change_percentage_24h'].apply(lambda x: '+' if x > 0 else '-' if x < 0 else '0')
+top_50_cryptos['change_direction'] = df['price_change_percentage_24h'].apply(lambda x: '+' if x > 0 else '-' if x < 0 else '0')
 
 
 

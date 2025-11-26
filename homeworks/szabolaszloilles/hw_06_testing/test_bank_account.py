@@ -1,5 +1,4 @@
 import pytest
-
 from bank_account import BankAccount
 
 # --- FIXTURE-ek --- #

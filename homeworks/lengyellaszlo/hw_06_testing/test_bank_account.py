@@ -1,6 +1,5 @@
 import pytest
 from bank_account import BankAccount
-from unittest.mock import patch
 
 @pytest.fixture
 def account1():

@@ -1,5 +1,7 @@
+tasks = []
+#tasks = ["to eat", "to sleep", "to drink"]
+
 def read_tasks(filename="tasks.txt"):
-    tasks = []
     try:
         with open(filename, "r", encoding="utf-8") as file:
             for line in file:
@@ -29,13 +31,14 @@ def write_tasks(tasks, filename):
     except Exception as e:
         print(f"Unexpected error while writing tasks: {e}")    
 
-def show_tasks(tasks):
+def show_tasks():
     if not tasks:
         print("No tasks in the list")
     else:
         print("To-Do List:")
-        for idx, task in enumerate(tasks, start=1):
-            print(f"{idx}.{tasks}")    
+        for idx, task in enumerate(tasks, start=0):
+            print(f"{idx+1}: {tasks[idx]}")
+            
 
 def add_task():
     task = input("Enter a new task: ")
@@ -77,9 +80,9 @@ while True:
     if response not in ["1", "2", "3", "4"]:
         print("Give a valid number (between 1 and 4)")
     elif response == "1":
-        add_task(tasks, task)
+        add_task()
     elif response == "2":
-        show_tasks(tasks)
+        show_tasks()
     elif response == "3":
         remove_task()
     elif response == "4":

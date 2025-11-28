@@ -1,0 +1,12 @@
+# virtuális környezet
+.venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# streamlit secrets (API kulcs)
+.streamlit/secrets.toml
+
+# sqlite adatbázis
+weather_logs.db

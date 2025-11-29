@@ -24,15 +24,16 @@ total_market_cap = df["market_cap"].sum()
 print("\n2. feladat: ")
 print(total_market_cap)
 
+
 top50_df = df.sort_values(by="current_price", ascending=False).head(50)
-print("\n3. feladat: ")
-print(top50_df[["id", "current_price"]].head())
+print("\n3. feladat (TOP 50): ")
+print(top50_df[["id", "current_price"]])
 
 
 top50_df = top50_df.sort_values(
     by="price_change_percentage_24h", ascending=False)
-print("\n4. feladat: ")
-print(top50_df[["id", "price_change_percentage_24h"]].head())
+print("\n4. feladat (TOP 50 rendezve változás szerint): ")
+print(top50_df[["id", "price_change_percentage_24h"]])
 
 
 def change_direction(x):

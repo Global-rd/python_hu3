@@ -75,6 +75,10 @@ def load_last_logs(limit: int = 50) -> pd.DataFrame:
 
 # API függvények:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+@st.cache_data(ttl=600)
+>>>>>>> Stashed changes
 =======
 @st.cache_data(ttl=600)
 >>>>>>> Stashed changes
@@ -98,6 +102,10 @@ def get_current_weather(city: str):
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+@st.cache_data(ttl=600)
+>>>>>>> Stashed changes
 =======
 @st.cache_data(ttl=600)
 >>>>>>> Stashed changes

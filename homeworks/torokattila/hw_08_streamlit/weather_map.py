@@ -51,8 +51,13 @@ def process_weather_data(data):
 
 def process_forecast_data(forecast):
     if "list" in forecast:
-        df = pd.json_normalize(forecast["list"])
-
+        # df = pd.json_normalize(forecast["list"])
+        df = pd.DataFrame(
+            [
+                {"dt": forecast["dt"], "main.temp": forecast["main"]["temp"]}
+                for forecast in forecast["list"]
+            ]
+        )
         df["timestamp"] = pd.to_datetime(df["dt"], unit="s")
         df.set_index("timestamp", inplace=True)
         df = df[["main.temp"]]

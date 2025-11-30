@@ -1,0 +1,44 @@
+PS C:\python_rd_repo\python_hu3> & C:\Users\Admin\AppData\Local\Programs\Python\Python313\python.exe c:/python_rd_repo/python_hu3/homeworks/lazareva/hw_05_oop/car_fleet_mgr.py
+----1. Car instances - without fleet management
+car_2.mileage: 150.0
+car_2.fuel_level: 85.0
+
+----2. Empty fleet history
+No cars in the fleet.
+
+----3. Fleet info after adding cars
+Information for 'Fleet of Foot' :
+    Audi e-tron GT (2021) - Mileage: 0.0 km, Fuel Level: 100.0%
+    BMW i4 (2022) - Mileage: 150.0 km, Fuel Level: 85.0%
+
+Total cars in fleet: 2
+Total mileage of fleet: 150.0 km
+
+----4. Fleet info before adding anew car (car_3)
+Information for 'Fleet of Foot' :
+    Audi e-tron GT (2021) - Mileage: 0.0 km, Fuel Level: 100.0%
+    BMW i4 (2022) - Mileage: 150.0 km, Fuel Level: 85.0%
+
+Total cars in fleet: 2
+Total mileage of fleet: 150.0 km
+
+----5. Fleet info after adding a new car (car_3) and removing car_2. Plus drive and refuel
+--- After updates ---
+Car_3 mileage: 120.0
+Car_3 fuel level: 75.0
+Information for 'Fleet of Foot' :
+    Audi e-tron GT (2021) - Mileage: 200.0 km, Fuel Level: 80.0%
+    Toyota Prius (2020) - Mileage: 120.0 km, Fuel Level: 75.0%
+
+Total cars in fleet: 2
+Total mileage of fleet: 320.0 km
+History for 'Fleet of Foot' :
+    2025-11-20 12:41:09 - ADD_CAR - Audi e-tron GT (2021))
+    2025-11-20 12:41:09 - ADD_CAR - BMW i4 (2022))
+    2025-11-20 12:41:09 - RMV_CAR - BMW i4 (2022))
+    2025-11-20 12:41:09 - ADD_CAR - Toyota Prius (2020))
+
+Refuel amount must be positive!
+Only 25.0 % fuel can be added into the tank.
+Distance must be positive!
+Not enough fuel to drive the requested distance.

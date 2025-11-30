@@ -1,7 +1,7 @@
 from typing import Literal
 import pytest
 from bank_account import BankAccount
-from unittest.mock import patch
+
 
 @pytest.fixture
 def zero_balance_account():
@@ -21,12 +21,6 @@ def test_deposit_with_balance(with_balance_account: BankAccount):
     
     assert with_balance_account.balance == 2500.0
 
-@pytest.mark.parametrize("owner,amount,expected_exception",
-     [
-          ("Bob",-1000, ValueError), # Negatív
-          ("Cecil",0, ValueError)    # zero
-     ]
-)
 
 @pytest.mark.parametrize("invalid_amount", [0, -50, -0.01])
 def test_deposit_invalid_amount_raises_value_error(zero_balance_account: BankAccount, invalid_amount: float | Literal[0] | Literal[-50]):
@@ -48,7 +42,7 @@ def test_withdraw_invalid_amount_raises_value_error(with_balance_account: BankAc
     assert with_balance_account.balance == initial_balance
 
 # 2000 - 2500
-def test_withdraw_valid_amount(with_balance_account: BankAccount):
+def test_withdraw_invalid_amount(with_balance_account: BankAccount):
     invalid_amount = 2500
     initial_balance = with_balance_account.balance
     with pytest.raises(ValueError, match="Insufficient funds."):

@@ -3,15 +3,19 @@ import plotly.express as px
 import datetime
 import requests
 import pandas as pd
+from datetime import datetime, timedelta
 
 API_KEY = st.secrets["openweathermap"]["api_key"]
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 BASE_URL_EXTRA = "https://api.openweathermap.org/data/2.5/forecast"
 UNITS = "metric"
 
-st.cache_data(ttl=86400)
+most = datetime.now()
+nap_vege = datetime(most.year, most.month, most.day) + timedelta(days=1)
+hatra = (nap_vege - most).total_seconds()
 
 
+@st.cache_data(ttl=hatra)
 def fetch_weather_forecast(city):
     print(f"Fetch forecast data for {city}")
 
@@ -26,6 +30,7 @@ def fetch_weather_forecast(city):
         st.error(f"Error: {response.json()['message']}")
 
 
+@st.cache_data(ttl=1800)
 def fetch_current_weather(city):
     print(f"Fetch data for {city}")
 

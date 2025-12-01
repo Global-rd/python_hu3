@@ -106,6 +106,7 @@ if st.sidebar.button("Get Weather"):
         st.subheader("💧 Humidity Forecast")
         df_forecast["humidity"] = df_forecast["main"].apply(lambda x: x["humidity"])
         st.line_chart(df_forecast.set_index("datetime")["humidity"], height=250)
+        
 
 
 

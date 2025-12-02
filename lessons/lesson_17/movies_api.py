@@ -39,7 +39,7 @@ async def add_movie(movie: MovieRequest, db: AsyncSession = Depends(get_db)):
 
 
 @app.get("/movies/{movie_id}", response_model=MovieResponse)
-async def get_movies(movie_id: UUID, db: AsyncSession = Depends(get_db)):
+async def get_movie(movie_id: UUID, db: AsyncSession = Depends(get_db)):
     movie = await get_movie_by_id(movie_id, db)
     return movie
 
@@ -60,7 +60,7 @@ async def update_movie(
 
 
 @app.delete("/movies/{movie_id}", response_model=MovieResponse)
-async def update_movie(movie_id: UUID, db: AsyncSession = Depends(get_db)):
+async def delete_movie(movie_id: UUID, db: AsyncSession = Depends(get_db)):
     movie = await get_movie_by_id(movie_id, db)
 
     await db.delete(movie)

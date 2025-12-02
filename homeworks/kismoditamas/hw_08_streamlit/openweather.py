@@ -70,7 +70,7 @@ def main():
         forecast_data = fetch_forecast_data(city, API_KEY)
         if forecast_data:
             st.subheader(f"Előrejelzés {city} városára")
-            # Itt további kódot adhatsz hozzá az előrejelzési adatok megjelenítéséhez
+           
             fig = px.line(
                 x=[forecast_data['list'][i]['dt_txt'] for i in range(40)],
                 y=[forecast_data['list'][i]['main']['temp'] for i in range(40)],

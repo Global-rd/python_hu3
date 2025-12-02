@@ -24,6 +24,7 @@ def fetch_weather_data(city: str, api_key: str) -> dict:
         return {}   
     return response.json()  
 
+@st.cache_data(ttl=86400)
 def fetch_forecast_data(city: str, api_key: str) -> dict:  
     params = {
         "q": city,

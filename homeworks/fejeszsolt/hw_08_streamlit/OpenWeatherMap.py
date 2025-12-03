@@ -9,7 +9,7 @@ API_KEY = st.secrets["openweathermap"]["api_key"]
 
 BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
-
+@st.cache_data(ttl=600)
 def get_city_weather(city,API_KEY):
    
    city_url=BASE_URL + "weather"
@@ -25,7 +25,8 @@ def get_city_weather(city,API_KEY):
     return response.json()
    else:
      return None
-
+   
+@st.cache_data(ttl=10800)
 def get_forecast(city,API_KEY):
    forecast_url=BASE_URL + "forecast"
 

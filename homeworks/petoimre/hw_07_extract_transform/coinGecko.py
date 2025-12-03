@@ -31,6 +31,18 @@ print(top50_df)
 desc_by_pcp24h = top50_df.sort_values("price_change_percentage_24h", ascending=False)    # 4./
 print(desc_by_pcp24h)
 
+def determine_change_direction(row):
+        if row["price_change_percentage_24h"] > 0:
+            return "+"
+        elif row["price_change_percentage_24h"] < 0:
+            return "-"
+        else:
+            return "0"
+        
+
+top50_df["change_direction"] = top50_df.apply(determine_change_direction, axis=1)
+
+"""
 top50_df["change_direction"] = "0"            
 top50_df.loc[df["price_change_percentage_24h"] > 0, "change_direction"] = "+"           # 5./
 top50_df.loc[df["price_change_percentage_24h"] < 0, "change_direction"] = "-"
@@ -38,5 +50,5 @@ top50_df.loc[df["price_change_percentage_24h"] < 0, "change_direction"] = "-"
 print(top50_df)
 
 
-
+"""
 

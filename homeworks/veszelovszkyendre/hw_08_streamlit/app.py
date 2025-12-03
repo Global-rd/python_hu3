@@ -74,14 +74,8 @@ def load_last_logs(limit: int = 50) -> pd.DataFrame:
 
 
 # API függvények:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 @st.cache_data(ttl=600)
->>>>>>> Stashed changes
-=======
 @st.cache_data(ttl=600)
->>>>>>> Stashed changes
 def get_current_weather(city: str):
 
     url = "https://api.openweathermap.org/data/2.5/weather"
@@ -101,14 +95,8 @@ def get_current_weather(city: str):
     return response.json()
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 @st.cache_data(ttl=600)
->>>>>>> Stashed changes
-=======
 @st.cache_data(ttl=600)
->>>>>>> Stashed changes
 def get_forecast(city: str):
 
     # Előrejelzés lekérése: 5 nap / 3 órás felbontásban

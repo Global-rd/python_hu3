@@ -1,6 +1,7 @@
 import requests
 import settings as s
 import pandas as pd
+import numpy as np
 
 
 # basic_url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false"
@@ -31,6 +32,8 @@ print(top50_df)
 desc_by_pcp24h = top50_df.sort_values("price_change_percentage_24h", ascending=False)    # 4./
 print(desc_by_pcp24h)
 
+
+"""
 def determine_change_direction(row):
         if row["price_change_percentage_24h"] > 0:
             return "+"
@@ -38,9 +41,9 @@ def determine_change_direction(row):
             return "-"
         else:
             return "0"
-        
+"""       
 
-top50_df["change_direction"] = top50_df.apply(determine_change_direction, axis=1)
+#top50_df["change_direction"] = top50_df.apply(determine_change_direction, axis=1)
 
 """
 top50_df["change_direction"] = "0"            
@@ -48,7 +51,15 @@ top50_df.loc[df["price_change_percentage_24h"] > 0, "change_direction"] = "+"   
 top50_df.loc[df["price_change_percentage_24h"] < 0, "change_direction"] = "-"
 
 print(top50_df)
-
-
 """
 
+# another way
+
+top50_df["change_direction"] = np.where(
+        top50_df["price_change_percentage_24h"] > 0, "+",
+        np.where(
+        top50_df["price_change_percentage_24h"] < 0, "-",
+        "0")
+)
+
+print(top50_df)

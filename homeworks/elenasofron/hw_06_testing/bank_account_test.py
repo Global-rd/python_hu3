@@ -1,24 +1,34 @@
 import pytest
 from bank_account import BankAccount
-
-#2 fixtures
-
-@pytest.fixture
-def account_balance() -> BankAccount:
-    return BankAccount("Test User 1", 10000.0)
+from unittest.mock import patch
 
 @pytest.fixture
-def account_zero_balance() -> BankAccount:
-    return BankAccount("Test User 2", 0.0)
+def empty_account():
+    return BankAccount("User_1")
 
-def test_account_creation(account_balance: BankAccount) -> None:
-    assert account_balance.owner == "Test User 1"
-    assert account_balance.get_balance() == 10000.0
+@pytest.fixture
+def another_account():
+    return BankAccount("User_2", 100.0)
 
-def test_withdraw_valid_amount(account_balance: BankAccount) -> None:
-    account_balance.withdraw(2000.0)
-    assert account_balance.get_balance() == 8000.0
+def test_depostit_no_balance(empty_account):
+    empty_account.deposit(100.0)
 
-def test_negative_amount() -> None:
-    with pytest.raises(ValueError, match="Balance cannot be negative."):
-        BankAccount("User types negative amount", -100.0)
+    assert empty_account.balance == 100.0
+    assert empty_account.owner == "User_1"
+
+def test_deposit_with_balance(another_account):
+    another_account.deposit(400.0)
+
+    assert another_account.balance == 500.0
+    assert another_account.owner == "User_2"
+
+@pytest.mark.parametrize("owner,amount,exception_expected":
+    [
+        ("User_1",-100, ValueError), 
+        ("User_1",0, ValueError)  
+    ]
+)
+
+def test_deposit_invalid_input(empty_account, owner, amount, exception_expected):    
+     with pytest.raises(exception_expected):
+          empty_account.deposit(amount)

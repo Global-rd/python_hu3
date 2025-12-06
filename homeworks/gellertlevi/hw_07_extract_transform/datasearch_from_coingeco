@@ -1,0 +1,37 @@
+import requests
+import pandas as pd
+
+url = "https://api.coingecko.com/api/v3/coins/markets"
+params = {
+    "vs_currency": "usd",
+    "order": "market_cap_desc",
+    "per_page": 250,
+    "page": 1,
+    "sparkline": False
+}
+
+response = requests.get(url, params=params)
+data = response.json()
+
+df = pd.DataFrame(data)
+
+print(df.isnull().sum())
+
+total_market_cap = df["market_cap"].sum()
+print(total_market_cap)
+
+top50_df = df.head(50).copy()
+
+top50_df = top50_df.sort_values(by="price_change_percentage_24h", ascending=False)
+
+def change_label(x):
+    if x > 0:
+        return "+"
+    elif x < 0:
+        return "-"
+    else:
+        return "0"
+
+top50_df["change_direction"] = top50_df["price_change_percentage_24h"].apply(change_label)
+
+print(top50_df[["id", "symbol", "current_price", "price_change_percentage_24h", "change_direction"]])

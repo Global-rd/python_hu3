@@ -22,13 +22,11 @@ def test_deposit_with_balance(another_account):
     assert another_account.balance == 500.0
     assert another_account.owner == "User_2"
 
-@pytest.mark.parametrize("owner,amount,exception_expected":
-    [
-        ("User_1",-100, ValueError), 
-        ("User_1",0, ValueError)  
-    ]
-)
-
-def test_deposit_invalid_input(empty_account, owner, amount, exception_expected):    
+@pytest.mark.parametrize(owner, amount, exception_expected
+                        [
+                            ("User_1",-100, ValueError), 
+                            ("User_1",0, ValueError)  
+                        ])  
+def test_deposit_invalid_input(owner, amount, exception_expected):    
      with pytest.raises(exception_expected):
           empty_account.deposit(amount)

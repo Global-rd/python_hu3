@@ -31,6 +31,7 @@ async def create_product(product: WebshopRequest, db: AsyncSession = Depends(get
     )
 
 #List all products
+@app.get("/webshop/", response_model=List[WebshopResponse])
 async def list_products(db: AsyncSession = Depends(get_db)) -> List[WebshopResponse]:
     result = await db.execute(select(Webshop))
     products = result.scalars().all()

@@ -55,11 +55,16 @@ adatbázist és egy táblát a fent említett 5 oszloppal (használd az órán t
 metódusokat a betöltéshez)
 """
 
+import datetime
+from pathlib import Path
+
+import sqlite3
+
 import streamlit as st
 import plotly.express as px
-import datetime
+
 import requests
-from pathlib import Path
+
 import pandas as pd
 
 API_KEY = st.secrets["openweathermap"]["api_key"]
@@ -73,20 +78,19 @@ def fetch_weather_data(city_name: str, api_key: str = API_KEY) -> dict | None:
     """
     Fetch current weather data for a given city.
     """
-    print(f"Fetch weather data for {city_name} with {API_KEY}")
-
     url = f"{BASE_URL}?q={city_name}&appid={api_key}&units=metric"
 
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for HTTP errors
         if response.status_code == 200:
             return response.json()
         else:
-            st.error(f"Error fetching data: {response.status_code}")
+            st.warning(
+                f"Could not fetch data for '{city_name}': {response.status_code}"
+            )
             return None
     except requests.RequestException as e:
-        st.error(f"Error fetching data: {e}")
+        st.warning(f"Could not fetch data for '{city_name}': {e}")
         return None
 
 
@@ -100,20 +104,20 @@ def fetch_forecast_data(city_name: str, api_key: str = API_KEY) -> dict | None:
 
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for HTTP errors
         if response.status_code == 200:
             return response.json()
         else:
-            st.error(f"Error fetching forecast data: {response.status_code}")
+            st.warning(
+                f"Could not fetch forecast for '{city_name}': {response.status_code}"
+            )
             return None
     except requests.RequestException as e:
-        st.error(f"Error fetching forecast data: {e}")
+        st.warning(f"Could not fetch forecast for '{city_name}': {e}")
         return None
 
 
 def log_search(city_name: str, temperature: float, humidity: int, wind_speed: float):
     """Log search data to a SQLite database stored at the repo root."""
-    import sqlite3
 
     db_path = Path(__file__).resolve().parent / "weather_searches_laszlolaszlo.db"
     db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -154,26 +158,28 @@ def main():
     city_name: str = st.sidebar.text_input("Enter City Name:", "Salomvár")
 
     weather_data: dict | None = fetch_weather_data(city_name=city_name)
-    if weather_data:
-        st.subheader(f"Current Weather in {city_name}")
-        temp = weather_data["main"]["temp"]
-        humidity = weather_data["main"]["humidity"]
-        wind_speed = weather_data["wind"]["speed"]
-        col1, col2, col3 = st.columns(3)
-        col1.metric(label="Temperature", value=f"{temp} °C")
-        col2.metric(label="Humidity", value=f"{humidity} %")
-        col3.metric(label="Wind Speed", value=f"{wind_speed} m/s")
+    if not weather_data:
+        st.warning(
+            "Could not fetch weather data. Please check the city name and try again."
+        )
+        st.stop()
 
-        st.subheader("Weather Map")
-        lat = weather_data["coord"]["lat"]
-        lon = weather_data["coord"]["lon"]
-        map_data = pd.DataFrame({"lat": [lat], "lon": [lon]})
-        st.map(map_data)
+    st.subheader(f"Current Weather in {city_name}")
+    temp = weather_data["main"]["temp"]
+    humidity = weather_data["main"]["humidity"]
+    wind_speed = weather_data["wind"]["speed"]
+    col1, col2, col3 = st.columns(3)
+    col1.metric(label="Temperature", value=f"{temp} °C")
+    col2.metric(label="Humidity", value=f"{humidity} %")
+    col3.metric(label="Wind Speed", value=f"{wind_speed} m/s")
 
-        log_search(city_name, temp, humidity, wind_speed)
-    else:
-        st.error("Could not fetch weather data.")
-        return
+    st.subheader("Weather Map")
+    lat = weather_data["coord"]["lat"]
+    lon = weather_data["coord"]["lon"]
+    map_data = pd.DataFrame({"lat": [lat], "lon": [lon]})
+    st.map(map_data)
+
+    log_search(city_name, temp, humidity, wind_speed)
 
     forecast_data: dict | None = fetch_forecast_data(city_name=city_name)
     if forecast_data:

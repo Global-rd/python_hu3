@@ -59,14 +59,14 @@ async def update_product(
     return product
 
 
-@app.delete("/products/{product_id}", response_model=ProductResponse)
+@app.delete("/products/{product_id}")
 async def delete_product(product_id: UUID, db: AsyncSession = Depends(get_db)):
     product = await get_product_by_id(product_id, db)
 
     await db.delete(product)
     await db.commit()
 
-    return True
+    return {"deleted": True, "id": str(product_id)}
 
 
 async def get_product_by_id(product_id: UUID, db: AsyncSession = Depends(get_db)):

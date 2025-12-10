@@ -76,7 +76,6 @@ def fetch_weather_data(city_name: str, api_key: str = API_KEY) -> dict | None:
     print(f"Fetch weather data for {city_name} with {API_KEY}")
 
     url = f"{BASE_URL}?q={city_name}&appid={api_key}&units=metric"
-    print(url)
 
     try:
         response = requests.get(url, timeout=10)

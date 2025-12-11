@@ -5,7 +5,7 @@ import pandas as pd
 
 API_KEY = st.secrets["OPENWEATHER_API_KEY"]
 
-@st.cache_data
+@st.cache_data(ttl=300)
 def get_current_weather(city):
     
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"

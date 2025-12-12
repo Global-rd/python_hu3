@@ -1,0 +1,80 @@
+import pytest
+from bank_account import BankAccount  
+
+# Fixtures 
+@pytest.fixture # test account1
+def account_alice():
+    
+    return BankAccount("Alice", 100)
+
+@pytest.fixture
+def account_bob(): # test account2
+    
+    return BankAccount("Bob", 200)
+
+# parametrize
+@pytest.mark.parametrize(
+    "amount, should_raise",
+    [
+        (0, True),       #  0 betét
+        (-10, True),     # negatív betét
+        (50, False)      # Normál betét
+    ]
+)
+def test_deposit(account_alice, amount, should_raise):
+    
+    if should_raise:
+        with pytest.raises(ValueError):
+            account_alice.deposit(amount)
+    else:
+        old_balance = account_alice.get_balance()
+        account_alice.deposit(amount)
+        assert account_alice.get_balance() == old_balance + amount
+
+# Withdraw test
+def test_withdraw(account_alice):
+    
+    
+    account_alice.withdraw(50)
+    assert account_alice.get_balance() == 50
+
+    
+    with pytest.raises(ValueError):
+        account_alice.withdraw(1000)
+
+    
+    with pytest.raises(ValueError):
+        account_alice.withdraw(-20)
+
+    
+    with pytest.raises(ValueError):
+        account_alice.withdraw(0)
+
+# Transfer test
+def test_transfer(account_alice, account_bob):
+    
+    
+    account_alice.transfer(50, account_bob)
+    assert account_alice.get_balance() == 50
+    assert account_bob.get_balance() == 250
+
+    
+    with pytest.raises(ValueError):
+        account_alice.transfer(1000, account_bob)
+
+    
+    with pytest.raises(TypeError):
+        account_alice.transfer(10, "not_an_account")
+
+
+def test_initial_balance_negative():
+    
+    with pytest.raises(ValueError):
+        BankAccount("Charlie", -100)
+
+# String representation
+def test_str_method(account_alice):
+    
+    result = str(account_alice)
+    assert "Alice" in result
+    assert f"{account_alice.get_balance():.2f}" in result

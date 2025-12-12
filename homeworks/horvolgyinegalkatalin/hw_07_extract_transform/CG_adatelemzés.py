@@ -1,0 +1,42 @@
+import requests
+import pandas as pd
+
+url = "https://api.coingecko.com/api/v3/coins/markets"
+params = {"vs_currency": "usd", "per_page": 250}
+
+response = requests.get(url, params=params)
+data = response.json()
+
+df = pd.DataFrame(data)
+
+empty_cells = df.isnull().sum()
+
+# üres cellás oszlopok printelése/nincs üres cella vizsgálat
+print(f"üres cellás oszlopok:\n{empty_cells[empty_cells>0]}")
+if (empty_cells > 0).sum() == 0:
+    print("nincs üres cella")
+
+# teljes market cap összege
+total_market_cap = df["market_cap"].sum()
+print(f"teljes market cap összege USD-ben:{total_market_cap}")
+
+# top50_df rendezve 24órás árváltozás alapján csökkenőbe
+top50_df = df.nlargest(50, "current_price")
+top50_df = top50_df.sort_values(
+    by="price_change_percentage_24h", ascending=False
+).reset_index(drop=True)
+
+
+# váltotás értékeinek definiálása (+/-/0), új oszlopban tárolása
+def change_direction(change):
+    if change > 0:
+        return "+"
+    elif change < 0:
+        return "-"
+    else:
+        return "0"
+
+
+top50_df["change_direction"] = top50_df["price_change_percentage_24h"].apply(
+    change_direction
+)

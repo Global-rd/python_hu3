@@ -80,7 +80,6 @@ async def delete_item(item_id: UUID, db: AsyncSession = Depends(get_db)) -> None
     item = await get_item_by_id(item_id, db)
     await db.delete(item)
     await db.commit()
-    return None
 
 
 async def get_item_by_id(item_id: UUID, db: AsyncSession) -> Item:
@@ -93,6 +92,6 @@ async def get_item_by_id(item_id: UUID, db: AsyncSession) -> Item:
     item = result.scalar_one_or_none()
 
     if not item:
-        raise HTTPException(status_code=404, detail=f"Item id {item_id} not found")
+        raise HTTPException(status_code=404, detail=f"Item with id {item_id} not found")
 
     return item

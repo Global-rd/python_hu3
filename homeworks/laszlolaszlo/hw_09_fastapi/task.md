@@ -1,4 +1,4 @@
-# FastPI Házi Feladat
+# FastAPI Házi Feladat
 
 ## Leírás
 

@@ -1,11 +1,50 @@
-from fastapi import FastAPI
-from uuid import uuid1
+from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
+from uuid import uuid4
 
-app = FastAPI(title="HW09 FastAPI CRUD App")
+from sqlalchemy import create_engine, Column, String, Integer
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, Session
 
-# ---- Pydantic modellek ----
+# -------------------------------------------------
+# DATABASE CONFIG
+# -------------------------------------------------
+
+DATABASE_URL = "sqlite:///./items.db"
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
+Base = declarative_base()
+
+# -------------------------------------------------
+# SQLALCHEMY MODEL
+# -------------------------------------------------
+
+class ItemDB(Base):
+    __tablename__ = "items"
+
+    id = Column(String, primary_key=True, index=True)
+    item_name = Column(String, nullable=False)
+    quantity = Column(Integer, nullable=False)
+    price = Column(Integer, nullable=False)
+    category = Column(String, nullable=True)
+
+Base.metadata.create_all(bind=engine)
+
+# -------------------------------------------------
+# PYDANTIC MODELS
+# -------------------------------------------------
+
 class Item(BaseModel):
     item_name: str
     quantity: int
@@ -15,45 +54,83 @@ class Item(BaseModel):
 class ItemWithID(Item):
     id: str
 
-# ---- "adatbázis" memóriában ----
-db: List[ItemWithID] = []
+    class Config:
+        orm_mode = True
 
-# ---- CRUD ENDPOINTS ----
+# -------------------------------------------------
+# DB SESSION DEPENDENCY
+# -------------------------------------------------
 
-# 1) Minden termék listázása
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# -------------------------------------------------
+# FASTAPI APP
+# -------------------------------------------------
+
+app = FastAPI(title="HW09 FastAPI CRUD App")
+
+# -------------------------------------------------
+# CRUD ENDPOINTS
+# -------------------------------------------------
+
+# 1️ List all items
 @app.get("/items", response_model=List[ItemWithID])
-def list_items():
-    return db
+def list_items(db: Session = Depends(get_db)):
+    return db.query(ItemDB).all()
 
-# 2) Egy termék lekérése ID alapján
+# 2 Get item by ID
 @app.get("/items/{item_id}", response_model=ItemWithID)
-def get_item(item_id: str):
-    for item in db:
-        if item.id == item_id:
-            return item
-    return {"error": "Item not found"}
+def get_item(item_id: str, db: Session = Depends(get_db)):
+    item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return item
 
-# 3) Új termék hozzáadása
+
+# 3️ Create item
 @app.post("/items", response_model=ItemWithID)
-def create_item(item: Item):
-    new_item = ItemWithID(id=str(uuid1()), **item.dict())
-    db.append(new_item)
-    return new_item
+def create_item(item: Item, db: Session = Depends(get_db)):
+    db_item = ItemDB(
+        id=str(uuid4()),
+        item_name=item.item_name,
+        quantity=item.quantity,
+        price=item.price,
+        category=item.category
+    )
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
 
-# 4) Termék frissítése ID alapján
+
+# 4️ Update item
 @app.put("/items/{item_id}", response_model=ItemWithID)
-def update_item(item_id: str, updated_item: Item):
-    for index, item in enumerate(db):
-        if item.id == item_id:
-            db[index] = ItemWithID(id=item_id, **updated_item.dict())
-            return db[index]
-    return {"error": "Item not found"}
+def update_item(item_id: str, updated_item: Item, db: Session = Depends(get_db)):
+    item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
 
-# 5) Termék törlése ID alapján
+    item.item_name = updated_item.item_name
+    item.quantity = updated_item.quantity
+    item.price = updated_item.price
+    item.category = updated_item.category
+
+    db.commit()
+    db.refresh(item)
+    return item
+
+# 5️ Delete item
 @app.delete("/items/{item_id}")
-def delete_item(item_id: str):
-    for item in db:
-        if item.id == item_id:
-            db.remove(item)
-            return {"message": "Item deleted"}
-    return {"error": "Item not found"}
+def delete_item(item_id: str, db: Session = Depends(get_db)):
+    item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    db.delete(item)
+    db.commit()
+    return {"message": "Item deleted"}

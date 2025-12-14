@@ -17,10 +17,10 @@ class FictionalWebshop(Base):
 # pydantic model:
 class FictionalWebshopRequest(BaseModel):
 
-    item_name: str = Field(..., min_length=5)
+    item_name: str = Field(..., min_length=4)
     quantity: int
     price: int
     category: Optional[str] = None
 
-class FictionalWebshopResponse(FictionalWebshop):
+class FictionalWebshopResponse(FictionalWebshopRequest):
     id: UUID

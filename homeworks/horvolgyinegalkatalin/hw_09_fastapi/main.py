@@ -1,9 +1,24 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Optional, List
+from fastapi import FastAPI, HTTPException, Depends
+from sqlalchemy.orm import Session
 from uuid import uuid1
+from typing import Optional
 
-app = FastAPI(title="Termékek")
+from database import SessionLocal, engine, Base
+from models import Item
+from pydantic import BaseModel
+
+app = FastAPI(title="Webshop termékek")
+
+# táblák létrehozása
+Base.metadata.create_all(bind=engine)
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 class ItemBase(BaseModel):
@@ -13,38 +28,31 @@ class ItemBase(BaseModel):
     category: Optional[str] = None
 
 
-class Item(ItemBase):
+class ItemResponse(ItemBase):
     id: str
 
-
-# Adatállomány
-
-items_db: List[Item] = []
+    class Config:
+        orm_mode = True
 
 
-# CRUD endpointok
+# Minden termék
+@app.get("/items", response_model=list[ItemResponse])
+def get_items(db: Session = Depends(get_db)):
+    return db.query(Item).all()
 
 
-# Minden termék listázása
-@app.get("/items", response_model=List[Item])
-def get_all_items():
-    return items_db
+# 1 termék ID alapján
+@app.get("/items/{item_id}", response_model=ItemResponse)
+def get_item(item_id: str, db: Session = Depends(get_db)):
+    item = db.query(Item).filter(Item.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Nincs ilyen elem")
+    return item
 
 
-# 1 termék lekérése ID alapján
-@app.get("/items/{item_id}", response_model=Item)
-def get_item(item_id: str):
-    for item in items_db:
-        if item.id == item_id:
-            return item
-    raise HTTPException(status_code=404, detail="nincs ilyen ID-jú termék")
-
-
-# Új termék hozzáadása (ID automatikus)
-
-
-@app.post("/items", response_model=Item)
-def create_item(item: ItemBase):
+# Új termék
+@app.post("/items", response_model=ItemResponse)
+def create_item(item: ItemBase, db: Session = Depends(get_db)):
     new_item = Item(
         id=str(uuid1()),
         item_name=item.item_name,
@@ -52,32 +60,36 @@ def create_item(item: ItemBase):
         price=item.price,
         category=item.category,
     )
-    items_db.append(new_item)
+    db.add(new_item)
+    db.commit()
+    db.refresh(new_item)
     return new_item
 
 
-# Termék frissítése ID alapján
-@app.put("/items/{item_id}", response_model=Item)
-def update_item(item_id: str, updated_item: ItemBase):
-    for index, item in enumerate(items_db):
-        if item.id == item_id:
-            new_item = Item(
-                id=item_id,
-                item_name=updated_item.item_name,
-                quantity=updated_item.quantity,
-                price=updated_item.price,
-                category=updated_item.category,
-            )
-            items_db[index] = new_item
-            return new_item
-    raise HTTPException(status_code=404, detail="nincs ilyen termék")
+# Frissítés ID alapján
+@app.put("/items/{item_id}", response_model=ItemResponse)
+def update_item(item_id: str, updated_item: ItemBase, db: Session = Depends(get_db)):
+    item = db.query(Item).filter(Item.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Nincs ilyen elem")
+
+    item.item_name = updated_item.item_name
+    item.quantity = updated_item.quantity
+    item.price = updated_item.price
+    item.category = updated_item.category
+
+    db.commit()
+    db.refresh(item)
+    return item
 
 
-# Termék törlése ID alapján
+# Törlés ID alapján
 @app.delete("/items/{item_id}")
-def delete_item(item_id: str):
-    for index, item in enumerate(items_db):
-        if item.id == item_id:
-            items_db.pop(index)
-            return {"message": "termék törölve"}
-    raise HTTPException(status_code=404, detail="nincs mit törölni")
+def delete_item(item_id: str, db: Session = Depends(get_db)):
+    item = db.query(Item).filter(Item.id == item_id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Nincs ilyen elem")
+
+    db.delete(item)
+    db.commit()
+    return {"message": "Törölve"}
